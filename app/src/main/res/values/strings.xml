@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HotelReservationSystem</string>
+    <string name="developer">developed by Bloopers</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">"welcome to  "</string>
+    <string name="slogan2">"The fastest way to search hotel for you "</string>
+</resources>
