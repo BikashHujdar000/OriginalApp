@@ -56,5 +56,8 @@ dependencies {
     //library for bottom navigation bar
     implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
-    // library for otpView
+    // library for otp View
+    implementation 'com.github.mukeshsolanki.android-otpview-pinview:otpview-compose:3.1.0'
+    implementation 'com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0'
+
 }
