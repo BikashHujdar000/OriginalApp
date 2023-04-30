@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         >
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +71,7 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/busOwner"
+                android:id="@+id/hotelOwner"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:layout_marginStart="50dp"
@@ -81,10 +80,9 @@
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/bottom_background"
                 android:backgroundTint="@color/theme1"
-
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
-                android:text="Bus Owner"
+                android:text=" Hotel Owner"
                 android:textColor="@color/white"
                 android:textSize="25dp" />
 
