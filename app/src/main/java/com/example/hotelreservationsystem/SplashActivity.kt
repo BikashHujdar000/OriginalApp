@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         // managing the spinkit library
         supportActionBar?.hide()
 
-        // hidding atatus bar
+        // hiding status bar
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())

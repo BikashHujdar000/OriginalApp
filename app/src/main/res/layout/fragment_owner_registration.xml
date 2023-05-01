@@ -85,8 +85,8 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:theme="@style/MyEditTextTheme"
                 android:id="@+id/edit_password"
+                android:theme="@style/MyEditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

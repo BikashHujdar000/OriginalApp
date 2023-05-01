@@ -63,7 +63,6 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
-
                 <com.mukeshsolanki.OtpView
                     android:id="@+id/otp_view"
                     android:layout_width="wrap_content"

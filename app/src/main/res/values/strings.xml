@@ -2,14 +2,13 @@
     <string name="app_name">HotelReservationSystem</string>
     <string name="developer">Developed by Bloopers</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome to Hotel Life </string>
     <string name="slogan2">"The fastest way to search hotel for you "</string>
 
     <string name="register"> Get Registered </string>
     <string name="login">Lets Login</string>
     <string name="login_down">Start availing the best route for you </string>
-    <string name="register_down">Sign up now and discover the best ride</string>
+    <string name="register_down">Sign up now and discover the best hotel near you.</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

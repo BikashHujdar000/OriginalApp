@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.hotelreservationsystem.R
+import com.example.hotelreservationsystem.databinding.FragmentOwnerOtpConfirmationBinding
 
 class OwnerOtpConfirmationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+   lateinit var binding : FragmentOwnerOtpConfirmationBinding;
 
 
     override fun onCreateView(
@@ -18,7 +18,13 @@ class OwnerOtpConfirmationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_owner_otp_confirmation, container, false)
+        binding = FragmentOwnerOtpConfirmationBinding.inflate(layoutInflater,container,false);
+        binding.update.setOnClickListener {
+
+            // updating password  is in this field
+            Navigation.findNavController(it).navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerHomeFragment);
+        }
+        return binding.root
     }
 
 

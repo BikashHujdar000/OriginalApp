@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/chooseFragment">
+
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="com.example.hotelreservationsystem.SplashActivity"
+        android:label="activity_splash"
+        tools:layout="@layout/activity_splash" />
+    <fragment
+        android:id="@+id/chooseFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.chooseFragment"
+        android:label="fragment_choose"
+        tools:layout="@layout/fragment_choose" >
+        <action
+            android:id="@+id/action_chooseFragment_to_ownerRegistrationFragment"
+            app:destination="@id/ownerRegistrationFragment" />
+        <action
+            android:id="@+id/action_chooseFragment_to_userRegisterFragment"
+            app:destination="@id/userRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerLoginFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerLoginFragment"
+        android:label="fragment_owner_login"
+        tools:layout="@layout/fragment_owner_login" >
+        <action
+            android:id="@+id/action_ownerLoginFragment_to_ownerForgetPasswordFragment"
+            app:destination="@id/ownerForgetPasswordFragment" />
+        <action
+            android:id="@+id/action_ownerLoginFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerRegistrationFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerRegistrationFragment"
+        android:label="fragment_owner_registration"
+        tools:layout="@layout/fragment_owner_registration" >
+        <action
+            android:id="@+id/action_ownerRegistrationFragment_to_ownerLoginFragment"
+            app:destination="@id/ownerLoginFragment" />
+        <action
+            android:id="@+id/action_ownerRegistrationFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpConfirmationFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OtpConfirmationFragment"
+        android:label="fragment_otp_confirmation"
+        tools:layout="@layout/fragment_otp_confirmation" >
+        <action
+            android:id="@+id/action_otpConfirmationFragment_to_userHomeFragment"
+            app:destination="@id/userHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerForgetPasswordFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerForgetPasswordFragment"
+        android:label="fragment_owner_forget_password"
+        tools:layout="@layout/fragment_owner_forget_password" >
+        <action
+            android:id="@+id/action_ownerForgetPasswordFragment_to_ownerOtpVerificationFragment"
+            app:destination="@id/ownerOtpVerificationFragment" />
+        <action
+            android:id="@+id/action_ownerForgetPasswordFragment_to_ownerLoginFragment"
+            app:destination="@id/ownerLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userLoginFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserLoginFragment"
+        android:label="fragment_user_login"
+        tools:layout="@layout/fragment_user_login" >
+        <action
+            android:id="@+id/action_userLoginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_userLoginFragment_to_userHomeFragment"
+            app:destination="@id/userHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRegisterFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserRegisterFragment"
+        android:label="fragment_user_register"
+        tools:layout="@layout/fragment_user_register" >
+        <action
+            android:id="@+id/action_userRegisterFragment_to_userLoginFragment"
+            app:destination="@id/userLoginFragment" />
+        <action
+            android:id="@+id/action_userRegisterFragment_to_userHomeFragment"
+            app:destination="@id/userHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerOtpVerificationFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpVerificationFragment"
+        android:label="fragment_owner_otp_verification"
+        tools:layout="@layout/fragment_owner_otp_verification" >
+        <action
+            android:id="@+id/action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment"
+            app:destination="@id/ownerOtpConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerOtpConfirmationFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpConfirmationFragment"
+        android:label="fragment_owner_otp_confirmation"
+        tools:layout="@layout/fragment_owner_otp_confirmation" >
+        <action
+            android:id="@+id/action_ownerOtpConfirmationFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.forgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_otpVerificationFragment"
+            app:destination="@id/otpVerificationFragment" />
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_userLoginFragment"
+            app:destination="@id/userLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpVerificationFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OtpVerificationFragment"
+        android:label="fragment_otp_verification"
+        tools:layout="@layout/fragment_otp_verification" >
+        <action
+            android:id="@+id/action_otpVerificationFragment_to_otpConfirmationFragment"
+            app:destination="@id/otpConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerHomeFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerHomeFragment"
+        android:label="fragment_owner_home"
+        tools:layout="@layout/fragment_owner_home" >
+        <action
+            android:id="@+id/action_ownerHomeFragment_to_nav_graph"
+            app:destination="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/userHomeFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserHomeFragment"
+        android:label="fragment_user_home"
+        tools:layout="@layout/fragment_user_home" />
+</navigation>
