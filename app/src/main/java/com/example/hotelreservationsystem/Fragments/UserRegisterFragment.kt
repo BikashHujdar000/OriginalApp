@@ -24,10 +24,18 @@ class UserRegisterFragment : Fragment() {
         }
         binding.signUpButton.setOnClickListener {
 
-            //all credentials are checked here.
+            //all credentials are checked here. var ownerName = binding.editName.text.toString();
+            var ownerEmail = binding.editEmail.text.toString();
+            var ownerPhoneNumber = binding.editPhone.text.toString();
+            var ownerPassword = binding.editPassword.text.toString();
+            if (binding.checkBox.isChecked) {
 
-            Navigation.findNavController(it).navigate(R.id.action_userRegisterFragment_to_userHomeFragment);
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_userRegisterFragment_to_userHomeFragment);
+            }
         }
+
+
         return binding.root;
     }
 

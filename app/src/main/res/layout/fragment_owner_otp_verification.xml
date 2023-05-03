@@ -63,18 +63,100 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
-                <com.mukeshsolanki.OtpView
-                    android:id="@+id/otp_view"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:inputType="number"
-                    android:itemBackground="@color/grey"
-                    android:focusableInTouchMode="true"
-                    app:OtpItemCount="6"
-                    app:OtpLineColor="@color/teal_700"
-                    app:OtpViewType="line" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+
+                    <EditText
+                        android:id="@+id/otp1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/otp_back"
+                        android:gravity="center"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:theme="@style/MyEditTextTheme"
+                        tools:ignore="label for"/>
+                    <EditText
+                        android:id="@+id/otp2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/otp_back"
+                        android:gravity="center"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:theme="@style/MyEditTextTheme"
+                        tools:ignore="label for"/>
+                    <EditText
+                        android:id="@+id/otp3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/otp_back"
+                        android:gravity="center"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:theme="@style/MyEditTextTheme"
+                        tools:ignore="label for"/>
+                    <EditText
+                        android:id="@+id/otp4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/otp_back"
+                        android:gravity="center"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:theme="@style/MyEditTextTheme"
+                        tools:ignore="label for"/>
+                    <EditText
+                        android:id="@+id/otp5"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/otp_back"
+                        android:gravity="center"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:theme="@style/MyEditTextTheme"
+                        tools:ignore="label for"/>
+                    <EditText
+                        android:id="@+id/otp6"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/otp_back"
+                        android:gravity="center"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:theme="@style/MyEditTextTheme"
+                        tools:ignore="label for"/>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/continueBtn"

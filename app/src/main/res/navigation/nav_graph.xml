@@ -5,11 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/chooseFragment">
 
-    <activity
-        android:id="@+id/splashActivity"
-        android:name="com.example.hotelreservationsystem.SplashActivity"
-        android:label="activity_splash"
-        tools:layout="@layout/activity_splash" />
     <fragment
         android:id="@+id/chooseFragment"
         android:name="com.example.hotelreservationsystem.Fragments.chooseFragment"

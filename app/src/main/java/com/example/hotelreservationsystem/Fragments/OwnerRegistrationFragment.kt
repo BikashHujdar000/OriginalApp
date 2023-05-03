@@ -27,9 +27,14 @@ class OwnerRegistrationFragment : Fragment() {
             var ownerEmail = binding.editEmail.text.toString();
             var ownerPhoneNumber = binding.editPhone.text.toString();
             var ownerPassword = binding.editPassword.text.toString();
-            Navigation.findNavController(it).navigate(R.id.action_ownerRegistrationFragment_to_ownerHomeFragment);
+            if (binding.checkBox.isChecked) {
+
+
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment);
+            }
         }
-        // Inflate the layout for this fragment
+
         return binding.root
     }
 
