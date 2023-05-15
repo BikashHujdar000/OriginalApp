@@ -133,10 +133,58 @@
         <action
             android:id="@+id/action_ownerHomeFragment_to_nav_graph"
             app:destination="@id/nav_graph" />
+        <action
+            android:id="@+id/action_ownerHomeFragment_to_addRoomFragment"
+            app:destination="@id/addRoomFragment" />
+        <action
+            android:id="@+id/action_ownerHomeFragment_to_ownerProfileFragment"
+            app:destination="@id/ownerProfileFragment" />
+        <action
+            android:id="@+id/action_ownerHomeFragment_to_ownerRoomsFragment"
+            app:destination="@id/ownerRoomsFragment" />
+        <action
+            android:id="@+id/action_ownerHomeFragment_to_ownersBookingFragment"
+            app:destination="@id/ownersBookingFragment" />
     </fragment>
     <fragment
         android:id="@+id/userHomeFragment"
         android:name="com.example.hotelreservationsystem.Fragments.UserHomeFragment"
         android:label="fragment_user_home"
         tools:layout="@layout/fragment_user_home" />
+    <fragment
+        android:id="@+id/addRoomFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.addRoomFragment"
+        android:label="fragment_add_room"
+        tools:layout="@layout/fragment_add_room" >
+        <action
+            android:id="@+id/action_addRoomFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerRoomsFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerRoomsFragment"
+        android:label="fragment_owner_rooms"
+        tools:layout="@layout/fragment_owner_rooms" >
+        <action
+            android:id="@+id/action_ownerRoomsFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerProfileFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerProfileFragment"
+        android:label="fragment_owner_profile"
+        tools:layout="@layout/fragment_owner_profile" >
+        <action
+            android:id="@+id/action_ownerProfileFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownersBookingFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnersBookingFragment"
+        android:label="fragment_owners_booking"
+        tools:layout="@layout/fragment_owners_booking" >
+        <action
+            android:id="@+id/action_ownersBookingFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
 </navigation>

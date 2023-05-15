@@ -31,4 +31,12 @@
     <string name="verify">Enter the OTP code  sent to your email address \n to verify your account</string>
     <string name="create_password">Create Password</string>
     <string name="congrartsdown">Your otp has been verified successfully \nCreate new password now</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="selectors">
+        <item>Single Bed</item>
+        <item>Double Bed </item>
+        <item>Deluxe Double</item>
+    </string-array>
 </resources>

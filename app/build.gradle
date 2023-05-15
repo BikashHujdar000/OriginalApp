@@ -61,4 +61,7 @@ dependencies {
     implementation 'com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0'
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
+    // dependency for image slider
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
+
 }
