@@ -36,11 +36,19 @@ class OwnerHomeFragment : Fragment() {
         binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
         binding.imageSlider.setImageList(imageList)
 
-
-
         binding.addRooms.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_addRoomFragment);
         }
+        binding.roomsList.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownerRoomsFragment)
+        }
+        binding.hotelProfile.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment)
+        }
+        binding.bookings.setOnClickListener(){
+            Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownersBookingFragment)
+        }
+
 
 
         return binding.root;

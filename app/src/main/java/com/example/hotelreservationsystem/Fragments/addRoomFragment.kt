@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.navigation.Navigation
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.databinding.FragmentAddRoomBinding
@@ -47,7 +48,8 @@ class addRoomFragment : Fragment() {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, 4)
         }
-
+       binding.updateHotel.setOnClickListener(){ Navigation.findNavController(it).navigate(R.id.action_addRoomFragment_to_ownerHomeFragment)
+}
 
         // Inflate the layout for this fragment
         return binding.root
