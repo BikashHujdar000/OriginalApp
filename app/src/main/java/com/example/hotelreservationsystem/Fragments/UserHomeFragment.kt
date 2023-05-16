@@ -5,20 +5,42 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hotelreservationsystem.Adapters.TestAdapters
 import com.example.hotelreservationsystem.R
+import com.example.hotelreservationsystem.TestModels.DataModel
+import com.example.hotelreservationsystem.databinding.FragmentUserHomeBinding
 
 
 class UserHomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var binding:FragmentUserHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
+     val recyclerView = binding.userTestHomeRecycler
+
+        // serting ups looking for visualization to topic
+        val manualData = ArrayList<DataModel>()
+     manualData.add(DataModel("Trojan National Hotel","United",1))
+        manualData.add(DataModel("Trojan National Hotel","United",1))
+        manualData.add(DataModel("sigma National Hotel","United",1))
+        manualData.add(DataModel("LojanNational Hotel","United",1))
+        manualData.add(DataModel("TarhanNational Hotel","United",1))
+        manualData.add(DataModel("Trojan National Hotel","United",1))
+        manualData.add(DataModel("famndfk fkanlkd Hotel","United",1))
+        manualData.add(DataModel("Trojan National Hotel","United",1))
+        manualData.add(DataModel("Sirha National Hotel","United",1))
+        manualData.add(DataModel("Trojan National Hotel","United",1))
+val adapters = TestAdapters(requireContext(),manualData)
+        recyclerView.adapter=adapters
+        recyclerView.layoutManager= LinearLayoutManager(requireContext())
+        // chanfging abovve code after api
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_home, container, false)
+
+        return binding.root
     }
 
 }

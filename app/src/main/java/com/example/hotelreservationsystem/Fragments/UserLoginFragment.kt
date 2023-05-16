@@ -1,5 +1,6 @@
 package com.example.hotelreservationsystem.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.hotelreservationsystem.R
+import com.example.hotelreservationsystem.UserActivity
 import com.example.hotelreservationsystem.databinding.FragmentOwnerLoginBinding
 import com.example.hotelreservationsystem.databinding.FragmentUserLoginBinding
 
@@ -26,8 +28,13 @@ class UserLoginFragment : Fragment() {
 
             // get the content of the credentials checked here.
 
+            // type 1
+            val intent = Intent (getActivity(),UserActivity::class.java)
 
-            Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_userHomeFragment);
+            getActivity()?.startActivity(intent)
+
+
+//            Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_userHomeFragment);
         }
         binding.forgotPassword.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_forgotPasswordFragment);

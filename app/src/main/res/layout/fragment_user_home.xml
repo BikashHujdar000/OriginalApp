@@ -6,12 +6,20 @@
     android:background="@color/purple_200"
     tools:context=".Fragments.UserHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="user Home Fragment"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:layout_height="match_parent">
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/user_test_home_recycler"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
