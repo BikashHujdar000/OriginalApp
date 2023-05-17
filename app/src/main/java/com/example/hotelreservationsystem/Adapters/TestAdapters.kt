@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
-import org.w3c.dom.Text
 
 class TestAdapters (val context :Context,val data: List<DataModel>):RecyclerView.Adapter<TestAdapters.MyViewHolder>() {
 

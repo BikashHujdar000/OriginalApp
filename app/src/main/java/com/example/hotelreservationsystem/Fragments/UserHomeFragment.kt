@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hotelreservationsystem.Adapters.RecomenderAdapter
 import com.example.hotelreservationsystem.Adapters.TestAdapters
-import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.databinding.FragmentUserHomeBinding
 
@@ -34,9 +34,20 @@ class UserHomeFragment : Fragment() {
         manualData.add(DataModel("Trojan National Hotel","United",1))
         manualData.add(DataModel("Sirha National Hotel","United",1))
         manualData.add(DataModel("Trojan National Hotel","United",1))
-val adapters = TestAdapters(requireContext(),manualData)
+     val adapters = TestAdapters(requireContext(),manualData);
+        val recommendedAdapter = RecomenderAdapter(requireContext(),manualData)
+
+
+        // if i want to set the recycler view for recommendation system
+        val recomenderrecycleView = binding.recomenderRecyclerView
+        recomenderrecycleView.adapter = recommendedAdapter
+        recomenderrecycleView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+        // setiing up recycler View for  hotels all
         recyclerView.adapter=adapters
         recyclerView.layoutManager= LinearLayoutManager(requireContext())
+
+
         // chanfging abovve code after api
         // Inflate the layout for this fragment
 
