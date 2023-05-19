@@ -19,6 +19,7 @@ class UserHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
      val recyclerView = binding.userTestHomeRecycler
 
