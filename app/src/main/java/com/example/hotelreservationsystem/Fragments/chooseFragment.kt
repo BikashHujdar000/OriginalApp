@@ -22,10 +22,10 @@ class chooseFragment : Fragment() {
     ): View? {
         binding = FragmentChooseBinding.inflate(layoutInflater, container, false)
         binding.user.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_chooseFragment_to_userRegisterFragment);
+            Navigation.findNavController(it).navigate(R.id.action_chooseFragment_to_userLoginFragment);
         }
         binding.hotelOwner.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_chooseFragment_to_ownerRegistrationFragment);
+            Navigation.findNavController(it).navigate(R.id.action_chooseFragment_to_ownerLoginFragment);
         }
         return binding.root
 

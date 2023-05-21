@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_chooseFragment_to_userRegisterFragment"
             app:destination="@id/userRegisterFragment" />
+        <action
+            android:id="@+id/action_chooseFragment_to_ownerLoginFragment"
+            app:destination="@id/ownerLoginFragment" />
+        <action
+            android:id="@+id/action_chooseFragment_to_userLoginFragment"
+            app:destination="@id/userLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerLoginFragment"
@@ -28,6 +34,15 @@
         <action
             android:id="@+id/action_ownerLoginFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
+        <action
+            android:id="@+id/action_ownerLoginFragment_to_ownerRegistrationFragment"
+            app:destination="@id/ownerRegistrationFragment" />
+        <action
+            android:id="@+id/action_ownerLoginFragment_to_ownerHomeFragment2"
+            app:destination="@id/ownerHomeFragment" />
+        <action
+            android:id="@+id/action_ownerLoginFragment_to_ownerForgetPasswordFragment2"
+            app:destination="@id/ownerForgetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerRegistrationFragment"
@@ -40,6 +55,9 @@
         <action
             android:id="@+id/action_ownerRegistrationFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
+        <action
+            android:id="@+id/action_ownerRegistrationFragment_to_ownerLoginFragment2"
+            app:destination="@id/ownerLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/otpConfirmationFragment"
@@ -49,6 +67,12 @@
         <action
             android:id="@+id/action_otpConfirmationFragment_to_userHomeFragment"
             app:destination="@id/userHomeFragment" />
+        <action
+            android:id="@+id/action_otpConfirmationFragment_to_otpVerificationFragment"
+            app:destination="@id/otpVerificationFragment" />
+        <action
+            android:id="@+id/action_otpConfirmationFragment_to_userLoginFragment"
+            app:destination="@id/userLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerForgetPasswordFragment"
@@ -61,6 +85,9 @@
         <action
             android:id="@+id/action_ownerForgetPasswordFragment_to_ownerLoginFragment"
             app:destination="@id/ownerLoginFragment" />
+        <action
+            android:id="@+id/action_ownerForgetPasswordFragment_to_ownerOtpVerificationFragment2"
+            app:destination="@id/ownerOtpVerificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/userLoginFragment"
@@ -73,6 +100,9 @@
         <action
             android:id="@+id/action_userLoginFragment_to_userHomeFragment"
             app:destination="@id/userHomeFragment" />
+        <action
+            android:id="@+id/action_userLoginFragment_to_userRegisterFragment"
+            app:destination="@id/userRegisterFragment" />
     </fragment>
     <fragment
         android:id="@+id/userRegisterFragment"
@@ -84,6 +114,9 @@
             app:destination="@id/userLoginFragment" />
         <action
             android:id="@+id/action_userRegisterFragment_to_userHomeFragment"
+            app:destination="@id/userHomeFragment" />
+        <action
+            android:id="@+id/action_userRegisterFragment_to_userHomeFragment2"
             app:destination="@id/userHomeFragment" />
     </fragment>
     <fragment
@@ -103,6 +136,9 @@
         <action
             android:id="@+id/action_ownerOtpConfirmationFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
+        <action
+            android:id="@+id/action_ownerOtpConfirmationFragment_to_ownerLoginFragment"
+            app:destination="@id/ownerLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"

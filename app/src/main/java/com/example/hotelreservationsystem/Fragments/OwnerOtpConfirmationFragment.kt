@@ -22,8 +22,9 @@ class OwnerOtpConfirmationFragment : Fragment() {
 
             // updating password  is in this field
             Navigation.findNavController(it)
-                .navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerHomeFragment);
+                .navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerLoginFragment);
         }
+
         return binding.root
 
     }

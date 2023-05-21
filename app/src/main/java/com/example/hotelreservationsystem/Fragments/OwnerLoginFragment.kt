@@ -29,6 +29,9 @@ class OwnerLoginFragment : Fragment() {
         binding.forgotPassword.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_ownerLoginFragment_to_ownerForgetPasswordFragment)
         }
+        binding.signUpNow.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_ownerLoginFragment_to_ownerRegistrationFragment)
+        }
         // Inflate the layout for this fragment
         return binding.root
     }

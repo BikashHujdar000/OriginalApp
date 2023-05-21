@@ -39,6 +39,9 @@ class UserLoginFragment : Fragment() {
         binding.forgotPassword.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_forgotPasswordFragment);
         }
+        binding.signUpNow.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_userRegisterFragment)
+        }
         return binding.root
 
 
