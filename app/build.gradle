@@ -69,5 +69,7 @@ dependencies {
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
 // image radius
     implementation 'com.google.android.material:material:1.9.0'
+    // material date picker
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
 
 }

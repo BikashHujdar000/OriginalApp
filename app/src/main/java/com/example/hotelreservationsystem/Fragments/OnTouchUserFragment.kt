@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -82,13 +83,11 @@ class OnTouchUserFragment : Fragment() {
         reviewRecycleview.adapter = reviewAdapter
         reviewRecycleview.layoutManager = LinearLayoutManager(requireContext());
 
-//        var name :String ,
-//        var date :String,
-//        var profile_picture:Int,
-//        var review:String,
-//        var rate:Int
 
-4
+        binding.bookHotel.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_onTouchUserFragment_to_bookNowFragment)
+        }
+
         return binding.root
 
 
