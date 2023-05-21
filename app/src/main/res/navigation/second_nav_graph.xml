@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/second_nav_graph.xml"
+    app:startDestination="@id/userHomeFragment2">
+
+    <fragment
+        android:id="@+id/userHomeFragment2"
+        android:name="com.example.hotelreservationsystem.Fragments.UserHomeFragment"
+        android:label="fragment_user_home"
+        tools:layout="@layout/fragment_user_home" >
+        <action
+            android:id="@+id/action_userHomeFragment2_to_userBookingFragment"
+            app:destination="@id/userBookingFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment2_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment2_to_onTouchUserFragment"
+            app:destination="@id/onTouchUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userBookingFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserBookingFragment"
+        android:label="fragment_user_booking"
+        tools:layout="@layout/fragment_user_booking" >
+        <action
+            android:id="@+id/action_userBookingFragment_to_userHomeFragment2"
+            app:destination="@id/userHomeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_userHomeFragment2"
+            app:destination="@id/userHomeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/onTouchUserFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OnTouchUserFragment"
+        android:label="fragment_on_touch_user"
+        tools:layout="@layout/fragment_on_touch_user" >
+        <action
+            android:id="@+id/action_onTouchUserFragment_to_userHomeFragment2"
+            app:destination="@id/userHomeFragment2" />
+    </fragment>
+</navigation>

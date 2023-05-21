@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -38,20 +39,20 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation("androidx.core:core-ktx:1.10.1")
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     //fragment dependency
     def nav_version = "2.3.2"
     implementation('androidx.fragment:fragment-ktx:1.5.7')
-    //noinspection GradleDependency
-    implementation "androidx.navigation:navigation-fragment:$nav_version"
-    //noinspection GradleDependency
-    implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
     // implementation of spinkit
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     // adding recyclerView
@@ -63,5 +64,10 @@ dependencies {
 
     // dependency for image slider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
+
+    // dependfency for bottom navigation bar
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
+// image radius
+    implementation 'com.google.android.material:material:1.9.0'
 
 }
