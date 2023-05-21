@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_userHomeFragment2_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment2_to_onTouchUserFragment"
+            app:destination="@id/onTouchUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/userBookingFragment"
@@ -33,6 +36,15 @@
         tools:layout="@layout/fragment_user_profile" >
         <action
             android:id="@+id/action_userProfileFragment_to_userHomeFragment2"
+            app:destination="@id/userHomeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/onTouchUserFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OnTouchUserFragment"
+        android:label="fragment_on_touch_user"
+        tools:layout="@layout/fragment_on_touch_user" >
+        <action
+            android:id="@+id/action_onTouchUserFragment_to_userHomeFragment2"
             app:destination="@id/userHomeFragment2" />
     </fragment>
 </navigation>

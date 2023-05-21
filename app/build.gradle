@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -49,10 +50,9 @@ dependencies {
     //fragment dependency
     def nav_version = "2.3.2"
     implementation('androidx.fragment:fragment-ktx:1.5.7')
-    //noinspection GradleDependency
-    implementation "androidx.navigation:navigation-fragment:$nav_version"
-    //noinspection GradleDependency
-    implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
     // implementation of spinkit
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     // adding recyclerView

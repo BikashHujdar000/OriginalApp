@@ -12,49 +12,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="15dp"
-
         android:foregroundGravity="bottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="5dp"
-            android:scaleType="centerCrop"
-            android:backgroundTint="#50000000"
-            android:backgroundTintMode="src_over"
-            android:background="@drawable/testingroom"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView3"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/testingroom"
+                android:backgroundTint="#50000000"
+                android:backgroundTintMode="src_over"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
 
+            <TextView
 
-        <TextView
-            android:id="@+id/hotel_name_recommender"
-            android:layout_width="90dp"
-            android:layout_height="15dp"
-            android:textSize="10sp"
-            android:text="Horizon Hotel nepal"
-           android:textColor="@color/white_back"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:alpha="2.5"
-            android:layout_marginBottom="25dp"
-            android:layout_marginStart="10dp"
-            />
-        <TextView
-            android:id="@+id/hotel__recommender_loaction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="5sp"
-            android:textColor="@color/white_back"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:layout_marginBottom="15dp"
-            android:layout_marginStart="40dp"
-            android:text="America"/>
+                android:id="@+id/hotel_name_recommender"
+                android:layout_width="120dp"
+                android:layout_height="15dp"
+                android:layout_gravity="bottom"
+                android:alpha="2.5"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Horizon Hotel Nepal"
+                android:textColor="@color/theme1"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <TextView
+                android:id="@+id/hotel__recommender_loaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="America"
+                android:textColor="@color/theme1"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/hotel_name_recommender"
+                app:layout_constraintStart_toStartOf="@+id/hotel_name_recommender"
+                app:layout_constraintTop_toBottomOf="@+id/hotel_name_recommender"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
