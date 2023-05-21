@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.databinding.FragmentDetailedRoomBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -118,6 +120,9 @@ class DetailedRoomFragment : Fragment() {
 
         }
 
+        binding.payButton.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_detailedRoomFragment_to_booking_receipt_fragment)
+        }
 
 
 
