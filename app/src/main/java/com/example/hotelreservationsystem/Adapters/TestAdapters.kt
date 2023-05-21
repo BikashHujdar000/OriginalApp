@@ -21,9 +21,9 @@ lateinit var  mlistner :onItemClickListner
     {
         mlistner = listner
     }
-    class MyViewHolder(itemview: View,listner: onItemClickListner) : RecyclerView.ViewHolder(itemview)
+    class MyViewHolder(itemview: View, listner: onItemClickListner) : RecyclerView.ViewHolder(itemview)
     {
-
+// defining the holder operation
         val name = itemview.findViewById<TextView>(R.id.hotel_sample_name)
         val location = itemview.findViewById<TextView>(R.id.hotel_sample_country_name)
         init {
@@ -35,6 +35,7 @@ lateinit var  mlistner :onItemClickListner
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        // inflating the model layout to the holder
         val view = LayoutInflater.from(context).inflate(R.layout.test_layout_for_model_view,parent,false)
         return  MyViewHolder(view,mlistner)
     }
@@ -44,8 +45,9 @@ lateinit var  mlistner :onItemClickListner
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      holder.name.text = data.get(position).name
-        holder.location.text = data.get(position).location
+        // setting name and location from the adapter to the holder
+      holder.name.text = data[position].name
+        holder.location.text = data[position].location
 
 
     }
