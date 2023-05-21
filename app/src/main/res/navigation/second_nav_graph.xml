@@ -46,5 +46,29 @@
         <action
             android:id="@+id/action_onTouchUserFragment_to_userHomeFragment2"
             app:destination="@id/userHomeFragment2" />
+        <action
+            android:id="@+id/action_onTouchUserFragment_to_bookNowFragment"
+            app:destination="@id/bookNowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookNowFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.bookNowFragment"
+        android:label="fragment_book_now"
+        tools:layout="@layout/fragment_book_now" >
+        <action
+            android:id="@+id/action_bookNowFragment_to_onTouchUserFragment"
+            app:destination="@id/onTouchUserFragment" />
+        <action
+            android:id="@+id/action_bookNowFragment_to_detailedRoomFragment"
+            app:destination="@id/detailedRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedRoomFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.DetailedRoomFragment"
+        android:label="fragment_detailed_room"
+        tools:layout="@layout/fragment_detailed_room" >
+        <action
+            android:id="@+id/action_detailedRoomFragment_to_bookNowFragment"
+            app:destination="@id/bookNowFragment" />
     </fragment>
 </navigation>
