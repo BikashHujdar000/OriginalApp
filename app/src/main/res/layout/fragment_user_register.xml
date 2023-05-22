@@ -58,7 +58,7 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/ownerEmail"
+                android:id="@+id/userEmail"
                 android:theme="@style/MyEditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,22 +71,11 @@
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
 
-            <EditText
-                android:theme="@style/MyEditTextTheme"
-                android:id="@+id/edit_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawableLeft="@drawable/call24"
-                android:drawablePadding="20dp"
-                android:ems="10"
-                android:hint="@string/hint_phone"
-                android:inputType="phone"
-                android:minHeight="48dp" />
+
 
             <EditText
                 android:theme="@style/MyEditTextTheme"
-                android:id="@+id/ownerPassword"
+                android:id="@+id/userPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -105,7 +94,7 @@
             android:layout_margin="50dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/boxlinearlayout"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -116,7 +105,17 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/agreement" />
 
-
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:visibility="gone"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/progress_bar"
+                android:indeterminate="true"
+                style="@style/SpinKitView.ThreeBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/black"
+                tools:ignore="RedundantNamespace" />
 
         </LinearLayout>
 

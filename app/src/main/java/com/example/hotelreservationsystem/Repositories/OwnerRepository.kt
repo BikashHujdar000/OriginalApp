@@ -14,6 +14,7 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi){
     //setting of live data
     private val _ownerResponseLiveData = MutableLiveData<NetworkResult<OwnerResponse>>()
     val ownerResponseLiveData:LiveData<NetworkResult<OwnerResponse>>
+
         get() = _ownerResponseLiveData
 
     // repos Function that calls owner api functions
@@ -29,6 +30,7 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi){
         _ownerResponseLiveData.postValue(NetworkResult.Loading())
 
         val response = ownerApi.signIn(ownerRequest)
+
           handleResponse(response)
     }
     private fun handleResponse(response: Response<OwnerResponse>) {

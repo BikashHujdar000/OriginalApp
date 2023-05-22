@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.whenResumed
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.hotelreservationsystem.Models.OwnerRequest
@@ -89,7 +88,8 @@ class OwnerLoginFragment : Fragment() {
             binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
-
+                    val userId = it.data?.owner?._id
+                    Log.d("TAG","$userId")
                     tokenManager.saveToken(it.data!!.access_token)
                     Log.d(TAG,it.data.access_token)
                     findNavController().navigate(R.id.action_ownerLoginFragment_to_ownerHomeFragment);
@@ -115,8 +115,18 @@ class OwnerLoginFragment : Fragment() {
             ownerInput.ownername,
             ownerInput.email,
             ownerInput.password,
+            true)
+        {
+
+
+
+            return authViewModel.validateCredential(
+            ownerInput.ownername,
+            ownerInput.email,
+            ownerInput.password,
             true
-        )
+
+
     }
 
     private fun getOwnerInput(): OwnerRequest {
@@ -124,6 +134,7 @@ class OwnerLoginFragment : Fragment() {
         var ownerPassword = binding.ownerPassword.text.toString()
         return OwnerRequest(ownerEmailAddress, "", ownerPassword)
     }
+
 
 
 }
