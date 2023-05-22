@@ -23,11 +23,10 @@ class UserLoginFragment : Fragment() {
 
         // Inflate the layout for this fragment
         binding = FragmentUserLoginBinding.inflate(layoutInflater, container,false);
+
+
         binding.signIn.setOnClickListener {
-
-
             // get the content of the credentials checked here.
-
             // type 1
             val intent = Intent (getActivity(),UserActivity::class.java)
 

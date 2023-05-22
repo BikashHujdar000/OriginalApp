@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.whenResumed
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.hotelreservationsystem.Models.OwnerRequest
@@ -55,7 +54,7 @@ class OwnerLoginFragment : Fragment() {
         }
         bindObserver()
 
-        // setting up for gorgot password
+        // setting up for forgot password
         binding.forgotPassword.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_ownerLoginFragment_to_ownerForgetPasswordFragment)
         }
@@ -96,7 +95,7 @@ class OwnerLoginFragment : Fragment() {
     private fun validateOwnerInput():Pair<Boolean,String>
     {
         val ownerInput = getOwnerInput()
-         return  authViewModel.validateCredentaial(ownerInput.ownername,ownerInput.email,ownerInput.password,true)
+         return  authViewModel.validateCredential(ownerInput.ownername,ownerInput.email,ownerInput.password,true)
     }
 
     private fun getOwnerInput():OwnerRequest

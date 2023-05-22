@@ -35,7 +35,7 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
 
     }
 
-    fun validateCredentaial(ownerName:String,ownerEmailAddress:String,ownerPassword:String,isOwnerLoginFragment:Boolean):Pair<Boolean,String>
+    fun validateCredential(ownerName:String, ownerEmailAddress:String, ownerPassword:String, isOwnerLoginFragment:Boolean):Pair<Boolean,String>
     {
      var result = Pair(true,"")
 
