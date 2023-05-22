@@ -39,6 +39,7 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
     {
      var result = Pair(true,"")
 
+
         if( !isOwnerLoginFragment && TextUtils.isEmpty(ownerName)  || TextUtils.isEmpty(ownerEmailAddress)  || TextUtils.isEmpty(ownerPassword))
         {
             result = Pair(false,"Please provide the credential")

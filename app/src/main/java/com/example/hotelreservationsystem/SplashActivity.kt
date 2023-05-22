@@ -10,9 +10,17 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
+import com.example.hotelreservationsystem.Fragments.OwnerHomeFragment
+import com.example.hotelreservationsystem.utils.TokenManager
 import com.github.ybq.android.spinkit.style.ThreeBounce
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -42,6 +50,11 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this,MainActivity::class.java))
             },1000
         )
+    }
+    private fun switchFragment(fragment: Fragment) {
+        var  fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+        fragmentTransaction.commit()
     }
 
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.whenResumed
 import androidx.navigation.Navigation
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.databinding.FragmentBookNowBinding
@@ -16,7 +17,13 @@ import com.example.hotelreservationsystem.databinding.FragmentOwnerProfileBindin
 
 
 class OwnerProfileFragment : Fragment() {
+
     lateinit var binding: FragmentOwnerProfileBinding
+
+    private var selectedImageri: Uri?= null
+
+
+
 
 
     override fun onCreateView(
@@ -29,27 +36,43 @@ class OwnerProfileFragment : Fragment() {
         // Inflate the layout for this fragment
 
 
-        binding.addhotelImage.setOnClickListener() {
+
+        binding.addhotel.setOnClickListener() {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, 3)
         }
-        binding
-            .updateHotel.setOnClickListener {
+
+        binding.addhotel.setOnClickListener()
+        {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, 4)
+        }
+        binding.updateHotel.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.action_ownerProfileFragment_to_ownerHomeFragment)
             }
+
+
         return binding.root
     }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (requestCode == 3) {
                 val selectedimage: Uri? = data.data;
-                binding.hotelimage.setImageURI(selectedimage);
+                binding.image1.setImageURI(selectedimage);
             }
 
 
         }
-    }
-}
+
+            }
+
+
+        }
+
+
+

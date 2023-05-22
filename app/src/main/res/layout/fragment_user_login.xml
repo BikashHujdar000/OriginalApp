@@ -50,7 +50,7 @@
 
 
             <EditText
-                android:id="@+id/ownerEmail"
+                android:id="@+id/userEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -87,6 +87,17 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:theme="@style/MyEditTextTheme" />
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:visibility="gone"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/progress_bar"
+                android:indeterminate="true"
+                style="@style/SpinKitView.ThreeBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/black"
+                tools:ignore="RedundantNamespace" />
 
             <TextView
                 android:id="@+id/signIn"
