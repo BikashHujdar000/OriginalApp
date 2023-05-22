@@ -12,18 +12,11 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
-
-
-    // on approaching for same function o adding clents 1
-    //1.returning retrofit builder instead of retrofit and remove builde ()
-    //
-
     @Singleton
     @Provides
     fun providesRetrofitBuilder(): Retrofit.Builder{
