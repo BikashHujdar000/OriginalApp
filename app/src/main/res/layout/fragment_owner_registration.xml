@@ -58,7 +58,7 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/edit_email"
+                android:id="@+id/ownerEmail"
                 android:theme="@style/MyEditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
 
 
             <EditText
-                android:id="@+id/edit_password"
+                android:id="@+id/ownerPassword"
                 android:theme="@style/MyEditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

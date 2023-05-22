@@ -13,5 +13,5 @@ interface OwnerApi {
     suspend fun signUp( @Body ownerRequest: OwnerRequest):Response<OwnerResponse>
 
     @POST("/ownerauth/login1")
-    suspend fun signIn( @Body ownerRequest: OwnerResponse):Response<OwnerResponse>
+    suspend fun signIn( @Body ownerRequest: OwnerRequest):Response<OwnerResponse>
 }

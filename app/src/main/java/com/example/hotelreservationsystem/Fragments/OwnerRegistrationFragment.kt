@@ -29,8 +29,6 @@ class OwnerRegistrationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOwnerRegistrationBinding.inflate(layoutInflater,container,false);
-
-
         return binding.root
     }
 
@@ -41,9 +39,14 @@ class OwnerRegistrationFragment : Fragment() {
         binding.signIn.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment)
         }
+
         binding.signUpButton.setOnClickListener {
+
+            if (binding.checkBox.isChecked) {
+
             // calling the function validate user input
             val validationResult = validateOwnerInput()
+
             if(validationResult.first)
             {
                authViewModel.registerOwner(getOwnerInput())
@@ -53,14 +56,9 @@ class OwnerRegistrationFragment : Fragment() {
                 Toast.makeText(requireContext(), "${validationResult.second}", Toast.LENGTH_SHORT).show()
             }
 
-
-//            if (binding.checkBox.isChecked) {
-//
-//                authViewModel.registerOwner(OwnerRequest(ownerEmail, ownerName,ownerPassword))
-//            }
+         }
         }
         bindObserver()
-
 
 
 
@@ -98,8 +96,8 @@ class OwnerRegistrationFragment : Fragment() {
     private fun  getOwnerInput ():OwnerRequest
     {
         var ownerName = binding.editName.text.toString();
-        var ownerEmail = binding.editEmail.text.toString();
-        var ownerPassword = binding.editPassword.text.toString();
+        var ownerEmail = binding.ownerEmail.text.toString();
+        var ownerPassword = binding.ownerPassword.text.toString();
         return OwnerRequest(ownerEmail,ownerName,ownerPassword)
     }
 
