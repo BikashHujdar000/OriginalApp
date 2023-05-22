@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.whenResumed
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.hotelreservationsystem.Models.OwnerRequest
@@ -112,12 +111,10 @@ class OwnerLoginFragment : Fragment() {
 
     private fun validateOwnerInput(): Pair<Boolean, String> {
         val ownerInput = getOwnerInput()
-        return authViewModel.validateCredentaial(
-            ownerInput.ownername,
-            ownerInput.email,
-            ownerInput.password,
-            true
-        )
+
+         return  authViewModel.validateCredential(ownerInput.ownername,ownerInput.email,ownerInput.password,true)
+
+
     }
 
     private fun getOwnerInput(): OwnerRequest {

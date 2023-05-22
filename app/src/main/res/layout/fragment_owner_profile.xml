@@ -172,10 +172,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
                 <ImageView
-                    android:id="@+id/addImage1"
-                    android:layout_width="40dp"
+
+                    android:id="@+id/addhotel"
+                    android:layout_width="47dp"
+                    android:layout_height="35dp"
+
                     android:src="@drawable/imagelink"
-                    android:layout_height="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/image1"
                     app:layout_constraintStart_toStartOf="parent"
