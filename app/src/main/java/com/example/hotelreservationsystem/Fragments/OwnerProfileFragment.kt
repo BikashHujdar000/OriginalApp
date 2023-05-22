@@ -11,18 +11,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.whenResumed
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.hotelreservationsystem.Models.HotelRequest
-import com.example.hotelreservationsystem.Models.Owner
-import com.example.hotelreservationsystem.Models.OwnerResponse
+
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
-import com.example.hotelreservationsystem.databinding.FragmentBookNowBinding
+
 import com.example.hotelreservationsystem.databinding.FragmentOwnerProfileBinding
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
@@ -60,12 +59,6 @@ class OwnerProfileFragment : Fragment() {
             startActivityForResult(intent, 3)
         }
 
-        binding.addhotel.setOnClickListener()
-
-        {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, 4)
-        }
 
         binding
             .updateHotel.setOnClickListener {
@@ -84,28 +77,22 @@ class OwnerProfileFragment : Fragment() {
                 }
             }
         bindObservers()
-
-
-        binding.updateHotel.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_ownerProfileFragment_to_ownerHomeFragment)
-        }
-
-
         return binding.root
     }
 
 
     private fun bindObservers() {
         hotelViewModel.statusLiveData.observe( viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible= false
             when(it) {
                 is NetworkResult.Success -> {
-                    findNavController().popBackStack()
                     Toast.makeText(
                         requireContext(),
                         it.message,
                         Toast.LENGTH_LONG
                     ).show()
+               findNavController().navigate(R.id.action_ownerProfileFragment_to_ownerHomeFragment)
+
                 }
 
                 is NetworkResult.Error -> {
@@ -114,6 +101,7 @@ class OwnerProfileFragment : Fragment() {
                 }
 
                 is  NetworkResult.Loading->{
+                    binding.progressBar.isVisible = true
 
                 }
 
