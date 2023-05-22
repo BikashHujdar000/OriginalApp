@@ -174,9 +174,9 @@
 
                 <ImageView
                     android:id="@+id/addhotel_image"
-                    android:layout_width="40dp"
+                    android:layout_width="47dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/imagelink"
-                    android:layout_height="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/hotelimage"
                     app:layout_constraintStart_toStartOf="parent"
