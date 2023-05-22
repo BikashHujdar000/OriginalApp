@@ -2,8 +2,7 @@ package com.example.hotelreservationsystem.Repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.hotelreservationsystem.Models.OwnerRequest
-import com.example.hotelreservationsystem.Models.OwnerResponse
+
 import com.example.hotelreservationsystem.Models.UserRequest
 import com.example.hotelreservationsystem.Models.UserResponse
 import com.example.hotelreservationsystem.api.UserApi
