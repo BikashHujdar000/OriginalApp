@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_chooseFragment_to_userLoginFragment"
             app:destination="@id/userLoginFragment" />
+        <action
+            android:id="@+id/action_chooseFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerLoginFragment"

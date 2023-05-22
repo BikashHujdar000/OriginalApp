@@ -1,6 +1,7 @@
 package com.example.hotelreservationsystem.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnerRegistrationBinding
 import com.example.hotelreservationsystem.utils.NetworkResult
+import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 
@@ -71,7 +73,8 @@ class OwnerRegistrationFragment : Fragment() {
             binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
-                    // code for token
+                    // token management
+                    Log.d(TAG,it.data!!.access_token)
                     findNavController().navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment);
 
                 }
