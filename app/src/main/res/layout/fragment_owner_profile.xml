@@ -171,27 +171,27 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
-
                 <ImageView
-                    android:id="@+id/addhotel_image"
+                    android:id="@+id/addImage1"
                     android:layout_width="40dp"
                     android:src="@drawable/imagelink"
                     android:layout_height="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/hotelimage"
+                    app:layout_constraintEnd_toStartOf="@+id/image1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/hotelimage" />
+                    app:layout_constraintTop_toTopOf="@+id/image1" />
 
                 <ImageView
-                    android:id="@+id/hotelimage"
+                    android:id="@+id/image1"
                     android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
                     android:src="@drawable/tst"
+                    android:scaleType="centerCrop"
+                    android:layout_height="100dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
