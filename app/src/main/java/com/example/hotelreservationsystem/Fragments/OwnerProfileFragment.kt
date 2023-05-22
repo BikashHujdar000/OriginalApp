@@ -9,16 +9,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.whenResumed
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.hotelreservationsystem.Models.HotelRequest
+import com.example.hotelreservationsystem.Models.Owner
+import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.R
+import com.example.hotelreservationsystem.ViewModels.AuthViewModel
+import com.example.hotelreservationsystem.ViewModels.HotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentBookNowBinding
 import com.example.hotelreservationsystem.databinding.FragmentOwnerProfileBinding
-
+import com.example.hotelreservationsystem.utils.NetworkResult
+import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
+@AndroidEntryPoint
 
 class OwnerProfileFragment : Fragment() {
     private var selectedImageri: Uri?= null
     lateinit var  binding: FragmentOwnerProfileBinding
+
+    private val authViewModel by viewModels<AuthViewModel> ()
+    private val hotelViewModel by viewModels<HotelViewModel>()
+
 
 
 
@@ -30,6 +46,9 @@ class OwnerProfileFragment : Fragment() {
         )
         // Inflate the layout for this fragment
 
+
+        // want to get owner id over here now
+
         binding.addImage1.setOnClickListener()
         {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -37,12 +56,50 @@ class OwnerProfileFragment : Fragment() {
         }
         binding
             .updateHotel.setOnClickListener{
-                Navigation.findNavController(it).navigate(R.id.action_ownerProfileFragment_to_ownerHomeFragment)
+
+                try {
+                    hotelViewModel.createHotel("646af3f7af578d1470b81ecd", HotelRequest("Trojan Hotel BIkash ", "Bikash Test","this is one of the Hotel  in the asia "))
+                }
+                catch (e:Exception)
+                {
+                    Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
+                }
+                bindObservers()
+               
             }
 
 
         return binding.root
     }
+
+    private fun bindObservers() {
+        hotelViewModel.statusLiveData.observe( viewLifecycleOwner, Observer {
+            when(it) {
+                is NetworkResult.Success -> {
+                    findNavController().popBackStack()
+                    Toast.makeText(
+                        requireContext(),
+                        "originally got the result",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                is NetworkResult.Error -> {
+
+                }
+
+
+                is  NetworkResult.Loading->{
+
+                }
+
+            }
+
+
+        })
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && data != null) {

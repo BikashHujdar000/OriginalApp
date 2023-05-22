@@ -34,17 +34,17 @@ class chooseFragment : Fragment() {
 
 
 
-        try {
-
-            if(tokenManager.getToken()!= null)
-            {
-                findNavController().navigate(R.id.action_chooseFragment_to_ownerHomeFragment)
-            }
-
-        }catch(e: Exception)
-        {
-            Log.d(constants.TAG,e.message.toString())
-        }
+//        try {
+//
+//            if(tokenManager.getToken()!= null)
+//            {
+//                findNavController().navigate(R.id.action_chooseFragment_to_ownerHomeFragment)
+//            }
+//
+//        }catch(e: Exception)
+//        {
+//            Log.d(constants.TAG,e.message.toString())
+//        }
         return binding.root
 
     }

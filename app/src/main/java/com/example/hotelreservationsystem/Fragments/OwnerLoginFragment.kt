@@ -89,7 +89,8 @@ class OwnerLoginFragment : Fragment() {
             binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
-
+                    val userId = it.data?.owner?._id
+                    Log.d("TAG","$userId")
                     tokenManager.saveToken(it.data!!.access_token)
                     Log.d(TAG,it.data.access_token)
                     findNavController().navigate(R.id.action_ownerLoginFragment_to_ownerHomeFragment);
