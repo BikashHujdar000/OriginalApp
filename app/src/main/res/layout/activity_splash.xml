@@ -14,7 +14,6 @@
         android:layout_height="52dp"
         android:layout_centerInParent="true"
         android:layout_marginBottom="60dp"
-
         app:SpinKit_Color="@color/theme1"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
