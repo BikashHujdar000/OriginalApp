@@ -29,44 +29,79 @@ class OwnerRegistrationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOwnerRegistrationBinding.inflate(layoutInflater,container,false);
-        binding.signIn.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment)
-        }
-        binding.signUpButton.setOnClickListener {
-            // Navigate to the owner home fragment with the data.
-            var ownerName = binding.editName.text.toString();
-            var ownerEmail = binding.editEmail.text.toString();
-            var ownerPassword = binding.editPassword.text.toString();
 
-            if (binding.checkBox.isChecked) {
-
-             authViewModel.registerOwner(OwnerRequest(ownerEmail, ownerName,ownerPassword))
-            }
-        }
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        authViewModel.ownerResponseLiveData.observe(viewLifecycleOwner, Observer {
-            binding.progressBar.isVisible=false
-            when(it)
+
+
+        binding.signIn.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment)
+        }
+        binding.signUpButton.setOnClickListener {
+            // calling the function validate user input
+            val validationResult = validateOwnerInput()
+            if(validationResult.first)
             {
-                is NetworkResult.Success->{
+               authViewModel.registerOwner(getOwnerInput())
+            }
+            else
+            {
+                Toast.makeText(requireContext(), "${validationResult.second}", Toast.LENGTH_SHORT).show()
+            }
+
+
+//            if (binding.checkBox.isChecked) {
+//
+//                authViewModel.registerOwner(OwnerRequest(ownerEmail, ownerName,ownerPassword))
+//            }
+        }
+        bindObserver()
+
+
+
+
+    }
+
+    // out of  creat ed view
+
+    private fun bindObserver() {
+        authViewModel.ownerResponseLiveData.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible = false
+            when (it) {
+                is NetworkResult.Success -> {
                     // code for token
                     findNavController().navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment);
 
                 }
-                is NetworkResult.Error->{
+
+                is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
                 }
 
-                is NetworkResult.Loading->{
+                is NetworkResult.Loading -> {
                     //write code for progress bar
-                    binding.progressBar.isVisible= true
+                    binding.progressBar.isVisible = true
                 }
             }
         })
     }
+    private  fun validateOwnerInput(): Pair<Boolean, String> {
+        // Navigate to the owner home fragment with the data.
+        val ownerRequest = getOwnerInput()
+        return authViewModel.validateCredentaial(ownerRequest.ownername,ownerRequest.email,ownerRequest.password,false)
+
+    }
+    private fun  getOwnerInput ():OwnerRequest
+    {
+        var ownerName = binding.editName.text.toString();
+        var ownerEmail = binding.editEmail.text.toString();
+        var ownerPassword = binding.editPassword.text.toString();
+        return OwnerRequest(ownerEmail,ownerName,ownerPassword)
+    }
+
+
 }
