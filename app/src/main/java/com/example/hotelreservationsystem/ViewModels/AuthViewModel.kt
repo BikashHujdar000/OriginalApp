@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hotelreservationsystem.Models.OwnerRequest
 import com.example.hotelreservationsystem.Models.OwnerResponse
+import com.example.hotelreservationsystem.Models.PhotosResponse
 import com.example.hotelreservationsystem.Repositories.OwnerRepository
 import com.example.hotelreservationsystem.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,11 +23,21 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
     val ownerResponseLiveData:LiveData<NetworkResult<OwnerResponse>>
         get() = ownerRepository.ownerResponseLiveData
 
+val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
+    get()= ownerRepository.photoResponseLiveData
 
     fun registerOwner(ownerRequest: OwnerRequest) {
         viewModelScope.launch {
             ownerRepository.registerOwner(ownerRequest)
         }
+    }
+
+    fun uploadImage(image:MultipartBody.Part)
+    {
+        viewModelScope.launch {
+            ownerRepository.uploadImage(image)
+        }
+
     }
 
     fun loginOwner(ownerRequest: OwnerRequest) {

@@ -7,6 +7,8 @@ import com.example.hotelreservationsystem.Repositories.HotelRepositories
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,5 +23,6 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
         viewModelScope.launch {
             hotelRepositories.createHotel(ownerId,hotelRequest)
         }
+
     }
 }

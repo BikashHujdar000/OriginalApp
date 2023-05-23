@@ -79,16 +79,13 @@ class OwnerProfileFragment : Fragment() {
             binding.progressBar.isVisible= false
             when(it) {
                 is NetworkResult.Success -> {
-
                  Log.d(TAG,"Hotel Created Sucessfully")
                     findNavController().popBackStack()
                 }
 
                 is NetworkResult.Error -> {
                     Log.d(TAG,it.message.toString())
-
                 }
-
                 is  NetworkResult.Loading->{
                     binding.progressBar.isVisible = true
 
