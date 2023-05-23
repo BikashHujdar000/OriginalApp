@@ -61,7 +61,7 @@
                     app:layout_constraintTop_toTopOf="@+id/shapeableImageView2" />
 
                 <TextView
-                    android:id="@+id/use_name"
+                    android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
@@ -152,8 +152,8 @@
                 android:id="@+id/user_test_home_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="-16dp"
-                tools:layout_editor_absoluteY="105dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"
                 tools:listitem="@layout/test_layout_for_model_view">
 
             </androidx.recyclerview.widget.RecyclerView>
