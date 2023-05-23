@@ -67,8 +67,7 @@ class UserLoginFragment : Fragment() {
 
         // setting for sign up now
         binding.signUpNow.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_userLoginFragment_to_userRegisterFragment)
+            Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_userRegisterFragment)
         }
 
     }
