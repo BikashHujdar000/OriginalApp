@@ -71,7 +71,7 @@ class OwnerRegistrationFragment : Fragment() {
             when (it) {
                 is NetworkResult.Success -> {
                     // token management
-                    Log.d(TAG,it.data!!.access_token)
+                    //Log.d(TAG,it.data!!.access_token)
                     findNavController().navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment);
 
                 }
