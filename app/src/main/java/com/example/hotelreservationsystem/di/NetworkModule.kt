@@ -3,6 +3,7 @@ package com.example.hotelreservationsystem.di
 import com.example.hotelreservationsystem.api.AuthInterceptors
 import com.example.hotelreservationsystem.api.HotelsApi
 import com.example.hotelreservationsystem.api.OwnerApi
+import com.example.hotelreservationsystem.api.UserApi
 import com.example.hotelreservationsystem.utils.constants.BASEURL
 import dagger.Module
 import dagger.Provides
@@ -37,6 +38,11 @@ class NetworkModule {
     @Provides
     fun providesOwnerAPI(retrofitBuilder: Retrofit.Builder):OwnerApi{
         return  retrofitBuilder.build().create(OwnerApi::class.java)
+    }
+    @Singleton
+    @Provides
+    fun providesUerAPI(retrofitBuilder: Retrofit.Builder): UserApi {
+        return  retrofitBuilder.build().create(UserApi::class.java)
     }
 
     @Singleton
