@@ -37,6 +37,7 @@ class UserLoginFragment : Fragment() {
 
 
         binding.signIn.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_userHomeFragment)
 
 
         }

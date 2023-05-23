@@ -53,12 +53,6 @@ class OwnerProfileFragment : Fragment() {
         binding.toptext.text = ownerId
 
 
-//        binding.addImage1.setOnClickListener() {
-//
-//            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//            startActivityForResult(intent, 3)
-//        }
-
 
         binding
             .updateHotel.setOnClickListener {
@@ -106,20 +100,6 @@ class OwnerProfileFragment : Fragment() {
         })
 
     }
-
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (resultCode == Activity.RESULT_OK && data != null) {
-//            if (requestCode == 3) {
-//                val selectedimage: Uri? = data.data;
-//                binding.image1.setImageURI(selectedimage);
-//            }
-//
-//
-//        }
-//
-//    }
 
 
 }

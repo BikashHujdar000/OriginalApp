@@ -1,25 +1,45 @@
 package com.example.hotelreservationsystem.Fragments
 
-import android.app.Activity.RESULT_OK
-import android.content.Intent
+import android.content.Context
 import android.net.Uri
-import android.os.Binder
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.denzcoskun.imageslider.models.SlideModel
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.databinding.FragmentAddRoomBinding
-import java.net.URI
+import com.example.hotelreservationsystem.utils.constants.TAG
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.io.FileOutputStream
 
 class addRoomFragment : Fragment() {
+
+    lateinit var  imageUri: Uri
+    private val contract= registerForActivityResult(ActivityResultContracts.GetContent()){
+        imageUri = it!!
+        binding.image1.setImageURI(it)
+
+        try {
+            upload()
+        }catch (
+            e:Exception
+        )
+        {
+            Log.d(TAG,e.message.toString())
+        }
+    }
+
+
+
 
     lateinit var binding: FragmentAddRoomBinding
     override fun onCreateView(
@@ -27,9 +47,9 @@ class addRoomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddRoomBinding.inflate(layoutInflater, container, false)
-
-
         // setting for dropdowns
+
+
         val itemsselecor = resources.getStringArray(R.array.selectors);
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.list_item, itemsselecor);
         binding.autocomplete.setAdapter(arrayAdapter)
@@ -39,43 +59,45 @@ class addRoomFragment : Fragment() {
                 val text = parent.getItemAtPosition(position);
 
             }
-    binding.addImage1.setOnClickListener() {
 
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, 3)
+        binding.addImage1.setOnClickListener {
+        contract.launch("image/*")
     }
 
 
-        binding.addImage2.setOnClickListener() {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, 4)
-        }
-       binding.updateHotel.setOnClickListener(){ Navigation.findNavController(it).navigate(R.id.action_addRoomFragment_to_ownerHomeFragment)
+
+       binding.updateHotel.setOnClickListener(){
+           Navigation.findNavController(it).navigate(R.id.action_addRoomFragment_to_ownerHomeFragment)
 }
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && data != null)
-        {
-            if( requestCode == 3)
-            {
-                val selectedimage: Uri? = data.data;
-                binding.image1.setImageURI(selectedimage);
-            }
-            else if(requestCode == 4)
-            {
-                val selectedimage: Uri? = data.data;
-                binding.image2.setImageURI(selectedimage);
 
-            }
+   private  fun upload()
+   {
+       val filesDir =requireContext().filesDir
+       val file = File(filesDir,"image.png")
+       val resolver = context?.contentResolver
+       val inputStream = resolver?.openInputStream(imageUri)
+       val outputStream = FileOutputStream(file)
+       inputStream!!.copyTo(outputStream)
 
 
+       val requestBody= file.asRequestBody("image/*".toMediaTypeOrNull())
+       val part = MultipartBody.Part.createFormData("profile",file.name,requestBody)
+       Log.d(TAG,part.toString())
 
-        }
-    }
+       // profile vanekko filed ho  postman ko
+       // now retrofit parameter image ko k ho ta part
+//       // @Multipart
+//       @Post("endpoint")
+//       suspend fun uploadimage(
+//           @Part image :MultipartBody.Part
+//       ):: response Item
+   }
+
+
 
 }

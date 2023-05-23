@@ -23,7 +23,9 @@ import java.lang.Exception
 class OwnerHomeFragment : Fragment() {
     lateinit var  binding :FragmentOwnerHomeBinding
 
-private val args by navArgs<OwnerHomeFragmentArgs>()
+
+
+ private val args by navArgs<OwnerHomeFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +33,7 @@ private val args by navArgs<OwnerHomeFragmentArgs>()
     ): View? {
         binding = FragmentOwnerHomeBinding.inflate(layoutInflater,container,false);
 
-      binding.hotelName.text = args.ownerResponse.owner._id
-
+//        binding.hotelName.text = args.ownerResponse.owner._id
         // setting ups Image Slider
 
         val imageList = ArrayList<SlideModel>() // Create image list
@@ -60,16 +61,25 @@ private val args by navArgs<OwnerHomeFragmentArgs>()
 
         binding.addRooms.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_addRoomFragment);
+
         }
         binding.roomsList.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownerRoomsFragment)
         }
         binding.hotelProfile.setOnClickListener(){
+            try {
+                 val userId = args.ownerResponse.owner._id
+                findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply {
+                    putString("userId",userId)
+                })
 
-            val userId = args.ownerResponse.owner._id
-           findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply {
-             putString("userId",userId)
-           })
+            }catch (
+                e:Exception
+            ){
+
+            }
+
+
         }
         binding.bookings.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownersBookingFragment)

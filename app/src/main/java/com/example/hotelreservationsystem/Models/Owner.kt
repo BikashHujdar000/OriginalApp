@@ -2,6 +2,7 @@ package com.example.hotelreservationsystem.Models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 data class Owner(
     val __v: Int,
@@ -14,4 +15,4 @@ data class Owner(
     val password: String,
     val phone: Long,
     val updatedAt: String
-)
+): Serializable
