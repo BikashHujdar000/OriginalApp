@@ -67,7 +67,7 @@ class OwnerProfileFragment : Fragment() {
                 var addresses:String = binding.hotelLocation.text.toString()
                 var description:String = binding.hotelDescription.text.toString()
                 try {
-                    hotelViewModel.createHotel(ownerId!!,HotelRequest("navigate na vako bela ","Bikash","Bikash")
+                    hotelViewModel.createHotel(ownerId!!,HotelRequest(name,addresses,description)
 
                     )
                 } catch (e: Exception) {
