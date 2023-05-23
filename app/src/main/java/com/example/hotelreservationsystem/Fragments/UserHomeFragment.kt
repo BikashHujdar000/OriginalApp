@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.RecomenderAdapter
 import com.example.hotelreservationsystem.Adapters.TestAdapters
@@ -24,6 +25,7 @@ class UserHomeFragment : Fragment() {
     lateinit var binding:FragmentUserHomeBinding
 
 private  var ownerResponse: HotelResponse?= null
+    private val args by navArgs<UserHomeFragmentArgs>()
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -32,13 +34,8 @@ private  var ownerResponse: HotelResponse?= null
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
-
-
-
-
+        binding.userName.text = args.user.user.username
 
      val recyclerView = binding.userTestHomeRecycler
 
@@ -56,9 +53,9 @@ private  var ownerResponse: HotelResponse?= null
         manualData.add(DataModel("Trojan National Hotel","United",1))
         manualData.add(DataModel("Sirha National Hotel","United",1))
         manualData.add(DataModel("Trojan National Hotel","United",1))
+
      val adapters = TestAdapters(requireContext(),manualData);
         val recommendedAdapter = RecomenderAdapter(requireContext(),manualData)
-
 
         // setiing up recycler View for  hotels all
         recyclerView.adapter=adapters

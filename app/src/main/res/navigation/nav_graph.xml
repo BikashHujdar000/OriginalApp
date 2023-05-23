@@ -192,7 +192,11 @@
         android:id="@+id/userHomeFragment"
         android:name="com.example.hotelreservationsystem.Fragments.UserHomeFragment"
         android:label="fragment_user_home"
-        tools:layout="@layout/fragment_user_home" />
+        tools:layout="@layout/fragment_user_home" >
+        <argument
+            android:name="user"
+            app:argType="com.example.hotelreservationsystem.Models.UserResponse" />
+    </fragment>
     <fragment
         android:id="@+id/addRoomFragment"
         android:name="com.example.hotelreservationsystem.Fragments.addRoomFragment"
