@@ -11,6 +11,7 @@ interface HotelsApi {
 
   @POST("hotel/createhotel/{ownerId}")
   suspend fun createHotel(@Path("ownerId") ownerId:String,@Body hotelRequest: HotelRequest): Response<HotelResponse>
+// method  for add room fragment
 
 
 

@@ -15,12 +15,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.RecomenderAdapter
 import com.example.hotelreservationsystem.Adapters.TestAdapters
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.databinding.FragmentUserHomeBinding
 
 
 class UserHomeFragment : Fragment() {
     lateinit var binding:FragmentUserHomeBinding
+
+private  var ownerResponse: HotelResponse?= null
+
 
     @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.R)
@@ -31,6 +35,11 @@ class UserHomeFragment : Fragment() {
 
 
         binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
+
+
+
+
+
      val recyclerView = binding.userTestHomeRecycler
 
         // serting ups looking for visualization to topic

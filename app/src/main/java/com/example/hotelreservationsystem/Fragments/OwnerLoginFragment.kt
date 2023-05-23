@@ -12,7 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.OwnerRequest
+import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnerLoginBinding
@@ -20,7 +22,6 @@ import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.TokenManager
 import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -92,8 +93,15 @@ class OwnerLoginFragment : Fragment() {
                     Log.d("TAG","$userId")
                     tokenManager.saveToken(it.data!!.access_token)
                     Log.d(TAG,it.data.access_token)
-                    findNavController().navigate(R.id.action_ownerLoginFragment_to_ownerHomeFragment);
+
+                    // trying to send the data
+                    val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
+
+                    val action = OwnerLoginFragmentDirections.actionOwnerLoginFragmentToOwnerHomeFragment(owner)
+                 findNavController().navigate(action)
+
                 }
+
 
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()

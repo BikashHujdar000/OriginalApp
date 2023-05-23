@@ -184,6 +184,9 @@
         <action
             android:id="@+id/action_ownerHomeFragment_to_ownersBookingFragment"
             app:destination="@id/ownersBookingFragment" />
+        <argument
+            android:name="OwnerResponse"
+            app:argType="com.example.hotelreservationsystem.Models.OwnerResponse" />
     </fragment>
     <fragment
         android:id="@+id/userHomeFragment"
@@ -216,6 +219,9 @@
         <action
             android:id="@+id/action_ownerProfileFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
+        <argument
+            android:name="UserIdForOwnerProfile"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/ownersBookingFragment"

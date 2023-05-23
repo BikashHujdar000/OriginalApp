@@ -20,6 +20,7 @@ import com.example.hotelreservationsystem.databinding.FragmentAddRoomBinding
 import java.net.URI
 
 class addRoomFragment : Fragment() {
+
     lateinit var binding: FragmentAddRoomBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

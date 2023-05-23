@@ -32,12 +32,11 @@ import java.lang.Exception
 class OwnerProfileFragment : Fragment() {
 
     lateinit var binding: FragmentOwnerProfileBinding
+    var ownerId:String ? = null
 
     private var selectedImageri: Uri?= null
     private val authViewModel by viewModels<AuthViewModel> ()
     private val hotelViewModel by viewModels<HotelViewModel>()
-
-
 
 
     override fun onCreateView(
@@ -49,50 +48,46 @@ class OwnerProfileFragment : Fragment() {
         )
         // Inflate the layout for this fragment
 
+        ///acessing the sent owner id from the data
+        ownerId =  requireArguments().getString("userId").toString()
+        binding.toptext.text = ownerId
 
 
-        // want to get owner id over here now
-
-
-        binding.addImage1.setOnClickListener() {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, 3)
-        }
+//        binding.addImage1.setOnClickListener() {
+//
+//            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//            startActivityForResult(intent, 3)
+//        }
 
 
         binding
             .updateHotel.setOnClickListener {
 
+                var name:String= binding.hotelName.text.toString()
+                var addresses:String = binding.hotelLocation.text.toString()
+                var description:String = binding.hotelDescription.text.toString()
                 try {
-                    hotelViewModel.createHotel(
-                        "646af3f7af578d1470b81ecd",
-                        HotelRequest(
-                            "Trojan Hotel BIkash ",
-                            "Bikash Test",
-                            "this is one of the Hotel  in the asia "
-                        )
+                    hotelViewModel.createHotel(ownerId!!,HotelRequest("navigate na vako bela ","Bikash","Bikash")
+
                     )
                 } catch (e: Exception) {
                     Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
                 }
+
             }
         bindObservers()
+
         return binding.root
     }
-
 
     private fun bindObservers() {
         hotelViewModel.statusLiveData.observe( viewLifecycleOwner, Observer {
             binding.progressBar.isVisible= false
             when(it) {
                 is NetworkResult.Success -> {
-                    Toast.makeText(
-                        requireContext(),
-                        it.message,
-                        Toast.LENGTH_LONG
-                    ).show()
-                    findNavController().navigate(R.id.action_ownerProfileFragment_to_ownerHomeFragment)
 
+                 Log.d(TAG,"Hotel Created Sucessfully")
+                    findNavController().popBackStack()
                 }
 
                 is NetworkResult.Error -> {
@@ -113,18 +108,18 @@ class OwnerProfileFragment : Fragment() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            if (requestCode == 3) {
-                val selectedimage: Uri? = data.data;
-                binding.image1.setImageURI(selectedimage);
-            }
-
-
-        }
-
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == Activity.RESULT_OK && data != null) {
+//            if (requestCode == 3) {
+//                val selectedimage: Uri? = data.data;
+//                binding.image1.setImageURI(selectedimage);
+//            }
+//
+//
+//        }
+//
+//    }
 
 
 }
