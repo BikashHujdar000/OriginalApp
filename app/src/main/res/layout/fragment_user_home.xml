@@ -109,6 +109,7 @@
                         android:layout_height="match_parent"
                         android:background="#FFFFFF"
                         android:hint="Discover now"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:outlineSpotShadowColor="@color/white_back"
                         android:textAlignment="center"

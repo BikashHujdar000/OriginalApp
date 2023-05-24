@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
 
-class RecomenderAdapter (val context :Context,val data: List<DataModel>): RecyclerView.Adapter<RecomenderAdapter.MyViewHolder>() {
+class RecomenderAdapter (val context :Context,val data: List<HotelResponse>): RecyclerView.Adapter<RecomenderAdapter.MyViewHolder>() {
 
     class MyViewHolder (itemview: View) : RecyclerView.ViewHolder(itemview)
     {
@@ -27,8 +28,8 @@ class RecomenderAdapter (val context :Context,val data: List<DataModel>): Recycl
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.name.text = data.get(position).name
-        holder.location.text = data.get(position).location
+        holder.name.text = data.get(position).hotel.name
+        holder.location.text = data.get(position).hotel.address
     }
 
 }
