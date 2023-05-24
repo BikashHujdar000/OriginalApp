@@ -3,7 +3,11 @@ package com.example.hotelreservationsystem.ViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hotelreservationsystem.Models.HotelRequest
+<<<<<<< HEAD
 import com.example.hotelreservationsystem.Models.RoomRequest
+=======
+import com.example.hotelreservationsystem.Models.HotelResponse
+>>>>>>> refs/remotes/origin/master
 import com.example.hotelreservationsystem.Repositories.HotelRepositories
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,19 +20,25 @@ import javax.inject.Inject
 class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRepositories):ViewModel() {
 
 
+<<<<<<< HEAD
     val hotelLiveData  get()= hotelRepositories.hotelLiveData
 
 
     val statusLiveData get()= hotelRepositories.statusLiveData
+=======
+    val hotelLiveData get() = hotelRepositories.hotelLiveData
+    val statusLiveData get() = hotelRepositories.statusLiveData
+>>>>>>> refs/remotes/origin/master
 
-    fun createHotel(ownerId:String,hotelRequest: HotelRequest)
-    {
+
+    fun createHotel(ownerId: String, hotelRequest: HotelRequest) {
         viewModelScope.launch {
-            hotelRepositories.createHotel(ownerId,hotelRequest)
+            hotelRepositories.createHotel(ownerId, hotelRequest)
         }
 
     }
 
+<<<<<<< HEAD
     fun addRoom(ownerId: String,hotelId:String,roomRequest: RoomRequest)
     {
         viewModelScope.launch {
@@ -52,3 +62,8 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
 
 
 }
+=======
+}
+
+
+>>>>>>> refs/remotes/origin/master

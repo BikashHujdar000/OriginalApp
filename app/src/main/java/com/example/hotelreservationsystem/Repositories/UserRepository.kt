@@ -2,9 +2,11 @@ package com.example.hotelreservationsystem.Repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.UserRequest
 import com.example.hotelreservationsystem.Models.UserResponse
 import com.example.hotelreservationsystem.api.UserApi
+import com.example.hotelreservationsystem.api.getallHotelsApi
 import com.example.hotelreservationsystem.utils.NetworkResult
 import org.json.JSONObject
 import retrofit2.Response
@@ -12,6 +14,8 @@ import javax.inject.Inject
 
 class UserRepository @Inject constructor( private val userApi: UserApi){
     // setting live data
+
+
 
     private val _userResponseLiveData = MutableLiveData<NetworkResult<UserResponse>>()
     val userResponseLiveData: LiveData<NetworkResult<UserResponse>>
@@ -33,6 +37,11 @@ class UserRepository @Inject constructor( private val userApi: UserApi){
         val response = userApi.signIn(userRequest)
 
         handleResponse(response)
+    }
+    suspend fun getAllHotel(userId: String) {
+
+
+
     }
     private fun handleResponse(response: Response<UserResponse>) {
         if (response.isSuccessful && response.body() != null) {
