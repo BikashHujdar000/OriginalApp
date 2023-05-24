@@ -15,6 +15,7 @@ import retrofit2.http.Path
 interface  HotelsApi {
 
   @POST("hotel/createhotel/{ownerId}")
+<<<<<<< HEAD
   suspend fun createHotel(
     @Path("ownerId") ownerId: String,
     @Body hotelRequest: HotelRequest
@@ -35,3 +36,9 @@ interface  HotelsApi {
 }
 
 
+=======
+  suspend fun createHotel(@Path("ownerId") ownerId:String,@Body hotelRequest: HotelRequest): Response<HotelResponse>
+
+// method  for add room fragment
+}
+>>>>>>> a08b3c82e6e5a2cfe1f5eeed18f26f833835448e
