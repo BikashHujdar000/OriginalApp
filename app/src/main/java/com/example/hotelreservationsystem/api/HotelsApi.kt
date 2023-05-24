@@ -7,10 +7,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
-<<<<<<< HEAD
 import retrofit2.http.DELETE
-=======
->>>>>>> refs/remotes/origin/master
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -38,7 +35,6 @@ interface  HotelsApi {
 
 
 // method  for add room fragment
-<<<<<<< HEAD
   @POST("ownerroom/createroom/{ownerId}/{hotelId}")
   suspend fun  addRoom(@Path ("ownerId")ownerId:String,@Path("hotelId") hotelId:String,@Body roomRequest: RoomRequest):Response<HotelResponse>
 
@@ -53,7 +49,4 @@ interface  HotelsApi {
 
 
 }
-=======
-}
 
->>>>>>> refs/remotes/origin/master

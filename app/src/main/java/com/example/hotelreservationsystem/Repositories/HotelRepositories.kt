@@ -20,12 +20,7 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     val hotelLiveData : LiveData<NetworkResult<HotelResponse>>
             get() = _hotelLiveData
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> refs/remotes/origin/master
     private val _statusLiveData = MutableLiveData<NetworkResult<String>>()
     val statusLiveData :LiveData<NetworkResult<String>>
         get()= _statusLiveData

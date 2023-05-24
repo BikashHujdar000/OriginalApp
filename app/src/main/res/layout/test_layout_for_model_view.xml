@@ -23,11 +23,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.imageview.ShapeableImageView
-<<<<<<< HEAD
-                android:id="@+id/roomImage"
-=======
                 android:id="@+id/room_image"
->>>>>>> refs/remotes/origin/master
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_margin="10dp"
@@ -49,17 +45,10 @@
                 android:text="President Hotel"
                 android:textSize="15sp"
                 android:textStyle="bold"
-<<<<<<< HEAD
-                app:layout_constraintBottom_toBottomOf="@+id/roomImage"
-                app:layout_constraintStart_toEndOf="@+id/roomImage"
-                app:layout_constraintTop_toTopOf="@+id/roomImage"
-                app:layout_constraintVertical_bias="0.061" />
-=======
                 app:layout_constraintBottom_toBottomOf="@+id/room_image"
                 app:layout_constraintStart_toEndOf="@+id/room_image"
                 app:layout_constraintTop_toTopOf="@+id/room_image"
                 app:layout_constraintVertical_bias="0.057" />
->>>>>>> refs/remotes/origin/master
 
             <TextView
                 android:id="@+id/hotel_sample_country_name"
