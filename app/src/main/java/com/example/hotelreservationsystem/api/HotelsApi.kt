@@ -1,6 +1,7 @@
 package com.example.hotelreservationsystem.api
 
 import com.example.hotelreservationsystem.Models.HotelRequest
+import com.example.hotelreservationsystem.Models.HotelResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response

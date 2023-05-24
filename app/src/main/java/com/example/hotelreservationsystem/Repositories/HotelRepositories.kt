@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.hotelreservationsystem.Models.HotelRequest
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.api.HotelsApi
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
