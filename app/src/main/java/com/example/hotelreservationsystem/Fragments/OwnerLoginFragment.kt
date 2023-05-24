@@ -12,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.OwnerRequest
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.R

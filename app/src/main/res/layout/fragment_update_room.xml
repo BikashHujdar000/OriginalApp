@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.updateRoomFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,8 +15,9 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Create Hotel"
+            android:text="Add Rooms"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Hotel Name "
+                android:text="Room No : "
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -49,134 +49,98 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/hotel_name"
+                android:id="@+id/room_number"
                 android:layout_width="match_parent"
-                android:hint="Trivial Travel Hotel"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background_box"
-                android:drawablePadding="20dp"
-                android:ems="10"
-                android:minHeight="48dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-
-            <TextView
-
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Contact No"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/hotel_contact_no"
-                android:hint="+9779804321230"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background_box"
-                android:drawablePadding="20dp"
-                android:ems="10"
-                android:minHeight="48dp"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Description "
-                android:textSize="25dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/hotel_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background_box"
-                android:drawablePadding="20dp"
-            android:gravity="center"
-                android:ems="10"
-                android:hint=" All the Facilities or description of an hotel "
-                android:minHeight="48dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Address"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/hotel_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background_box"
-                android:drawablePadding="20dp"
-                android:hint="dharan"
+                android:hint=" 1208"
                 android:padding="10dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background_box"
+                android:drawablePadding="20dp"
                 android:ems="10"
                 android:minHeight="48dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+
+
+
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Add Image"
+                android:text="Rent per Day "
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <EditText
+                android:id="@+id/room_rent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background_box"
+                android:drawablePadding="20dp"
+                android:ems="10"
+                android:padding="10dp"
+                android:hint="1000"
+                android:minHeight="48dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toTopOf="@+id/textView6" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="SelectTypes"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
+                <AutoCompleteTextView
+                    android:id="@+id/autocomplete"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Single Room"
+                    android:fontFamily="@font/poppins_bold"
+                    android:inputType="none"/>
 
-
-
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
+
+                <TextView
+
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Add Image "
+                    android:textSize="15sp"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/addImage1"
+                    app:layout_constraintStart_toStartOf="@+id/addImage1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                     android:id="@+id/addImage1"
                     android:layout_width="40dp"
-                    android:src="@drawable/imagelink"
                     android:layout_height="40dp"
+                    android:src="@drawable/imagelink"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/image1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/image1" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+
 
                 <ImageView
                     android:id="@+id/image1"
@@ -188,28 +152,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.github.ybq.android.spinkit.SpinKitView
-                android:visibility="gone"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/progress_bar"
-                android:indeterminate="true"
-                style="@style/SpinKitView.ThreeBounce"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:SpinKit_Color="@color/black"
-                tools:ignore="RedundantNamespace" />
 
 
             <Button
-                android:id="@+id/createHotel"
+                android:id="@+id/createRoom"
                 android:backgroundTint="@color/theme1"
                 android:layout_marginTop="20dp"
-                android:text="Update"
+                android:text="Create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
@@ -224,4 +175,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

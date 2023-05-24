@@ -214,6 +214,9 @@
         <action
             android:id="@+id/action_ownerRoomsFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
+        <action
+            android:id="@+id/action_ownerRoomsFragment_to_updateRoomFragment"
+            app:destination="@id/updateRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerProfileFragment"
@@ -236,4 +239,9 @@
             android:id="@+id/action_ownersBookingFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/updateRoomFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.updateRoomFragment"
+        android:label="fragment_update_room"
+        tools:layout="@layout/fragment_update_room" />
 </navigation>
