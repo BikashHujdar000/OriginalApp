@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/room_image"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_margin="10dp"
@@ -41,14 +41,14 @@
                 android:id="@+id/hotel_sample_name"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="40dp"
                 android:text="President Hotel"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3"
-                app:layout_constraintVertical_bias="0.061" />
+                app:layout_constraintBottom_toBottomOf="@+id/room_image"
+                app:layout_constraintStart_toEndOf="@+id/room_image"
+                app:layout_constraintTop_toTopOf="@+id/room_image"
+                app:layout_constraintVertical_bias="0.057" />
 
             <TextView
                 android:id="@+id/hotel_sample_country_name"
@@ -61,43 +61,6 @@
                 app:layout_constraintHorizontal_bias="0.381"
                 app:layout_constraintStart_toStartOf="@+id/hotel_sample_name"
                 app:layout_constraintTop_toBottomOf="@+id/hotel_sample_name" />
-
-            <TextView
-                android:id="@+id/sample_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="35"
-                android:textColor="@color/teal_200"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_sample_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/hotel_sample_name"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="/night"
-                app:layout_constraintEnd_toEndOf="@+id/sample_price"
-                app:layout_constraintStart_toStartOf="@+id/sample_price"
-                app:layout_constraintTop_toBottomOf="@+id/sample_price" />
-
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:backgroundTint="@color/teal_700"
-                android:src="@drawable/ticket_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textView20"
-                app:layout_constraintHorizontal_bias="0.565"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20"
-                app:layout_constraintVertical_bias="0.275" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

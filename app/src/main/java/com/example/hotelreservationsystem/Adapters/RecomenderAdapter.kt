@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
+import com.example.hotelreservationsystem.utils.NetworkResult
 
-class RecomenderAdapter (val context :Context,val data: List<HotelResponse>): RecyclerView.Adapter<RecomenderAdapter.MyViewHolder>() {
+class RecomenderAdapter(val context:Context, val data: List<DataModel>): RecyclerView.Adapter<RecomenderAdapter.MyViewHolder>() {
 
     class MyViewHolder (itemview: View) : RecyclerView.ViewHolder(itemview)
     {
@@ -24,12 +25,12 @@ class RecomenderAdapter (val context :Context,val data: List<HotelResponse>): Re
     }
 
     override fun getItemCount(): Int {
-        return  data.size
+        return data.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.name.text = data.get(position).hotel.name
-        holder.location.text = data.get(position).hotel.address
+        holder.name.text = data.get(position).name
+        holder.location.text = data.get(position).location
     }
 
 }

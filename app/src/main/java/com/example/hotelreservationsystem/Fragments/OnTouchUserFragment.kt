@@ -13,7 +13,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.hotelreservationsystem.Adapters.RecomenderAdapter
 import com.example.hotelreservationsystem.Adapters.ReviewsAdapterTest
-import com.example.hotelreservationsystem.Adapters.TestAdapters
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.TestModels.ReviewModel
@@ -48,19 +48,6 @@ class OnTouchUserFragment : Fragment() {
         binding.imageSlider.setImageList(imageList)
 
         val manualData = ArrayList<DataModel>()
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("sigma National Hotel","United",1))
-        manualData.add(DataModel("LojanNational Hotel","United",1))
-        manualData.add(DataModel("TarhanNational Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("famndfk fkanlkd Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("Sirha National Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-
-
-
         val recommendedAdapter = RecomenderAdapter(requireContext(),manualData)
         // if i want to set the recycler view for recommendation system
         val recomenderrecycleView = binding.recomenderRecyclerView

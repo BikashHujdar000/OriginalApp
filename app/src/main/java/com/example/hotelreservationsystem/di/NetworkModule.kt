@@ -4,6 +4,7 @@ import com.example.hotelreservationsystem.api.AuthInterceptors
 import com.example.hotelreservationsystem.api.HotelsApi
 import com.example.hotelreservationsystem.api.OwnerApi
 import com.example.hotelreservationsystem.api.UserApi
+import com.example.hotelreservationsystem.api.getallHotelsApi
 import com.example.hotelreservationsystem.utils.constants.BASEURL
 import dagger.Module
 import dagger.Provides
@@ -11,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.Retrofit.Builder
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -52,4 +54,15 @@ class NetworkModule {
             .client(okHttpClient)
             .build().create(HotelsApi::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun providesUserAuthApi(retrofitBuilder: Builder,okHttpClient: OkHttpClient):getallHotelsApi
+    {
+        return  retrofitBuilder
+            .client(okHttpClient)
+            .build()
+            .create(getallHotelsApi::class.java)
+    }
+
 }
