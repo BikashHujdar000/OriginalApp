@@ -121,7 +121,7 @@ class OwnerProfileFragment : Fragment() {
                 var description:String = binding.hotelDescription.text.toString()
                 val image :String = imagePath
                 try {
-                    hotelViewModel.createHotel(ownerId!!,HotelRequest(name,addresses,description)
+                    hotelViewModel.createHotel(ownerId!!,HotelRequest(name,addresses,description,image)
 
                     )
                 } catch (e: Exception) {

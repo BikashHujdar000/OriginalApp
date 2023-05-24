@@ -16,7 +16,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.RecomenderAdapter
 import com.example.hotelreservationsystem.Adapters.TestAdapters
-import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.databinding.FragmentUserHomeBinding
 

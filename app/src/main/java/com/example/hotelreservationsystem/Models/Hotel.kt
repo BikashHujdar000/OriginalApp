@@ -8,7 +8,7 @@ data class Hotel(
     val description: String,
     val name: String,
     val owner: Owner,
-    val photos: List<Any>,
+    val photos: List<String>,
     val review: List<Any>,
     val rooms: List<Room>,
     val updatedAt: String

@@ -9,7 +9,6 @@ data class Owner(
     val email: String,
     val hotel: List<String>,
     val isOwner: Boolean,
-    val ownername: String,
     val password: String,
     val updatedAt: String
-):Serializable
+): Serializable
