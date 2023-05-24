@@ -21,10 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.RecomenderAdapter
 import com.example.hotelreservationsystem.Adapters.TestAdapters
 import com.example.hotelreservationsystem.Models.HotelResponse
-<<<<<<< HEAD
+
 import com.example.hotelreservationsystem.Models.UserResponse
-=======
->>>>>>> a08b3c82e6e5a2cfe1f5eeed18f26f833835448e
+
 import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.ViewModels.GetAllHotelViewModel
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
@@ -38,12 +37,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class UserHomeFragment : Fragment() {
     lateinit var binding:FragmentUserHomeBinding
-<<<<<<< HEAD
+
     private val getAllHotelViewModel by viewModels<GetAllHotelViewModel>()
     private  var ownerResponse: HotelResponse?= null
     //for the serialized data to handle in this fragment
-=======
->>>>>>> a08b3c82e6e5a2cfe1f5eeed18f26f833835448e
+
     private val args by navArgs<UserHomeFragmentArgs>()
 
     @SuppressLint("ClickableViewAccessibility")

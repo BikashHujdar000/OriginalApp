@@ -1,6 +1,7 @@
 package com.example.hotelreservationsystem.Adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 
 import android.view.View
@@ -21,13 +22,12 @@ class TestAdapters (val context :Context,val data: List<HotelX>?):RecyclerView.A
 //           fun onItemClick(position: Int)
 //       }
 
-//    fun setOnItemClickListner(listner: onItemClickListner)
+    //    fun setOnItemClickListner(listner: onItemClickListner)
 //    {
 //        mlistner = listner
 //    }
-    class MyViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview)
-    {
-// defining the holder operation
+    class MyViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
+        // defining the holder operation
         val name = itemview.findViewById<TextView>(R.id.hotel_sample_name)
         val location = itemview.findViewById<TextView>(R.id.hotel_sample_country_name)
         val image = itemview.findViewById<ImageView>(R.id.room_image)
@@ -41,25 +41,32 @@ class TestAdapters (val context :Context,val data: List<HotelX>?):RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         // inflating the model layout to the holder
-        val view = LayoutInflater.from(context).inflate(R.layout.test_layout_for_model_view,parent,false)
-        return  MyViewHolder(view)
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.test_layout_for_model_view, parent, false)
+        return MyViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-            return  data!!.size
+        return data!!.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // setting name and location from the adapter to the holder
-      holder.name.text = data!!.get(position).name
+        holder.name.text = data!!.get(position).name
         holder.location.text = data!!.get(position).address
-
-        val uri = data!!.get(position).photos.get(position)
-        Glide.with(this.context).load(uri).into(holder.image)
+        if (data!!.get(position).photos.isEmpty()) {
+            Glide.with(this.context)
+                .load("https://res.cloudinary.com/dancvkguq/image/upload/v1684861705/hotel-images/qaeybsnbjkmggtuyv9a9.png")
+                .into(holder.image)
+        } else {
+            Glide.with(this.context)
+                .load(data!!.get(position).photos[0]).into(holder.image)
+        }
 
 
     }
-
 }
+
+
 
 
