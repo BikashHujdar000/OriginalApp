@@ -97,7 +97,8 @@ class OwnerLoginFragment : Fragment() {
 
                     // trying to send the data
                     val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
-                    val action = OwnerLoginFragmentDirections.actionOwnerLoginFragmentToOwnerHomeFragment(owner)
+
+               val action =OwnerLoginFragmentDirections.actionOwnerLoginFragmentToOwnerHomeFragment(owner)
                  findNavController().navigate(action)
 
                 }

@@ -1,8 +1,8 @@
 package com.example.hotelreservationsystem.Models
 
 data class RoomRequest(
-    val number: Int,
-    val price: Int,
+    val number: String,
+    val price: String,
     val type: String,
     val url: String
 )

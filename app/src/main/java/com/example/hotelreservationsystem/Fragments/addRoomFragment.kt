@@ -11,7 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
+import com.example.hotelreservationsystem.Models.RoomRequest
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
@@ -21,16 +21,17 @@ import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.create
 import java.io.File
 import java.io.FileOutputStream
 
 
 @AndroidEntryPoint
 class addRoomFragment : Fragment() {
+    lateinit var binding: FragmentAddRoomBinding
 
+    var ownerId:String ? = null
+    var hoteid:String ? = null
 
     lateinit var  imageUri: Uri
     lateinit var  imagePath:String
@@ -79,7 +80,7 @@ class addRoomFragment : Fragment() {
 
     }
 
-    lateinit var binding: FragmentAddRoomBinding
+
 
 
 
@@ -91,6 +92,9 @@ class addRoomFragment : Fragment() {
         binding = FragmentAddRoomBinding.inflate(layoutInflater, container, false)
         // setting for dropdowns
 
+// getting the owner id and hotel id from passsng the argumnet  from owner home fragment
+        ownerId =  requireArguments().getString("ownerId").toString()
+        hoteid = requireArguments().getString("hotelId").toString()
 
         val itemsselecor = resources.getStringArray(R.array.selectors);
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.list_item, itemsselecor);
@@ -108,13 +112,28 @@ class addRoomFragment : Fragment() {
        binding.createRoom.setOnClickListener(){
 
 
-           getOwnerInput()
-
-
-
+           // hotelViewModel.addRoom(ownerId!!, hoteid!!,getOwnerInput())
 
 
        }
+        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+            when(it)
+            {
+                is NetworkResult.Success ->
+                {
+                     var checkData:String = it.data.toString()
+                     Log.d(TAG,"response  add room garda kheri ko data $checkData")
+                }
+                is NetworkResult.Error->
+                {
+                    Log.d(TAG," add room garda data aayen")
+                }
+                is NetworkResult.Loading ->
+                {
+
+                }
+            }
+        })
 
 
 
@@ -122,13 +141,14 @@ class addRoomFragment : Fragment() {
         return binding.root
     }
 
-    private fun getOwnerInput() {
+    private fun getOwnerInput():RoomRequest {
 
-        val number = binding.roomNumber.text
-        val roomType = binding.autocomplete.text
-        val price = binding.roomRent.text
-        val uri = imagePath
+        var number = binding.roomNumber.text.toString()
+        var roomType = binding.autocomplete.text.toString()
+        var price = binding.roomRent.text.toString()
+        var uri = imagePath.toString()
         Log.d(TAG,"request Data is $number $roomType $price $uri")
+        return RoomRequest(number,price,roomType,uri)
     }
 
 

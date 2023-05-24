@@ -2,6 +2,7 @@ package com.example.hotelreservationsystem.api
 
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
+import com.example.hotelreservationsystem.Models.RoomRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -17,4 +18,7 @@ interface HotelsApi {
   suspend fun createHotel(@Path("ownerId") ownerId:String,@Body hotelRequest: HotelRequest): Response<HotelResponse>
 
 // method  for add room fragment
+  @POST("/ownerroom/createroom/{ownerId}/{hotelId}")
+  suspend fun  addRoom(@Path ("ownerId")ownerId:String,@Path("hotelId") hotelId:String,roomRequest: RoomRequest):Response<HotelResponse>
+
 }

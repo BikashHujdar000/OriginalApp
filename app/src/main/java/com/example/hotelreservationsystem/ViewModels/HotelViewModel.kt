@@ -3,6 +3,7 @@ package com.example.hotelreservationsystem.ViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hotelreservationsystem.Models.HotelRequest
+import com.example.hotelreservationsystem.Models.RoomRequest
 import com.example.hotelreservationsystem.Repositories.HotelRepositories
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +23,14 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
     {
         viewModelScope.launch {
             hotelRepositories.createHotel(ownerId,hotelRequest)
+        }
+
+    }
+
+    fun addRoom(ownerId: String,hotelId:String,roomRequest: RoomRequest)
+    {
+        viewModelScope.launch {
+            hotelRepositories.addRoom(ownerId,hotelId,roomRequest)
         }
 
     }

@@ -27,6 +27,7 @@ class OwnerHomeFragment : Fragment() {
 
  private val args by navArgs<OwnerHomeFragmentArgs>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,11 +35,12 @@ class OwnerHomeFragment : Fragment() {
         binding = FragmentOwnerHomeBinding.inflate(layoutInflater,container,false);
 
         binding.hotelName.text = args.ownerResponse.owner.ownername
+
+
         // setting ups Image Slider
 
         val imageList = ArrayList<SlideModel>() // Create image list
-         // on image url later please pass the original images of hotel Views
-
+         // on image url later please pass the original images of hotel View
 
 
         imageList.add(SlideModel(R.drawable.tst,scaleType = ScaleTypes.FIT))
@@ -50,8 +52,6 @@ class OwnerHomeFragment : Fragment() {
 
 
 
-
-
         return binding.root;
     }
 
@@ -60,6 +60,11 @@ class OwnerHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.addRooms.setOnClickListener {
+            val ownerId = args.ownerResponse.owner._id
+//            val hotelId =   args.hotelResponse.hotel._id
+            findNavController().navigate(R.id.action_ownerHomeFragment_to_addRoomFragment,Bundle().apply {
+                putString("ownerId",ownerId)
+            })
             Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_addRoomFragment);
 
         }
@@ -68,15 +73,15 @@ class OwnerHomeFragment : Fragment() {
         }
         binding.hotelProfile.setOnClickListener(){
             try {
-                 val userId = args.ownerResponse.owner._id
+                 val ownerId = args.ownerResponse.owner._id
                 findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply {
-                    putString("userId",userId)
+                    putString("userId",ownerId)
+
                 })
 
+
             }catch (
-                e:Exception
-            )
-            {
+                e:Exception) {
             }
 
 

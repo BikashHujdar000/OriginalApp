@@ -1,6 +1,7 @@
 package com.example.hotelreservationsystem.Fragments
 
 import android.net.Uri
+import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.hotelreservationsystem.Models.HotelRequest
+import com.example.hotelreservationsystem.Models.HotelResponse
+import com.example.hotelreservationsystem.Models.OwnerResponse
+import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnerProfileBinding
@@ -126,35 +130,54 @@ class OwnerProfileFragment : Fragment() {
                 }
 
             }
-        bindObservers()
+            hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+                when(it)
+                {
+                    is NetworkResult.Success->{
+
+                        val hotelId = it.data?.hotel?._id
+                        Log.d(TAG,"hotel baneko id k ho tan $hotelId")
+                        Log.d(TAG,"Hotel Created Sucessfully")
+                      //  /  val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
+                      findNavController().popBackStack()
+                    }
+                    is NetworkResult.Loading->{
+
+                    }
+                    is NetworkResult.Error->{
+
+                    }
+                }
+            })
+//        bindObservers()
 
         return binding.root
     }
 
-    private fun bindObservers() {
-        hotelViewModel.statusLiveData.observe( viewLifecycleOwner, Observer {
-            binding.progressBar.isVisible= false
-            when(it) {
-                is NetworkResult.Success -> {
-
-                 Log.d(TAG,"Hotel Created Sucessfully")
-                    findNavController().popBackStack()
-                }
-
-                is NetworkResult.Error -> {
-                    Log.d(TAG,it.message.toString())
-                }
-                is  NetworkResult.Loading->{
-                    binding.progressBar.isVisible = true
-
-                }
-
-            }
-
-
-        })
-
-    }
+//    private fun bindObservers() {
+//        hotelViewModel.statusLiveData.observe( viewLifecycleOwner, Observer {
+//            binding.progressBar.isVisible= false
+//            when(it) {
+//                is NetworkResult.Success -> {
+//
+//                 Log.d(TAG,"Hotel Created Sucessfully")
+//                    findNavController().popBackStack()
+//                }
+//
+//                is NetworkResult.Error -> {
+//                    //Log.d(TAG,it.message.toString())
+//                }
+//                is  NetworkResult.Loading->{
+//                    binding.progressBar.isVisible = true
+//
+//                }
+//
+//            }
+//
+//
+//        })
+//
+//    }
 
 
 }
