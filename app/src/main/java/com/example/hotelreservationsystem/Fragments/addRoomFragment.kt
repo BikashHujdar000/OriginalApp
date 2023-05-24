@@ -1,5 +1,4 @@
 package com.example.hotelreservationsystem.Fragments
-import android.net.Network
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -72,7 +71,7 @@ class addRoomFragment : Fragment() {
                  }
                 is NetworkResult.Error ->{
 
-                }
+                } 
                 is NetworkResult.Loading->{
                 }
             }
@@ -100,26 +99,37 @@ class addRoomFragment : Fragment() {
         binding.autocomplete.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 val text = parent.getItemAtPosition(position);
-
             }
 
         binding.addImage1.setOnClickListener {
         contract.launch("image/*")
     }
 
-       binding.updateHotel.setOnClickListener(){
+       binding.createRoom.setOnClickListener(){
+
+
+           getOwnerInput()
+
+
+
+
 
        }
+
 
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
+    private fun getOwnerInput() {
 
-
-
-
+        val number = binding.roomNumber.text
+        val roomType = binding.autocomplete.text
+        val price = binding.roomRent.text
+        val uri = imagePath
+        Log.d(TAG,"request Data is $number $roomType $price $uri")
+    }
 
 
 }

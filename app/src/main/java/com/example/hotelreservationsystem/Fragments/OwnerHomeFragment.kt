@@ -33,7 +33,7 @@ class OwnerHomeFragment : Fragment() {
     ): View? {
         binding = FragmentOwnerHomeBinding.inflate(layoutInflater,container,false);
 
-//        binding.hotelName.text = args.ownerResponse.owner._id
+        binding.hotelName.text = args.ownerResponse.owner.ownername
         // setting ups Image Slider
 
         val imageList = ArrayList<SlideModel>() // Create image list
@@ -75,8 +75,8 @@ class OwnerHomeFragment : Fragment() {
 
             }catch (
                 e:Exception
-            ){
-
+            )
+            {
             }
 
 

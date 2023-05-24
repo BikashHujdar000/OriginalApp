@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -26,7 +27,14 @@ import com.example.hotelreservationsystem.databinding.FragmentOwnerProfileBindin
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.io.FileOutputStream
 import java.lang.Exception
+import kotlin.contracts.contract
+
 @AndroidEntryPoint
 
 class OwnerProfileFragment : Fragment() {
@@ -34,12 +42,57 @@ class OwnerProfileFragment : Fragment() {
     lateinit var binding: FragmentOwnerProfileBinding
     var ownerId:String ? = null
 
-    private var selectedImageri: Uri?= null
+    lateinit var  imageUri: Uri
+    lateinit var  imagePath:String
+
     private val authViewModel by viewModels<AuthViewModel> ()
     private val hotelViewModel by viewModels<HotelViewModel>()
 
 
-    override fun onCreateView(
+    private val contract= registerForActivityResult(ActivityResultContracts.GetContent()) {
+        imageUri = it!!
+        binding.image1.setImageURI(it)
+
+        // converting the image
+        val filesDir = requireContext().filesDir
+        val file = File(filesDir, "image.png")
+        val resolver = context?.contentResolver
+        val inputStream = resolver?.openInputStream(imageUri)
+        val outputStream = FileOutputStream(file)
+        inputStream!!.copyTo(outputStream)
+
+        val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
+        val part = MultipartBody.Part.createFormData("photos", file.name, requestBody)
+
+        Log.d(TAG, imageUri.toString())
+        Log.d(TAG,"when call from the hotel create Fragment ${part.toString()}")
+
+        authViewModel.uploadImage(part)
+        authViewModel.photoResonseLiveData.observe(viewLifecycleOwner, Observer {
+            when(it)
+            {
+                is NetworkResult.Success->{
+
+                    Log.d(TAG,"Show me the image uri  of  hotel images ${it.data?.url}")
+                    imagePath = it.data!!.url
+                }
+                is NetworkResult.Error->{
+                }
+                is NetworkResult.Loading->{
+
+                }
+            }
+
+        })
+
+
+
+
+    }
+
+
+
+        override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -49,17 +102,24 @@ class OwnerProfileFragment : Fragment() {
         // Inflate the layout for this fragment
 
         ///acessing the sent owner id from the data
-        ownerId =  requireArguments().getString("userId").toString()
-        binding.toptext.text = ownerId
+//        ownerId =  requireArguments().getString("userId").toString()
+//        binding.toptext.text = ownerId
+
+            binding.toptext.text ="UserName"
+            binding.addImage1.setOnClickListener{
+            contract.launch("image/*")
+
+        }
 
 
 
         binding
-            .updateHotel.setOnClickListener {
+            .createHotel.setOnClickListener {
 
                 var name:String= binding.hotelName.text.toString()
                 var addresses:String = binding.hotelLocation.text.toString()
                 var description:String = binding.hotelDescription.text.toString()
+                val image :String = imagePath
                 try {
                     hotelViewModel.createHotel(ownerId!!,HotelRequest(name,addresses,description)
 
@@ -79,6 +139,7 @@ class OwnerProfileFragment : Fragment() {
             binding.progressBar.isVisible= false
             when(it) {
                 is NetworkResult.Success -> {
+
                  Log.d(TAG,"Hotel Created Sucessfully")
                     findNavController().popBackStack()
                 }
