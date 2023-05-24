@@ -1,5 +1,6 @@
 package com.example.hotelreservationsystem.Repositories
 
+import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,9 +15,12 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
+
     private  val _hotelLiveData =MutableLiveData<NetworkResult<HotelResponse>>()
-        val hotelLiveData : MutableLiveData<NetworkResult<HotelResponse>>
+    val hotelLiveData : LiveData<NetworkResult<HotelResponse>>
             get() = _hotelLiveData
+
+
 
 
     private val _statusLiveData = MutableLiveData<NetworkResult<String>>()
@@ -29,34 +33,69 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     {
         _statusLiveData.postValue(NetworkResult.Loading())
         _hotelLiveData.postValue(NetworkResult.Loading())
+
         val response = hotelsApi.createHotel(ownerId ,hotelRequest)
+        dothis(response)
+
+    }
+
+
+    private fun dothis(response: Response<HotelResponse>) {
+        if (response.isSuccessful && response.body() != null) {
+            _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
+        } else {
+            val errotObj = JSONObject(response.errorBody()!!.charStream().readText())
+            _hotelLiveData.postValue(NetworkResult.Error(errotObj.getString("error")))
+
+        }
+        handleresponse(response, "Hotel Created")
+    }
+
+    suspend fun  addRoom(ownerId: String,hotelId:String,roomRequest: RoomRequest) {
+
+        _statusLiveData.postValue(NetworkResult.Loading())
+        _hotelLiveData.postValue(NetworkResult.Loading())
+          val response = hotelsApi.addRoom(ownerId,hotelId,roomRequest)
         if(response.isSuccessful && response.body()!= null)
+
         {
-            hotelLiveData.postValue(NetworkResult.Success(response.body()))
+            _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
         }
         else
         {
-            val errotObj = JSONObject(response.errorBody()!!.charStream().readText())
-            hotelLiveData.postValue(NetworkResult.Error(errotObj.getString("error")))
-
-        }
-        handleresponse(response,"Hotel Created")
-
-    }
-
-    suspend fun  addRoom(ownerId: String,hotelId:String,roomRequest: RoomRequest){
-        _hotelLiveData.postValue(NetworkResult.Loading())
-        val response = hotelsApi.addRoom(ownerId,hotelId,roomRequest)
-        if(response.isSuccessful && response.body()!= null)
-        {
-            hotelLiveData.postValue(NetworkResult.Success(response.body()))
-        }
-        else{
             val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
-            hotelLiveData.postValue(NetworkResult.Error(errorObj.getString("error")))
-
+            _hotelLiveData.postValue((NetworkResult.Error(errorObj.getString("error"))))
         }
+        handleresponse(response,"Room Added Success")
+
+
+
     }
+
+
+
+    suspend fun getAllRoom(ownerId: String,hotelId: String)
+    {
+        _statusLiveData.postValue(NetworkResult.Loading())
+        _hotelLiveData.postValue(NetworkResult.Loading())
+
+        val response = hotelsApi.getHotelsRoom(ownerId,hotelId)
+        handleOriginalResponse(response)
+        handleresponse(response,"response Sucess and  all the data are geted")
+
+    }
+
+
+    suspend fun deleteRoom(ownerId: String,hotelId: String,roomId:String)
+    {
+
+        _statusLiveData.postValue(NetworkResult.Loading())
+        _hotelLiveData.postValue(NetworkResult.Loading())
+        val response = hotelsApi.deleteRoom(ownerId,hotelId,roomId)
+        handleOriginalResponse(response)
+        handleresponse(response,"Deleted Sucessfully")
+    }
+
 
 
 
@@ -72,5 +111,20 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         }
     }
 
+
+
+    private fun handleOriginalResponse(response:Response<HotelResponse>)
+    {
+        if(response.isSuccessful && response.body()!= null)
+        {
+            _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
+        }
+        else
+        {
+            val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
+            _hotelLiveData.postValue(NetworkResult.Error(errorObj.getString("error")))
+        }
+
+    }
 
 }

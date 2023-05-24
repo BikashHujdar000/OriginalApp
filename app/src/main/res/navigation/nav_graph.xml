@@ -205,6 +205,9 @@
         <action
             android:id="@+id/action_addRoomFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
+        <action
+            android:id="@+id/action_addRoomFragment_to_ownerRoomsFragment"
+            app:destination="@id/ownerRoomsFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerRoomsFragment"
@@ -217,6 +220,9 @@
         <action
             android:id="@+id/action_ownerRoomsFragment_to_updateRoomFragment"
             app:destination="@id/updateRoomFragment" />
+        <action
+            android:id="@+id/action_ownerRoomsFragment_to_ownerHomeFragment2"
+            app:destination="@id/ownerHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerProfileFragment"

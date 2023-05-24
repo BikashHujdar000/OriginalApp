@@ -17,6 +17,8 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
 
 
     val hotelLiveData  get()= hotelRepositories.hotelLiveData
+
+
     val statusLiveData get()= hotelRepositories.statusLiveData
 
     fun createHotel(ownerId:String,hotelRequest: HotelRequest)
@@ -34,4 +36,19 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
         }
 
     }
+
+    fun getAllRooms(ownerId: String,hotelId: String)
+    {
+        viewModelScope.launch {
+            hotelRepositories.getAllRoom(ownerId,hotelId)
+        }
+    }
+    fun deleteRoom(ownerId: String,hotelId: String,roomId:String)
+    {
+        viewModelScope.launch {
+            hotelRepositories.deleteRoom(ownerId,hotelId,roomId)
+        }
+    }
+
+
 }

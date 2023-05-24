@@ -38,16 +38,16 @@ import kotlin.Exception
 class OwnerProfileFragment : Fragment() {
 
     lateinit var binding: FragmentOwnerProfileBinding
-    var ownerId:String ? = null
+    var ownerId: String? = null
 
-    lateinit var  imageUri: Uri
-    lateinit var  imagePath:String
+    lateinit var imageUri: Uri
+    lateinit var imagePath: String
 
-    private val authViewModel by viewModels<AuthViewModel> ()
+    private val authViewModel by viewModels<AuthViewModel>()
     private val hotelViewModel by viewModels<HotelViewModel>()
 
 
-    private val contract= registerForActivityResult(ActivityResultContracts.GetContent()) {
+    private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
         imageUri = it!!
         binding.image1.setImageURI(it)
 
@@ -63,23 +63,25 @@ class OwnerProfileFragment : Fragment() {
         val part = MultipartBody.Part.createFormData("photos", file.name, requestBody)
 
         Log.d(TAG, imageUri.toString())
-        Log.d(TAG,"when call from the hotel create Fragment ${part.toString()}")
+        Log.d(TAG, "when call from the hotel create Fragment ${part.toString()}")
 
         authViewModel.uploadImage(part)
         authViewModel.photoResonseLiveData.observe(viewLifecycleOwner, Observer {
-            when(it)
-            {
-                is NetworkResult.Success->{
+            when (it) {
+                is NetworkResult.Success -> {
                     try {
-                        Log.d(TAG,"Show me the image uri  of  hotel images ${it.data?.url}")
+                        Log.d(TAG, "Show me the image uri  of  hotel images ${it.data?.url}")
                         imagePath = it.data!!.url
-                        Log.d(TAG,"k xa ta image path ma  $imagePath")
-                    }catch (e:Exception){}
-                    Log.d(TAG,"Image path Getting Error")
+                        Log.d(TAG, "k xa ta image path ma  $imagePath")
+                    } catch (e: Exception) {
+                    }
+                    Log.d(TAG, "Image path Getting Error")
                 }
-                is NetworkResult.Error->{
+
+                is NetworkResult.Error -> {
                 }
-                is NetworkResult.Loading->{
+
+                is NetworkResult.Loading -> {
 
                 }
             }
@@ -87,13 +89,10 @@ class OwnerProfileFragment : Fragment() {
         })
 
 
-
-
     }
 
 
-
-        override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -104,51 +103,52 @@ class OwnerProfileFragment : Fragment() {
 
         //acessing the sent owner id from the data
 
-        ownerId =  requireArguments().getString("userId").toString()
+        ownerId = requireArguments().getString("userId").toString()
 
 
-            binding.toptext.text ="UserName"
-            binding.addImage1.setOnClickListener{
+        binding.toptext.text = "UserName"
+        binding.addImage1.setOnClickListener {
             contract.launch("image/*")
 
         }
 
 
 
-        binding
-            .createHotel.setOnClickListener {
+        binding.createHotel.setOnClickListener {
 
-                var name:String= binding.hotelName.text.toString()
-                var addresses:String = binding.hotelLocation.text.toString()
-                var description:String = binding.hotelDescription.text.toString()
-                var image :String = imagePath.toString()
-                try {
-                    hotelViewModel.createHotel(ownerId!!,HotelRequest(name,addresses,description,image)
-                    )
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
-                }
-
+            var name: String = binding.hotelName.text.toString()
+            var addresses: String = binding.hotelLocation.text.toString()
+            var description: String = binding.hotelDescription.text.toString()
+            var image: String = imagePath.toString()
+            try {
+                hotelViewModel.createHotel(
+                    ownerId!!, HotelRequest(name, addresses, description, image)
+                )
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
             }
-            hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
-                when(it)
-                {
-                    is NetworkResult.Success->{
 
-                        val hotelId = it.data?.hotel?._id
-                        Log.d(TAG,"hotel baneko id k ho tan $hotelId")
-                        Log.d(TAG,"Hotel Created Sucessfully")
-                      //  /  val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
-                      findNavController().popBackStack()
-                    }
-                    is NetworkResult.Loading->{
+        }
+        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is NetworkResult.Success -> {
 
-                    }
-                    is NetworkResult.Error->{
-
-                    }
+                    val hotelId = it.data?.hotel?._id
+                    Log.d(TAG, "hotel baneko id k ho tan $hotelId")
+                    Log.d(TAG, "Hotel Created Sucessfully")
+                    //  /  val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
+                    findNavController().popBackStack()
                 }
-            })
+
+                is NetworkResult.Loading -> {
+
+                }
+
+                is NetworkResult.Error -> {
+
+                }
+            }
+        })
 //        bindObservers()
 
         return binding.root

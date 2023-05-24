@@ -60,7 +60,7 @@ val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
             result = Pair(false,"Please enter Valid EmailAddress")
         }
 
-        else if(ownerPassword.length  <= 6)
+        else if(ownerPassword.length  <= 5)
         {
              result = Pair(false,"Password length should be grater than 6")
         }

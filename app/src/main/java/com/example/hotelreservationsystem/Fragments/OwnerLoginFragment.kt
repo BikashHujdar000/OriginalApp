@@ -22,6 +22,7 @@ import com.example.hotelreservationsystem.utils.TokenManager
 import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlin.math.log
 
 @AndroidEntryPoint
 class OwnerLoginFragment : Fragment() {
@@ -97,6 +98,7 @@ class OwnerLoginFragment : Fragment() {
 
                     // trying to send the data
                     val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
+                    Log.d(TAG," owner ko data aauxa ta ${owner}")
 
                val action =OwnerLoginFragmentDirections.actionOwnerLoginFragmentToOwnerHomeFragment(owner)
                  findNavController().navigate(action)

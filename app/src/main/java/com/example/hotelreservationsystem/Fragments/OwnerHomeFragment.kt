@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,6 +17,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.R
+import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnerHomeBinding
 import com.example.hotelreservationsystem.utils.constants.TAG
 import com.google.gson.Gson
@@ -26,6 +29,7 @@ class OwnerHomeFragment : Fragment() {
 
 
  private val args by navArgs<OwnerHomeFragmentArgs>()
+   private val authViewModel by viewModels<AuthViewModel>()
 
 
     override fun onCreateView(
@@ -34,10 +38,20 @@ class OwnerHomeFragment : Fragment() {
     ): View? {
         binding = FragmentOwnerHomeBinding.inflate(layoutInflater,container,false);
 
-        binding.hotelName.text = args.ownerResponse.owner.ownername
 
 
         // setting ups Image Slider
+//          authViewModel.ownerResponseLiveData.observe( viewLifecycleOwner, Observer {
+//
+//              if(it.data!!.owner.hotel.isEmpty())
+//              {
+//
+//              }
+//              else{
+//                  hotelId = it.data.owner.hotel.get(0)
+//              }
+//          })
+
 
         val imageList = ArrayList<SlideModel>() // Create image list
          // on image url later please pass the original images of hotel View
@@ -56,27 +70,38 @@ class OwnerHomeFragment : Fragment() {
     }
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.addRooms.setOnClickListener {
-            val ownerId = args.ownerResponse.owner._id
-//            val hotelId =   args.hotelResponse.hotel._id
+
+           val ownerId = args.ownerResponse.owner._id
+            val hotelId = args.ownerResponse.owner.hotel.get(0)
             findNavController().navigate(R.id.action_ownerHomeFragment_to_addRoomFragment,Bundle().apply {
                 putString("ownerId",ownerId)
+                putString("hotelId",hotelId)
+
             })
-            Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_addRoomFragment);
 
         }
         binding.roomsList.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownerRoomsFragment)
+
+            val ownerId = args.ownerResponse.owner._id
+            val hotelId = args.ownerResponse.owner.hotel.get(0)
+            findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerRoomsFragment,Bundle().apply {
+                putString("ownerId",ownerId)
+                putString("hotelId",hotelId)
+
+            })
+
         }
         binding.hotelProfile.setOnClickListener(){
             try {
+
                  val ownerId = args.ownerResponse.owner._id
                 findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply {
                     putString("userId",ownerId)
-
                 })
 
 
