@@ -77,27 +77,12 @@ class OwnerRoomsFragment : Fragment() {
                             recyclerView.layoutManager = LinearLayoutManager(requireContext())
                             roomAdapter.notifyDataSetChanged()
 
-
-
-//                                //setting up adapters in recycleviewlistner
-//        adapters.setOnItemClickListner(
-//            object :TestAdapters.onItemClickListner
-//            {
-//                @SuppressLint("SuspiciousIndentation")
-//                override fun onItemClick(position: Int) {
-//
-//                val action = UserHomeFragmentDirections.actionUserHomeFragment2ToOnTouchUserFragment()
-//                    findNavController().navigate(action)
-//
-//                }
-//
-//            } )
-                            roomAdapter.setOnItemClickListner(
+                                  roomAdapter.setOnItemClickListner(
                                 object :RoomsAdapter.onItemClickListner
                                 {
                                     override fun onItemClick(position: Int) {
                                         val roomDetails = it.data.hotel.rooms.get(position)
-
+                                        Log.d(TAG," room id is $roomDetails")
                                          val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment()
                                         findNavController().navigate(action)
                                     }
@@ -117,36 +102,9 @@ class OwnerRoomsFragment : Fragment() {
                     }
 
 
-                is NetworkResult.Error->
-                {
-
-                }
-                is NetworkResult.Loading->{
-
-                }
             }
         })
-        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
-            when(it)
-            {
-                is NetworkResult.Loading->{
 
-
-                }
-                is NetworkResult.Success->{
-                    Log.d(TAG,"  data is generated")
-
-                    val roomData :List<Room> = it.data?.hotel!!.rooms
-                    Log.d(TAG," Room Lisy ois $roomData")
-
-
-                }
-                is NetworkResult.Error->{
-
-                }
-
-            }
-        })
 
 
         return binding.root
