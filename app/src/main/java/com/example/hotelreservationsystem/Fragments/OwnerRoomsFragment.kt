@@ -76,22 +76,7 @@ class OwnerRoomsFragment : Fragment() {
                             recyclerView.adapter = roomAdapter
                             recyclerView.layoutManager = LinearLayoutManager(requireContext())
                             roomAdapter.notifyDataSetChanged()
-
-
-
-//                                //setting up adapters in recycleviewlistner
-//        adapters.setOnItemClickListner(
-//            object :TestAdapters.onItemClickListner
-//            {
-//                @SuppressLint("SuspiciousIndentation")
-//                override fun onItemClick(position: Int) {
-//
-//                val action = UserHomeFragmentDirections.actionUserHomeFragment2ToOnTouchUserFragment()
-//                    findNavController().navigate(action)
-//
-//                }
-//
-//            } )
+                            // handling on item touch
                             roomAdapter.setOnItemClickListner(
                                 object :RoomsAdapter.onItemClickListner
                                 {
