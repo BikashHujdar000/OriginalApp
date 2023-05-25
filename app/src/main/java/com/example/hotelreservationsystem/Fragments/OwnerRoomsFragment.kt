@@ -82,6 +82,8 @@ class OwnerRoomsFragment : Fragment() {
                                 {
                                     override fun onItemClick(position: Int) {
                                         val roomDetails = it.data.hotel.rooms.get(position)
+                                        Log.d(TAG,"room details is $roomDetails")
+
 
                                          val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment()
                                         findNavController().navigate(action)
