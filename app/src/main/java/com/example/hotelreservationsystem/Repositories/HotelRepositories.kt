@@ -21,8 +21,6 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
             get() = _hotelLiveData
 
 
-
-
     private val _statusLiveData = MutableLiveData<NetworkResult<String>>()
     val statusLiveData :LiveData<NetworkResult<String>>
         get()= _statusLiveData
@@ -101,13 +99,23 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
 
     // outside all the functions
     private fun handleresponse(response: Response<HotelResponse>,message:String) {
+                if (response.isSuccessful && response.body() != null) {
+                    Log.d(TAG,response.body().toString())
+                    _statusLiveData.postValue(NetworkResult.Success(message))
+
+        } else {
+            _statusLiveData.postValue(NetworkResult.Error("Something Went Wrong"))
+            Log.d(TAG,"Maile response pasko xaina")
+        }
+    }
+    private fun handleAllHotelresponse(response: Response<List<HotelResponse>>,message:String) {
         if (response.isSuccessful && response.body() != null) {
             Log.d(TAG,response.body().toString())
             _statusLiveData.postValue(NetworkResult.Success(message))
 
         } else {
             _statusLiveData.postValue(NetworkResult.Error("Something Went Wrong"))
-            Log.d(TAG,"Maile response pasko xaina")
+            Log.d(TAG,"hotel information is not found yet")
         }
     }
 
