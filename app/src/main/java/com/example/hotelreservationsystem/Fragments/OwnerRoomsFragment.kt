@@ -71,29 +71,21 @@ class OwnerRoomsFragment : Fragment() {
                             roomAdapter.notifyDataSetChanged()
                             // handling on item touch
                             roomAdapter.setOnItemClickListner(
-
-
-                                  roomAdapter.setOnItemClickListner(
->>>>>>> bikashbranch
                                 object :RoomsAdapter.onItemClickListner
                                 {
                                     override fun onItemClick(position: Int) {
                                         val roomDetails = it.data.hotel.rooms.get(position)
-
-                                        Log.d(TAG,"room details is $roomDetails")
-
-
-                                         val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment()
-
                                         Log.d(TAG," room id is $roomDetails")
-                                         val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment(roomDetails)
-
+                                        val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment(roomDetails)
                                         findNavController().navigate(action)
                                     }
 
-                                })
+                                }
+                            )
 
-                        } catch (e: Exception) {
+
+                        }
+                        catch (e: Exception) {
                             Log.d(TAG, " eroor on adapting recyclerview  ${e.message}")
                         }
 
