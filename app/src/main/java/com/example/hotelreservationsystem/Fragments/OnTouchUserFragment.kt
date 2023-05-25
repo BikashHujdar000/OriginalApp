@@ -35,10 +35,7 @@ class OnTouchUserFragment : Fragment() {
 
         // hidding the lower bar
 
-              var bottom = activity?.requireViewById<SmoothBottomBar>(R.id.bottom_navigation_bar)
-          if (bottom != null) {
-            bottom.visibility = View.GONE
-          }
+
 
         val imageList = ArrayList<SlideModel>() // Create image list
         imageList.add(SlideModel(R.drawable.tst,scaleType = ScaleTypes.FIT))
@@ -71,9 +68,6 @@ class OnTouchUserFragment : Fragment() {
         reviewRecycleview.layoutManager = LinearLayoutManager(requireContext());
 
 
-        binding.bookHotel.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.action_onTouchUserFragment_to_bookNowFragment)
-        }
 
         return binding.root
 

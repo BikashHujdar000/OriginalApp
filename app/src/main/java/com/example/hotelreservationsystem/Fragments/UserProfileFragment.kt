@@ -27,10 +27,7 @@ class UserProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentUserProfileBinding.inflate(layoutInflater, container, false)
-        var bottom = activity?.requireViewById<SmoothBottomBar>(R.id.bottom_navigation_bar)
-        if (bottom != null) {
-            bottom.visibility = View.GONE
-        }
+
 
         // setting the dropdown function
         profileExpandable = binding.expandableView
@@ -67,35 +64,6 @@ class UserProfileFragment : Fragment() {
                 TransitionManager.beginDelayedTransition(binding.cardView, AutoTransition())
                 binding.securityAndPrivacyConstraint.visibility = View.GONE
             }
-        }
-
-        //trying to access the card view menber
-        binding.editProfile.setOnClickListener {
-            val fragement = UserProfileFragment()
-            val transaction = fragmentManager?.beginTransaction()
-            if (transaction != null) {
-                transaction.replace(R.id.fragmentContainerView2, fragement)
-                transaction.commit()
-            }
-
-        }
-        binding.profileIcon.setOnClickListener {
-            val fragement =  UserProfileFragment()
-            val transaction = fragmentManager?.beginTransaction()
-            if (transaction != null) {
-                transaction.replace(R.id.fragmentContainerView2, fragement)
-                transaction.commit()
-            }
-
-        }
-        binding.info.setOnClickListener {
-            val fragement =  UserProfileFragment()
-            val transaction = fragmentManager?.beginTransaction()
-            if (transaction != null) {
-                transaction.replace(R.id.fragmentContainerView2, fragement)
-                transaction.commit()
-            }
-
         }
 
 

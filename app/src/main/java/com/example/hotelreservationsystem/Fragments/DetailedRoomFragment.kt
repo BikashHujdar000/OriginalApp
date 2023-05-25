@@ -120,9 +120,6 @@ class DetailedRoomFragment : Fragment() {
 
         }
 
-        binding.payButton.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.action_detailedRoomFragment_to_booking_receipt_fragment)
-        }
 
 
 

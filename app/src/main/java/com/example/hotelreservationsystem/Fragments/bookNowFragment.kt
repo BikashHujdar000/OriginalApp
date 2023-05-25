@@ -20,9 +20,7 @@ class bookNowFragment : Fragment() {
         binding = FragmentBookNowBinding.inflate(layoutInflater,container,false)
         // Inflate the layout for this fragment
 
-        binding.textView23.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.action_bookNowFragment_to_detailedRoomFragment)
-        }
+
 
         return binding.root
     }
