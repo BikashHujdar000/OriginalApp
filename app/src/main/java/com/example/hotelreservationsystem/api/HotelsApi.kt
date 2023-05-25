@@ -45,7 +45,7 @@ interface  HotelsApi {
   suspend fun deleteRoom(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String,@Path("roomId")roomId: String):Response<HotelResponse>
 
   @PUT ("ownerroom/updateroom/{ownerId}/{hotelId}/{roomId}")
-  suspend fun updateRoom(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String,@Path("roomId")roomId: String):Response<HotelResponse>
+  suspend fun updateRoom(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String,@Path("roomId")roomId: String,@Body roomRequest: RoomRequest):Response<HotelResponse>
 
 
 }

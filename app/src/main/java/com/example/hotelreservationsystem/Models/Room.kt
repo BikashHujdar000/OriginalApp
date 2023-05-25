@@ -1,7 +1,9 @@
 package com.example.hotelreservationsystem.Models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
-
+@Parcelize
 data class Room(
     val __v: Int,
     val _id: String,
@@ -14,4 +16,4 @@ data class Room(
     val status: Boolean,
     val type: String,
     val updatedAt: String
-):Serializable
+):Parcelable,Serializable
