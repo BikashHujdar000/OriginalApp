@@ -22,9 +22,9 @@ class UserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
        binding = ActivityUserBinding.inflate(layoutInflater)
+
+
         setContentView(binding.root)
-
-
         // setiing the status baar and icon
 
         val window =this.window
@@ -42,7 +42,7 @@ class UserActivity : AppCompatActivity() {
                 0->{
 
                     val  fragment= UserBookingFragment()
-                  bottomBar.visibility=View.GONE
+                    bottomBar.visibility=View.GONE
                     switchFragment(fragment)
 
 
@@ -73,6 +73,9 @@ class UserActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.fragmentContainerView2, fragment)
         fragmentTransaction.commit()
     }
+
+
+
 
 
 
