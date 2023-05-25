@@ -1,4 +1,5 @@
 package com.example.hotelreservationsystem.Fragments
+import android.icu.number.IntegerWidth
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -32,7 +34,7 @@ import kotlin.math.log
 
 @AndroidEntryPoint
 class addRoomFragment : Fragment() {
-    lateinit var binding: FragmentAddRoomBinding
+    lateinit var binding:FragmentAddRoomBinding
 
     var ownerId: String? = null
     var hoteid: String? = null
@@ -67,6 +69,7 @@ class addRoomFragment : Fragment() {
 
         authViewModel.uploadImage(part)
         authViewModel.photoResonseLiveData.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
 
@@ -86,6 +89,7 @@ class addRoomFragment : Fragment() {
                 }
 
                 is NetworkResult.Loading -> {
+                    binding.progressBar.isVisible = true
                 }
             }
         })
@@ -126,12 +130,18 @@ class addRoomFragment : Fragment() {
                 var roomType = binding.autocomplete.text.toString()
                 var price = binding.roomRent.text.toString()
                 var uri = imagePath.toString()
-
+            // i have to take the int value
+                val numberInt = Integer.parseInt(number)
+                val priceInt = Integer.parseInt(price)
+                Log.d(TAG,"$numberInt")
+                Log.d(TAG,"$priceInt")
+                //String value= et.getText().toString();
+            //int finalValue=Integer.parseInt(value);
                 Log.d(TAG,uri)
 
 
             try {
-                hotelViewModel.addRoom(ownerId!!, hoteid!!, RoomRequest(1, 2, roomType, uri))
+                hotelViewModel.addRoom(ownerId!!, hoteid!!, RoomRequest(numberInt, priceInt, roomType, uri))
             }catch (e:Exception)
             {
                 Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()

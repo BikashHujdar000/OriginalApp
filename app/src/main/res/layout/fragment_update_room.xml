@@ -10,30 +10,68 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/toptext"
-            android:gravity="center"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_constraint_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Add Rooms"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/toptext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="Update Room"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/deleteRoom_item"
+                app:layout_constraintHorizontal_bias="0.642"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/deleteRoom_item"
+                android:layout_width="40dp"
+                android:elevation="30dp"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/deleteInsideRoomcard"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/baseline_delete_24"/>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
         <LinearLayout
+
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:focusableInTouchMode="true"
-            app:layout_constraintTop_toBottomOf="@+id/toptext">
+            app:layout_constraintTop_toBottomOf="@+id/top_constraint_layout">
 
 
             <TextView
@@ -52,6 +90,7 @@
                 android:id="@+id/room_number"
                 android:layout_width="match_parent"
                 android:hint=" 1208"
+                android:inputType="number"
                 android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_background_box"
@@ -87,6 +126,7 @@
                 android:ems="10"
                 android:padding="10dp"
                 android:hint="1000"
+                android:inputType="number"
                 android:minHeight="48dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView6"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -157,10 +197,10 @@
 
 
             <Button
-                android:id="@+id/createRoom"
+                android:id="@+id/update_Room_frag"
                 android:backgroundTint="@color/theme1"
                 android:layout_marginTop="20dp"
-                android:text="Create"
+                android:text="Update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>

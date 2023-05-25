@@ -94,6 +94,15 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         handleresponse(response,"Deleted Sucessfully")
     }
 
+    suspend fun  updateRoom(ownerId: String,hotelId: String,roomId: String,roomRequest: RoomRequest)
+    {
+        _statusLiveData.postValue(NetworkResult.Loading())
+        _hotelLiveData.postValue(NetworkResult.Loading())
+        val response = hotelsApi.updateRoom(ownerId,hotelId,roomId,roomRequest )
+        handleresponse(response,"Hotel Updated Successfully")
+        handleOriginalResponse(response)
+    }
+
 
 
 

@@ -249,5 +249,12 @@
         android:id="@+id/updateRoomFragment"
         android:name="com.example.hotelreservationsystem.Fragments.updateRoomFragment"
         android:label="fragment_update_room"
-        tools:layout="@layout/fragment_update_room" />
+        tools:layout="@layout/fragment_update_room" >
+        <action
+            android:id="@+id/action_updateRoomFragment_to_ownerRoomsFragment"
+            app:destination="@id/ownerRoomsFragment" />
+        <argument
+            android:name="RoomDetails"
+            app:argType="com.example.hotelreservationsystem.Models.Room" />
+    </fragment>
 </navigation>

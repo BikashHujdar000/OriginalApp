@@ -1,7 +1,5 @@
 package com.example.hotelreservationsystem.Fragments
 
-import android.net.Network
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,21 +9,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelreservationsystem.Adapters.RoomsAdapter
-import com.example.hotelreservationsystem.Adapters.TestAdapters
 import com.example.hotelreservationsystem.Models.Room
-import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnerRoomsBinding
-import com.example.hotelreservationsystem.databinding.FragmentUpdateRoomBinding
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
-import kotlin.math.log
+
 @AndroidEntryPoint
 class OwnerRoomsFragment : Fragment() {
 
@@ -83,7 +76,7 @@ class OwnerRoomsFragment : Fragment() {
                                     override fun onItemClick(position: Int) {
                                         val roomDetails = it.data.hotel.rooms.get(position)
                                         Log.d(TAG," room id is $roomDetails")
-                                         val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment()
+                                         val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment(roomDetails)
                                         findNavController().navigate(action)
                                     }
 
