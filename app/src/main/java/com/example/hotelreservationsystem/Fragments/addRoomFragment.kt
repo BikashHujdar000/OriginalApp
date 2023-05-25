@@ -140,12 +140,14 @@ class addRoomFragment : Fragment() {
                 Log.d(TAG,uri)
 
 
-            try {
-                hotelViewModel.addRoom(ownerId!!, hoteid!!, RoomRequest(numberInt, priceInt, roomType, uri))
-            }catch (e:Exception)
-            {
-                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
-            }
+
+
+                      hotelViewModel.addRoom(ownerId!!, hoteid!!, RoomRequest(numberInt, priceInt, roomType, uri))
+
+
+
+
+
 
         }
        hotelViewModel.hotelLiveData.observe( viewLifecycleOwner, Observer {

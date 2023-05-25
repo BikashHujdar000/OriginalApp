@@ -75,34 +75,67 @@ class OwnerHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.addRooms.setOnClickListener {
+            if(args.ownerResponse.owner.hotel.isEmpty()) {
 
-           val ownerId = args.ownerResponse.owner._id
-            val hotelId = args.ownerResponse.owner.hotel.get(0)
-            findNavController().navigate(R.id.action_ownerHomeFragment_to_addRoomFragment,Bundle().apply {
-                putString("ownerId",ownerId)
-                putString("hotelId",hotelId)
 
-            })
+                Log.d(TAG,"Please Add hotel First")
+                Toast.makeText(requireContext(), "Please Add hotel First", Toast.LENGTH_SHORT).show()
+
+            }
+            else{
+
+                val ownerId = args.ownerResponse.owner._id
+                val hotelId = args.ownerResponse.owner.hotel.get(0)
+                findNavController().navigate(
+                    R.id.action_ownerHomeFragment_to_addRoomFragment,
+                    Bundle().apply {
+                        putString("ownerId", ownerId)
+                        putString("hotelId", hotelId)
+
+                    })
+            }
 
         }
+
+
+
         binding.roomsList.setOnClickListener(){
 
-            val ownerId = args.ownerResponse.owner._id
-            val hotelId = args.ownerResponse.owner.hotel.get(0)
-            findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerRoomsFragment,Bundle().apply {
-                putString("ownerId",ownerId)
-                putString("hotelId",hotelId)
+            if(args.ownerResponse.owner.hotel.isEmpty()) {
+                Log.d(TAG,"No Rooms Available ElsePArt")
+                Toast.makeText(requireContext(), "No rooms Available", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val ownerId = args.ownerResponse.owner._id
+                val hotelId = args.ownerResponse.owner.hotel.get(0)
+                findNavController().navigate(
+                    R.id.action_ownerHomeFragment_to_ownerRoomsFragment,
+                    Bundle().apply {
+                        putString("ownerId", ownerId)
+                        putString("hotelId", hotelId)
 
-            })
+                    })
+            }
 
         }
+
+
+
         binding.hotelProfile.setOnClickListener(){
             try {
 
-                 val ownerId = args.ownerResponse.owner._id
-                findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply {
-                    putString("userId",ownerId)
-                })
+                if(args.ownerResponse.owner.hotel.isEmpty())
+                {
+                    val ownerId = args.ownerResponse.owner._id
+                    findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply {
+                        putString("userId",ownerId)
+                    })
+                }
+                else
+                {
+                    Log.d(TAG,"YOU CANNOT ADDED MORE HOTELS")
+                    Toast.makeText(requireContext(), "You can not add  more than one hotel", Toast.LENGTH_SHORT).show()
+                }
 
 
             }catch (
@@ -111,6 +144,10 @@ class OwnerHomeFragment : Fragment() {
 
 
         }
+
+
+
+
         binding.bookings.setOnClickListener(){
             Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownersBookingFragment)
         }
