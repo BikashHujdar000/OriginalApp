@@ -58,43 +58,8 @@ class UserHomeFragment : Fragment() {
         val userId = args.user.user._id.toString()
         getAllHotelViewModel.getAllHotel(userId)
 
-//     val recyclerView = binding.userTestHomeRecycler
-//        // setting ups looking for visualization to topic
-//        val manualData = ArrayList<DataModel>()
-//     manualData.add(DataModel("Trojan National Hotel","United",1))
-//        manualData.add(DataModel("Trojan National Hotel","United",1))
-//        manualData.add(DataModel("sigma National Hotel","United",1))
-//        manualData.add(DataModel("LojanNational Hotel","United",1))
-//        manualData.add(DataModel("TarhanNational Hotel","United",1))
-//        manualData.add(DataModel("Trojan National Hotel","United",1))
-//        manualData.add(DataModel("famndfk fkanlkd Hotel","United",1))
-//        manualData.add(DataModel("Trojan National Hotel","United",1))
-//        manualData.add(DataModel("Sirha National Hotel","United",1))
-//        manualData.add(DataModel("Trojan National Hotel","United",1))
-//
-//1
-      //  val recommendedAdapter = RecomenderAdapter(requireContext(),manualData)
-//        val adapters = TestAdapters(requireContext(),manualData)
-//        recyclerView.adapter = adapters
-//
-//        // setiing up recycler View for  hotels all
-//
-//        recyclerView.layoutManager= LinearLayoutManager(requireContext())
-//
-//        //setting up adapters in recycleviewlistner
-//        adapters.setOnItemClickListner(
-//            object :TestAdapters.onItemClickListner
-//            {
-//                @SuppressLint("SuspiciousIndentation")
-//                override fun onItemClick(position: Int) {
-//
-//                val action = UserHomeFragmentDirections.actionUserHomeFragment2ToOnTouchUserFragment()
-//                    findNavController().navigate(action)
-//
-//                }
-//
-//            } )
-//
+
+
 //        // handling search view
 //        binding.searchItem.setOnTouchListener(OnTouchListener { v, event ->
 //            val DRAWABLE_LEFT = 0
@@ -122,8 +87,6 @@ class UserHomeFragment : Fragment() {
 //            true
 //        })
 
-        // changing above code after api
-        // Inflate the layout for this fragment
 
         return binding.root
     }
@@ -144,6 +107,15 @@ class UserHomeFragment : Fragment() {
                         recyclerView.adapter = hotelAdapters
                         recyclerView.layoutManager = LinearLayoutManager(requireContext())
                         Log.d("Hotel Respnose Success",response.toString())
+                        hotelAdapters.setOnItemClickListner(object : TestAdapters.onItemClickListner{
+                            override fun onItemClick(position: Int) {
+                                val hotel = response!!.get(position)
+                                val action  = UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(hotel)
+                                findNavController().navigate(action)
+                            }
+
+                        })
+
                     }
                     is NetworkResult.Error ->{
 

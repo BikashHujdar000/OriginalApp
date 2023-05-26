@@ -44,44 +44,18 @@
 
 
             <TextView
-                android:id="@+id/hotel_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:text="300"
-                android:textColor="#BC175C"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_name"
-                app:layout_constraintStart_toEndOf="@+id/hotel_name"
-                app:layout_constraintTop_toTopOf="@+id/hotel_name"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="$/night"
-                android:textColor="@color/theme1"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_rate"
-                app:layout_constraintEnd_toEndOf="@id/image_slider"
-                app:layout_constraintStart_toEndOf="@+id/hotel_rate"
-                app:layout_constraintTop_toTopOf="@+id/hotel_rate"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
                 android:id="@+id/textView27"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="About"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/hotel_name"
+                app:layout_constraintHorizontal_bias="0.028"
                 app:layout_constraintStart_toStartOf="@+id/hotel_name"
                 app:layout_constraintTop_toBottomOf="@+id/hotel_name" />
-
 
             <TextView
                 android:id="@+id/hotel_description"
@@ -100,44 +74,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView28"
+            <Button
+                android:id="@+id/available_rooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Contract No:"
-                android:textSize="20sp"
+                android:text="AvailableRooms"
+                android:textColor="@color/white_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.933"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/hotel_contact_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:drawablePadding="5dp"
-                android:padding="5dp"
-
-                android:text="+9779804321230"
-                android:textStyle="bold"
-                app:drawableLeftCompat="@drawable/call24"
-                app:drawableTint="#54810B"
-                app:layout_constraintBottom_toBottomOf="@+id/textView28"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView28" />
-
-            <Button
-                android:id="@+id/book_hotel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Book Now"
-                android:textColor="@color/white_back"
-                app:layout_constraintEnd_toEndOf="@+id/hotel_contact_no"
-                app:layout_constraintStart_toStartOf="@+id/hotel_contact_no"
-                app:layout_constraintTop_toBottomOf="@+id/hotel_contact_no" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

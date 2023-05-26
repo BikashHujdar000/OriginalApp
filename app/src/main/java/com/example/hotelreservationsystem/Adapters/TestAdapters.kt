@@ -14,36 +14,37 @@ import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.HotelX
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
-
 class TestAdapters (val context :Context,val data: List<HotelX>?):RecyclerView.Adapter<TestAdapters.MyViewHolder>() {
 
-//lateinit var  mlistner :onItemClickListner
-//       interface onItemClickListner{
-//           fun onItemClick(position: Int)
-//       }
+       lateinit var  mlistner :onItemClickListner
+       interface onItemClickListner{
+           fun onItemClick(position: Int)
+       }
 
-    //    fun setOnItemClickListner(listner: onItemClickListner)
-//    {
-//        mlistner = listner
-//    }
-    class MyViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
+        fun setOnItemClickListner(listner: onItemClickListner)
+    {
+        mlistner = listner
+    }
+    class MyViewHolder(itemview: View, listner: onItemClickListner) : RecyclerView.ViewHolder(itemview) {
         // defining the holder operation
         val name = itemview.findViewById<TextView>(R.id.hotel_sample_name)
         val location = itemview.findViewById<TextView>(R.id.hotel_sample_country_name)
         val image = itemview.findViewById<ImageView>(R.id.room_image)
-//        init {
-//            itemview.setOnClickListener {
-//                listner.onItemClick(adapterPosition)
-//            }
+
+        init {
+            itemview.setOnClickListener{
+                listner.onItemClick(adapterPosition)
+
+            }
 
 
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         // inflating the model layout to the holder
-        val view =
-            LayoutInflater.from(context).inflate(R.layout.test_layout_for_model_view, parent, false)
-        return MyViewHolder(view)
+        val view = LayoutInflater.from(context).inflate(R.layout.test_layout_for_model_view, parent, false)
+        return MyViewHolder(view,mlistner)
     }
 
     override fun getItemCount(): Int {

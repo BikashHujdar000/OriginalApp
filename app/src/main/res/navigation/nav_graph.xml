@@ -196,6 +196,9 @@
         <argument
             android:name="user"
             app:argType="com.example.hotelreservationsystem.Models.UserResponse" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_onTouchUserFragment"
+            app:destination="@id/onTouchUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRoomFragment"
@@ -256,5 +259,26 @@
         <argument
             android:name="RoomDetails"
             app:argType="com.example.hotelreservationsystem.Models.Room" />
+    </fragment>
+    <fragment
+        android:id="@+id/onTouchUserFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OnTouchUserFragment"
+        android:label="fragment_on_touch_user"
+        tools:layout="@layout/fragment_on_touch_user" >
+        <argument
+            android:name="hotel"
+            app:argType="com.example.hotelreservationsystem.Models.HotelX" />
+        <action
+            android:id="@+id/action_onTouchUserFragment_to_viewRoomFragment"
+            app:destination="@id/viewRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewRoomFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.ViewRoomFragment"
+        android:label="fragment_view_room"
+        tools:layout="@layout/fragment_view_room" >
+        <argument
+            android:name="roomsAvilable"
+            app:argType="com.example.hotelreservationsystem.Models.Hotel" />
     </fragment>
 </navigation>
