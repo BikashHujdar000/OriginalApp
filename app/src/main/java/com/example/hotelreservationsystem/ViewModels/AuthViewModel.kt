@@ -5,6 +5,8 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hotelreservationsystem.Fragments.otpRequest
+import com.example.hotelreservationsystem.Models.OtpResponse
 import com.example.hotelreservationsystem.Models.OwnerRequest
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.Models.PhotosResponse
@@ -26,6 +28,8 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
 val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
     get()= ownerRepository.photoResponseLiveData
 
+     val otpResponseLiveData : LiveData<NetworkResult<OtpResponse>>
+        get() = ownerRepository.otpResponseLiveData
     fun registerOwner(ownerRequest: OwnerRequest) {
         viewModelScope.launch {
             ownerRepository.registerOwner(ownerRequest)
@@ -46,10 +50,15 @@ val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
         }
 
     }
+    fun getOtp(otpRequest: otpRequest){
+        viewModelScope.launch {
+            ownerRepository.getOtp(otpRequest)
+        }
+    }
 
     fun validateCredential(ownerName:String, ownerEmailAddress:String, ownerPassword:String, isOwnerLoginFragment:Boolean):Pair<Boolean,String>
     {
-     var result = Pair(true,"")
+        var result = Pair(true,"")
 
         if( !isOwnerLoginFragment && TextUtils.isEmpty(ownerName)  || TextUtils.isEmpty(ownerEmailAddress)  || TextUtils.isEmpty(ownerPassword))
         {

@@ -1,5 +1,7 @@
 package com.example.hotelreservationsystem.api
 
+import com.example.hotelreservationsystem.Fragments.otpRequest
+import com.example.hotelreservationsystem.Models.OtpResponse
 import com.example.hotelreservationsystem.Models.OwnerRequest
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.Models.PhotosResponse
@@ -21,4 +23,10 @@ interface OwnerApi {
      @Multipart
     @POST("/ownerroom/uploadroompictocloud")
     suspend fun uplaodImage(@Part image:MultipartBody.Part):Response<PhotosResponse>
-}
+
+
+    @POST("ownerauth/generateotp1")
+    suspend fun getOtp(@Body otpRequest: otpRequest):Response<OtpResponse>
+
+    }
+
