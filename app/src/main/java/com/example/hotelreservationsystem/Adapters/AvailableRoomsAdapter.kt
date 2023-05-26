@@ -18,6 +18,7 @@ class AvailableRoomsAdapter(val context : Context,  val Rooms:List<Room>): Recyc
         val room_view_type = itemView.findViewById<TextView>(R.id.room_view_type)
         val room_view_price = itemView.findViewById<TextView>(R.id.room_view_price)
         val room_view_image=itemView.findViewById<ShapeableImageView>(R.id.roomViewImage)
+        val status = itemView.findViewById<TextView>(R.id.status)
 
     }
 
@@ -34,9 +35,8 @@ class AvailableRoomsAdapter(val context : Context,  val Rooms:List<Room>): Recyc
         holder.room_number.text = Rooms.get(position).number.toString()
         holder.room_view_type.text = Rooms.get(position).type.toString()
         holder.room_view_price.text = Rooms.get(position).price.toString()
-        Glide.with(this.context)
-            .load(Rooms!!.get(position).img[0]).into(holder.room_view_image)
-
-
+        holder.status.text = Rooms.get(position).status.toString()
+        val string = Rooms.get(position).img.toString()
+        Glide.with(this.context).load(string).into(holder.room_view_image)
         }
     }

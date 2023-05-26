@@ -22,6 +22,7 @@ import com.example.hotelreservationsystem.databinding.FragmentUserHomeBinding
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
 class UserHomeFragment : Fragment() {
@@ -101,6 +102,7 @@ class UserHomeFragment : Fragment() {
                         hotelAdapters.setOnItemClickListner(object : TestAdapters.onItemClickListner{
                             override fun onItemClick(position: Int) {
                                 val hotel = response!!.get(position)
+                                Log.d(TAG,"$hotel")
                                 val action  = UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(hotel)
                                 findNavController().navigate(action)
                             }

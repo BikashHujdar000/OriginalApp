@@ -278,7 +278,7 @@
         android:label="fragment_view_room"
         tools:layout="@layout/fragment_view_room" >
         <argument
-            android:name="roomsAvilable"
+            android:name="hotel"
             app:argType="com.example.hotelreservationsystem.Models.Hotel" />
     </fragment>
 </navigation>

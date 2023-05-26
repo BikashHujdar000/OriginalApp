@@ -2,6 +2,7 @@ package com.example.hotelreservationsystem.Fragments
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.TestModels.ReviewModel
 import com.example.hotelreservationsystem.databinding.FragmentOnTouchUserBinding
+import com.example.hotelreservationsystem.utils.constants.TAG
 import me.ibrahimsn.lib.SmoothBottomBar
 
 
@@ -35,6 +37,7 @@ class OnTouchUserFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentOnTouchUserBinding.inflate(layoutInflater,container,false);
+
 
 
 
@@ -56,7 +59,9 @@ class OnTouchUserFragment : Fragment() {
         binding.imageSlider.setImageList(imageList)
 
         binding.availableRooms.setOnClickListener{
-            findNavController().navigate(R.id.action_onTouchUserFragment_to_viewRoomFragment)
+            val hotel = args.hotel
+             val action = OnTouchUserFragmentDirections.actionOnTouchUserFragmentToViewRoomFragment(hotel)
+                 findNavController().navigate(action)
         }
 
         val manualData = ArrayList<DataModel>()
