@@ -7,6 +7,7 @@ data class User(
     val _id: String,
     val createdAt: String,
     val email: String,
+    val booking: List<String>,
     val isOwner: Boolean,
     val password: String,
     val review: List<Any>,

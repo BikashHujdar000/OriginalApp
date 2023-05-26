@@ -89,7 +89,6 @@ class UserLoginFragment : Fragment() {
 
                     // passing username to the userHomeFragment
                     val username = it.data?.user?.username
-                    Log.d("usernameCheck",username!!)
                     Log.d("TAG","$userId")
 
 

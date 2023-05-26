@@ -13,7 +13,7 @@ import com.example.hotelreservationsystem.databinding.FragmentViewRoomBinding
 
 class ViewRoomFragment : Fragment() {
     lateinit var binding : FragmentViewRoomBinding
-    private val args by navArgs<ViewRoomFragmentArgs>()
+//    private val args by navArgs<ViewRoomFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,11 +23,11 @@ class ViewRoomFragment : Fragment() {
         binding = FragmentViewRoomBinding.inflate(layoutInflater,container, false)
 
         //reclerView item setting section
-        val rooms = args.roomsAvilable.rooms
-        val recyclerView = binding.userViewRoomsRecyclerView
-        val roomsAdapter = RoomsAdapter(requireContext(),rooms)
-        recyclerView.adapter =roomsAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        val rooms = args.roomsAvilable.rooms
+//        val recyclerView = binding.userViewRoomsRecyclerView
+//        val roomsAdapter = RoomsAdapter(requireContext(),rooms)
+//        recyclerView.adapter =roomsAdapter
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         return binding.root
 

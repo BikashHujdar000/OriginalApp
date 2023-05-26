@@ -267,7 +267,7 @@
         tools:layout="@layout/fragment_on_touch_user" >
         <argument
             android:name="hotel"
-            app:argType="com.example.hotelreservationsystem.Models.HotelX" />
+            app:argType="com.example.hotelreservationsystem.Models.Hotel" />
         <action
             android:id="@+id/action_onTouchUserFragment_to_viewRoomFragment"
             app:destination="@id/viewRoomFragment" />
