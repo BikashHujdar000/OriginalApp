@@ -1,7 +1,6 @@
 package com.example.hotelreservationsystem.Adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 
 import android.view.View
@@ -10,12 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.hotelreservationsystem.Models.HotelResponse
-import com.example.hotelreservationsystem.Models.HotelX
+import com.example.hotelreservationsystem.Models.Hotel
 import com.example.hotelreservationsystem.R
-import com.example.hotelreservationsystem.TestModels.DataModel
 
-class TestAdapters (val context :Context,val data: List<HotelX>?):RecyclerView.Adapter<TestAdapters.MyViewHolder>() {
+class TestAdapters(val context:Context, val data: List<Hotel>?):RecyclerView.Adapter<TestAdapters.MyViewHolder>() {
 
 //lateinit var  mlistner :onItemClickListner
 //       interface onItemClickListner{
