@@ -13,4 +13,10 @@ interface getallHotelsApi {
 
    @GET("user/getallhotel/{userId}")
    suspend fun getallHotels(@Path ("userId")userId:String): Response<HotelResponseListMethod>
+
+
+   // yaha  lekh xu man sab bookigs ko code because yasley malae interceptors bala retrofit client di rahexa
+
+
+
 }
