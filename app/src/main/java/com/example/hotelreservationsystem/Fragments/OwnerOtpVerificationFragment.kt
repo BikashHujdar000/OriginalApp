@@ -3,26 +3,42 @@ package com.example.hotelreservationsystem.Fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.hotelreservationsystem.Models.OwnerOtpRequest
 import com.example.hotelreservationsystem.R
+import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnerOtpVerificationBinding
+import com.example.hotelreservationsystem.utils.NetworkResult
+import com.example.hotelreservationsystem.utils.constants.TAG
+import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
-
+@AndroidEntryPoint
 class OwnerOtpVerificationFragment : Fragment() {
+lateinit var binding :FragmentOwnerOtpVerificationBinding
 
-lateinit var binding :FragmentOwnerOtpVerificationBinding;
-    val otp = "123456";
+   private val authViewModel by viewModels<AuthViewModel>()
+    lateinit var email : String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        email = requireArguments().getString("email").toString()
+        Log.d("Email",email)
         binding = FragmentOwnerOtpVerificationBinding.inflate(layoutInflater,container,false);
+
         setOtp();
         binding.continueBtn.setOnClickListener {
             verifyOtp()
@@ -108,19 +124,41 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding;
         })
     }
      private fun verifyOtp(){
-       val otpValue:String = binding.otp1.text.toString()+binding.otp2.text.toString()+binding.otp3.text.toString()+
-        binding.otp4.text.toString()+binding.otp5.text.toString()+binding.otp6.text.toString()
+                 val otpValue:String = binding.otp1.text.toString()+binding.otp2.text.toString()+binding.otp3.text.toString()+
+                binding.otp4.text.toString()+binding.otp5.text.toString()+binding.otp6.text.toString()
+                 authViewModel.verifOwnerOtp(OwnerOtpRequest(otpValue))
+                try{
+                     authViewModel.otpVerifyResponseLiveData.observe(viewLifecycleOwner, Observer {
+                        when(it){
+                            is NetworkResult.Success ->{
+                                val response = it.data!!.message.toString()
+                                Log.d(TAG,"$response")
+                                if(response.toString() =="otp verification successtrue"){
+                                    findNavController().navigate(R.id.action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment,Bundle().apply {
+                                        putString("VEmail",email)
+                                    })
 
-        if (otpValue.length !=6){
-            Toast.makeText(requireContext(),"please enter 6 digit",Toast.LENGTH_SHORT).show();
-        }
-        if(otpValue.length == otp.length && otpValue ==otp){
-            Navigation.findNavController(requireView()).navigate(R.id.action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment)
-        }
-        else{
 
-            Toast.makeText(requireContext(),"Please! Enter valid OTP",Toast.LENGTH_SHORT).show()
+                                }
+                                else{
+                                    Toast.makeText(requireContext(),"Invalid otp ! ",Toast.LENGTH_SHORT).show()
+
+                        }
+
+                    }
+
+                    else -> {}
+                }
+            })
+
+
+
+
         }
+        catch(e:Exception){
+            Log.d(TAG,"response error")
+        }
+
 
     }
 

@@ -5,8 +5,12 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hotelreservationsystem.Fragments.otpRequest
-import com.example.hotelreservationsystem.Models.OtpResponse
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordRequest
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordResponse
+import com.example.hotelreservationsystem.Models.OtpGenerateRequest
+import com.example.hotelreservationsystem.Models.OtpGenerateResponse
+import com.example.hotelreservationsystem.Models.OwnerOtpRequest
+import com.example.hotelreservationsystem.Models.OwnerOtpResponse
 import com.example.hotelreservationsystem.Models.OwnerRequest
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.Models.PhotosResponse
@@ -25,11 +29,15 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
     val ownerResponseLiveData:LiveData<NetworkResult<OwnerResponse>>
         get() = ownerRepository.ownerResponseLiveData
 
-val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
+    val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
     get()= ownerRepository.photoResponseLiveData
 
-     val otpResponseLiveData : LiveData<NetworkResult<OtpResponse>>
-        get() = ownerRepository.otpResponseLiveData
+     val otpGenerateResponseLiveData : LiveData<NetworkResult<OtpGenerateResponse>>
+        get() = ownerRepository.otpGenerateResponseLiveData
+    val otpVerifyResponseLiveData:LiveData<NetworkResult<OwnerOtpResponse>>
+        get()=ownerRepository.otpVerifyResponseLiveData
+    val confirmOwnerPasswordLivedata : LiveData<NetworkResult<ConfirmOwnerPasswordResponse>>
+        get() = ownerRepository.confirmOwnerPasswordLiveData
     fun registerOwner(ownerRequest: OwnerRequest) {
         viewModelScope.launch {
             ownerRepository.registerOwner(ownerRequest)
@@ -50,9 +58,19 @@ val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
         }
 
     }
-    fun getOtp(otpRequest: otpRequest){
+    fun getOtp(otpGenerateRequest: OtpGenerateRequest){
         viewModelScope.launch {
-            ownerRepository.getOtp(otpRequest)
+            ownerRepository.getOtp(otpGenerateRequest)
+        }
+    }
+    fun verifOwnerOtp(otpRequest: OwnerOtpRequest){
+        viewModelScope.launch {
+            ownerRepository.verifyOwnerOtp(otpRequest)
+        }
+    }
+    fun createOwnerPassword(confirmOwnerPasswordRequest: ConfirmOwnerPasswordRequest){
+        viewModelScope.launch {
+            ownerRepository.createOwnerPassword(confirmOwnerPasswordRequest)
         }
     }
 

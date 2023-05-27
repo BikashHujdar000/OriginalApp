@@ -77,10 +77,10 @@
                     android:ems="10"
                     android:theme="@style/MyEditTextTheme"
                     android:fontFamily="@font/poppins_regular"
-                    android:cursorVisible="false"
+                    android:cursorVisible="true"
                     android:hint="Create password"
-                    android:inputType="textPersonName"
-                    tools:ignore="TextFields" />
+                    android:inputType="textWebPassword"
+                     />
                 <EditText
                     android:layout_margin="10dp"
                     android:id="@+id/confirmPassword"
@@ -89,10 +89,10 @@
                     android:ems="10"
                     android:theme="@style/MyEditTextTheme"
                     android:fontFamily="@font/poppins_regular"
-                    android:cursorVisible="false"
+                    android:cursorVisible="true"
                     android:hint="Confirm Password"
-                    android:inputType="textPersonName"
-                    tools:ignore="TextFields" />
+                    android:inputType="textWebPassword"
+                     />
 
 
 

@@ -1,5 +1,5 @@
 package com.example.hotelreservationsystem.Models
 
-data class OtpResponse(
+data class OwnerOtpRequest(
     val otp: String
 )

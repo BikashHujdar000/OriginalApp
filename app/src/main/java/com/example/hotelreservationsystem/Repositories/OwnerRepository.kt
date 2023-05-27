@@ -3,8 +3,12 @@ package com.example.hotelreservationsystem.Repositories
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.hotelreservationsystem.Fragments.otpRequest
-import com.example.hotelreservationsystem.Models.OtpResponse
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordRequest
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordResponse
+import com.example.hotelreservationsystem.Models.OtpGenerateRequest
+import com.example.hotelreservationsystem.Models.OtpGenerateResponse
+import com.example.hotelreservationsystem.Models.OwnerOtpRequest
+import com.example.hotelreservationsystem.Models.OwnerOtpResponse
 import com.example.hotelreservationsystem.Models.OwnerRequest
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.Models.PhotosResponse
@@ -14,8 +18,8 @@ import com.example.hotelreservationsystem.utils.constants.TAG
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
-import java.lang.Exception
 import javax.inject.Inject
+import kotlin.Exception
 
 class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
 
@@ -28,16 +32,23 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
     val ownerResponseLiveData: LiveData<NetworkResult<OwnerResponse>>
         get() = _ownerResponseLiveData
 
-    private val _otpResponseLiveData = MutableLiveData<NetworkResult<OtpResponse>>()
-    val otpResponseLiveData: LiveData<NetworkResult<OtpResponse>>
-        get() = _otpResponseLiveData
+    private val _otpGenerateResponseLiveData = MutableLiveData<NetworkResult<OtpGenerateResponse>>()
+    val otpGenerateResponseLiveData: LiveData<NetworkResult<OtpGenerateResponse>>
+        get() = _otpGenerateResponseLiveData
+
+    private val _otpVerifyResponseLiveData = MutableLiveData<NetworkResult<OwnerOtpResponse>>()
+    val otpVerifyResponseLiveData : LiveData<NetworkResult<OwnerOtpResponse>>
+        get()=_otpVerifyResponseLiveData
+    private val _confirmOwnerPasswordLiveData = MutableLiveData<NetworkResult<ConfirmOwnerPasswordResponse>>()
+    val confirmOwnerPasswordLiveData : LiveData<NetworkResult<ConfirmOwnerPasswordResponse>>
+        get() = _confirmOwnerPasswordLiveData
 
     // repos Function that calls owner api functions
 
     suspend fun registerOwner(ownerRequest: OwnerRequest) {
         _ownerResponseLiveData.postValue(NetworkResult.Loading())
-
         val response = ownerApi.signUp(ownerRequest)
+
         handleResponse(response)
     }
 
@@ -68,24 +79,58 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
         }
     }
 
-    suspend fun getOtp(otpRequest: otpRequest) {
+    suspend fun getOtp(otpGenerateRequest: OtpGenerateRequest) {
         Log.d(TAG,"response lyauney thaw ")
 
         try {
-            val response = ownerApi.getOtp(otpRequest)
+            val response = ownerApi.getOtp(otpGenerateRequest)
             if (response.isSuccessful && response.body() != null) {
-            Log.d("respomse","response generated")
-            _otpResponseLiveData.postValue(NetworkResult.Success(response.body()!!))
+            Log.d("response","response generated")
+            _otpGenerateResponseLiveData.postValue(NetworkResult.Success(response.body()!!))
         }
         else
         {
             Log.d(TAG,"error on getting the response")
         }
 
-        }catch (e:Exception)
+        }
+        catch (e:Exception)
 
         {
-            Log.d(TAG,"error on getting the response")
+            Log.d(TAG,"there is error in repsonse from api")
+        }
+
+
+    }
+    suspend fun verifyOwnerOtp(otpRequest: OwnerOtpRequest){
+        try{
+            val response = ownerApi.verifyOwnerOtp(otpRequest)
+            if(response.isSuccessful && response.body()!==null) {
+                _otpVerifyResponseLiveData.postValue(NetworkResult.Success(response.body()!!))
+            }
+            else{
+                Log.d(TAG,"OtpResponse error")
+            }
+
+        }
+        catch(e:Exception){
+            Log.d("ownerOtpException","Esception in getting otp response")
+        }
+    }
+    suspend fun createOwnerPassword(confirmOwnerPasswordRequest: ConfirmOwnerPasswordRequest){
+        val response = ownerApi.createOwnerPassword(confirmOwnerPasswordRequest)
+        try {
+
+
+            if(response.isSuccessful&&response.body()!==null){
+                Log.d(TAG," create passwoerd garda ko response ${response.body()}")
+                _confirmOwnerPasswordLiveData.postValue(NetworkResult.Success(response.body()!!))
+            }
+
+        }
+        catch (e:Exception)
+        {
+            Log.d(TAG,e.toString())
         }
 
 

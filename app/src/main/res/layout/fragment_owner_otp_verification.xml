@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Enter the OTP code to verify your phone number."
+            android:text="Enter the OTP code  from your email to reset password"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/phoneLbl"
             app:layout_constraintStart_toStartOf="@+id/phoneLbl"
@@ -51,10 +51,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="52dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4">
 
@@ -63,13 +64,13 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:orientation="horizontal">
-
 
 
                     <EditText
@@ -85,7 +86,8 @@
                         android:maxLength="1"
                         android:textColor="@color/black"
                         android:theme="@style/MyEditTextTheme"
-                        tools:ignore="label for"/>
+                        tools:ignore="label for" />
+
                     <EditText
                         android:id="@+id/otp2"
                         android:layout_width="50dp"
@@ -99,7 +101,8 @@
                         android:maxLength="1"
                         android:textColor="@color/black"
                         android:theme="@style/MyEditTextTheme"
-                        tools:ignore="label for"/>
+                        tools:ignore="label for" />
+
                     <EditText
                         android:id="@+id/otp3"
                         android:layout_width="50dp"
@@ -113,7 +116,8 @@
                         android:maxLength="1"
                         android:textColor="@color/black"
                         android:theme="@style/MyEditTextTheme"
-                        tools:ignore="label for"/>
+                        tools:ignore="label for" />
+
                     <EditText
                         android:id="@+id/otp4"
                         android:layout_width="50dp"
@@ -127,7 +131,8 @@
                         android:maxLength="1"
                         android:textColor="@color/black"
                         android:theme="@style/MyEditTextTheme"
-                        tools:ignore="label for"/>
+                        tools:ignore="label for" />
+
                     <EditText
                         android:id="@+id/otp5"
                         android:layout_width="50dp"
@@ -141,7 +146,8 @@
                         android:maxLength="1"
                         android:textColor="@color/black"
                         android:theme="@style/MyEditTextTheme"
-                        tools:ignore="label for"/>
+                        tools:ignore="label for" />
+
                     <EditText
                         android:id="@+id/otp6"
                         android:layout_width="50dp"
@@ -155,7 +161,7 @@
                         android:maxLength="1"
                         android:textColor="@color/black"
                         android:theme="@style/MyEditTextTheme"
-                        tools:ignore="label for"/>
+                        tools:ignore="label for" />
                 </LinearLayout>
 
                 <Button
