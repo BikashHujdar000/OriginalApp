@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.TestAdapters
 import com.example.hotelreservationsystem.Models.HotelResponse
+import com.example.hotelreservationsystem.R
 
 import com.example.hotelreservationsystem.ViewModels.GetAllHotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentUserHomeBinding
@@ -103,8 +104,9 @@ class UserHomeFragment : Fragment() {
                             override fun onItemClick(position: Int) {
                                 val hotel = response!!.get(position)
                                 Log.d(TAG,"$hotel")
-                                val action  = UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(hotel)
-                                findNavController().navigate(action)
+//                                val action  = UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(hotel)
+//                                findNavController().navigate(action)
+                                findNavController().navigate(R.id.action_userHomeFragment_to_deta)
                             }
 
                         })

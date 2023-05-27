@@ -175,6 +175,9 @@
         <action
             android:id="@+id/action_userHomeFragment_to_onTouchUserFragment"
             app:destination="@id/onTouchUserFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_deta"
+            app:destination="@id/deta" />
     </fragment>
     <fragment
         android:id="@+id/addRoomFragment"
@@ -258,8 +261,15 @@
             app:argType="com.example.hotelreservationsystem.Models.Hotel" />
     </fragment>
     <fragment
+
         android:id="@+id/ownerOtpVerificationFragment"
         android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpVerificationFragment"
         android:label="fragment_owner_otp_verification"
         tools:layout="@layout/fragment_owner_otp_verification" />
+<fragment
+        android:id="@+id/deta"
+        android:name="com.example.hotelreservationsystem.Fragments.Deta"
+        android:label="fragment_deta"
+        tools:layout="@layout/fragment_deta" />
+
 </navigation>
