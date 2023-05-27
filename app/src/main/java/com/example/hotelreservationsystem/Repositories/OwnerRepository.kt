@@ -47,8 +47,8 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
 
     suspend fun registerOwner(ownerRequest: OwnerRequest) {
         _ownerResponseLiveData.postValue(NetworkResult.Loading())
-
         val response = ownerApi.signUp(ownerRequest)
+
         handleResponse(response)
     }
 

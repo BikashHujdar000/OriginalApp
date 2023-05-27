@@ -26,8 +26,8 @@ import java.lang.Exception
 
 @AndroidEntryPoint
 class OwnerOtpVerificationFragment : Fragment() {
-//private val args by navArgs<OwnerOtpVerificationFragmentArgs>()
-lateinit var binding :FragmentOwnerOtpVerificationBinding;
+lateinit var binding :FragmentOwnerOtpVerificationBinding
+
    private val authViewModel by viewModels<AuthViewModel>()
     lateinit var email : String
     override fun onCreateView(
@@ -36,9 +36,9 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding;
     ): View? {
         // Inflate the layout for this fragment
         email = requireArguments().getString("email").toString()
-
         Log.d("Email",email)
         binding = FragmentOwnerOtpVerificationBinding.inflate(layoutInflater,container,false);
+
         setOtp();
         binding.continueBtn.setOnClickListener {
             verifyOtp()

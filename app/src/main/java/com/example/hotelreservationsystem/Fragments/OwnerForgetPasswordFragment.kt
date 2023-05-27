@@ -33,14 +33,12 @@ lateinit var binding: FragmentOwnerForgetPasswordBinding
          // Inflate the layout for this fragment
         binding = FragmentOwnerForgetPasswordBinding.inflate(layoutInflater,container,false);
         binding.sendOtp.setOnClickListener {
+
             val email = binding.emailAddress.text.toString();
-
             authViewModel.getOtp(OtpGenerateRequest(email))
-
 
             if (email.isNotEmpty()) {
 //                if(isValidEmail(email)){
-
                     authViewModel.otpGenerateResponseLiveData.observe(viewLifecycleOwner, Observer {
                         try {
                             when (it) {
