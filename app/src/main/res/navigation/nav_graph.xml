@@ -178,6 +178,9 @@
         <action
             android:id="@+id/action_userHomeFragment_to_deta"
             app:destination="@id/deta" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRoomFragment"
@@ -309,5 +312,17 @@
             android:id="@+id/action_userBookingFragment_to_userHomeFragment"
             app:destination="@id/userHomeFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserProfileFragment"
+        android:label="UserProfileFragment" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_userHistoryFragment"
+            app:destination="@id/userHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userHistoryFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserHistoryFragment"
+        android:label="fragment_user_history"
+        tools:layout="@layout/fragment_user_history" />
 </navigation>

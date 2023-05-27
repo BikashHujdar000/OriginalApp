@@ -1,14 +1,17 @@
 package com.example.hotelreservationsystem.Repositories
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.hotelreservationsystem.Models.BookRequest
+import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.HotelResponseListMethod
 import com.example.hotelreservationsystem.api.getallHotelsApi
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants
+import com.example.hotelreservationsystem.utils.constants.TAG
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -28,6 +31,10 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
     val statusLiveData :LiveData<NetworkResult<String>>
         get()= _statusLiveData
 
+
+    private  val _userBookingsLiveData = MutableLiveData<NetworkResult<FinalBookingResponse>>()
+    val userBookLiveData :LiveData<NetworkResult<FinalBookingResponse>>
+        get() = _userBookingsLiveData
 
 
     suspend fun  getAllHotel(userId:String)
@@ -79,9 +86,25 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
 
     suspend fun userBookings(userId: String)
     {
+        _userBookingsLiveData.postValue(NetworkResult.Loading())
        val response =  getallHotelsApi.userBookings(userId)
+//        if (response.isSuccessful)
+//        {
+//            Log.d(TAG,"Okay response is genetrated ")
+//            val responseData = response.body()
+//            Log.d(TAG,"${responseData.toString()}")
+//        }
+
+        handleResponseofBooking(response)
     }
 
+    private fun handleResponseofBooking(response: Response<FinalBookingResponse>) {
+        if (response.isSuccessful && response.body() != null) {
+            _userBookingsLiveData.postValue(NetworkResult.Success(response.body()!!))
+        } else {
+            _userBookingsLiveData.postValue(NetworkResult.Error("Something Went Wrong"))
+        }
+    }
 
 
 }

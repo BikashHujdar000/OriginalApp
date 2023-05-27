@@ -1,12 +1,9 @@
 package com.example.hotelreservationsystem.api
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.hotelreservationsystem.Models.BookRequest
-import com.example.hotelreservationsystem.Models.BookingResponse
+import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.HotelResponseListMethod
-import com.example.hotelreservationsystem.utils.NetworkResult
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -30,7 +27,7 @@ interface getallHotelsApi {
 
 
 //https://anxious-gaiters-bee.cyclic.app/user/getallbooking/647034fa7f9bac4c2cb46119
-    @GET("user/getallbooking/{userId")
-    suspend fun userBookings(@Path("userId")userId:String):Response<BookingResponse>
+    @GET("user/getallbooking/{userId}")
+    suspend fun userBookings(@Path("userId")userId:String):Response<FinalBookingResponse>
 
 }

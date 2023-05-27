@@ -1,5 +1,5 @@
 package com.example.hotelreservationsystem.Models
 
-data class BookingResponse(
+data class FinalBookingResponse(
     val booking: List<Booking>
 )
