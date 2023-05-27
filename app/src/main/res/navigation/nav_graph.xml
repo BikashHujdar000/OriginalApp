@@ -83,13 +83,10 @@
         android:label="fragment_owner_forget_password"
         tools:layout="@layout/fragment_owner_forget_password" >
         <action
-            android:id="@+id/action_ownerForgetPasswordFragment_to_ownerOtpVerificationFragment"
-            app:destination="@id/ownerOtpVerificationFragment" />
-        <action
             android:id="@+id/action_ownerForgetPasswordFragment_to_ownerLoginFragment"
             app:destination="@id/ownerLoginFragment" />
         <action
-            android:id="@+id/action_ownerForgetPasswordFragment_to_ownerOtpVerificationFragment2"
+            android:id="@+id/action_ownerForgetPasswordFragment_to_ownerOtpVerificationFragment"
             app:destination="@id/ownerOtpVerificationFragment" />
     </fragment>
     <fragment
@@ -121,27 +118,6 @@
         <action
             android:id="@+id/action_userRegisterFragment_to_userHomeFragment2"
             app:destination="@id/userHomeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/ownerOtpVerificationFragment"
-        android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpVerificationFragment"
-        android:label="fragment_owner_otp_verification"
-        tools:layout="@layout/fragment_owner_otp_verification" >
-        <action
-            android:id="@+id/action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment"
-            app:destination="@id/ownerOtpConfirmationFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/ownerOtpConfirmationFragment"
-        android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpConfirmationFragment"
-        android:label="fragment_owner_otp_confirmation"
-        tools:layout="@layout/fragment_owner_otp_confirmation" >
-        <action
-            android:id="@+id/action_ownerOtpConfirmationFragment_to_ownerHomeFragment"
-            app:destination="@id/ownerHomeFragment" />
-        <action
-            android:id="@+id/action_ownerOtpConfirmationFragment_to_ownerLoginFragment"
-            app:destination="@id/ownerLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -281,4 +257,9 @@
             android:name="hotel"
             app:argType="com.example.hotelreservationsystem.Models.Hotel" />
     </fragment>
+    <fragment
+        android:id="@+id/ownerOtpVerificationFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpVerificationFragment"
+        android:label="fragment_owner_otp_verification"
+        tools:layout="@layout/fragment_owner_otp_verification" />
 </navigation>

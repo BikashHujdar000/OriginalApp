@@ -1,7 +1,9 @@
 package com.example.hotelreservationsystem.api
 
-import com.example.hotelreservationsystem.Fragments.otpRequest
-import com.example.hotelreservationsystem.Models.OtpResponse
+import com.example.hotelreservationsystem.Models.OtpGenerateRequest
+import com.example.hotelreservationsystem.Models.OtpGenerateResponse
+import com.example.hotelreservationsystem.Models.OwnerOtpRequest
+import com.example.hotelreservationsystem.Models.OwnerOtpResponse
 import com.example.hotelreservationsystem.Models.OwnerRequest
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.Models.PhotosResponse
@@ -26,7 +28,10 @@ interface OwnerApi {
 
 
     @POST("ownerauth/generateotp1")
-    suspend fun getOtp(@Body otpRequest: otpRequest):Response<OtpResponse>
+    suspend fun getOtp(@Body otpGenerateRequest: OtpGenerateRequest):Response<OtpGenerateResponse>
+
+    @POST("ownerauth/verifyotp1")
+    suspend fun verifyOwnerOtp(@Body ownerOtpRequest: OwnerOtpRequest):Response<OwnerOtpResponse>
 
     }
 

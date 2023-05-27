@@ -11,7 +11,7 @@ import com.example.hotelreservationsystem.databinding.FragmentOwnerOtpConfirmati
 
 class OwnerOtpConfirmationFragment : Fragment() {
     lateinit var binding: FragmentOwnerOtpConfirmationBinding;
-
+//val email = requireArguments().getString("Email").toString()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,8 +21,8 @@ class OwnerOtpConfirmationFragment : Fragment() {
         binding.update.setOnClickListener {
 
             // updating password  is in this field
-            Navigation.findNavController(it)
-                .navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerLoginFragment);
+//            Navigation.findNavController(it)
+//                .navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerLoginFragment);
         }
 
         return binding.root
