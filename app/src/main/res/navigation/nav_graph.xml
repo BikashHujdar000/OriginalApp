@@ -265,11 +265,24 @@
         android:id="@+id/ownerOtpVerificationFragment"
         android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpVerificationFragment"
         android:label="fragment_owner_otp_verification"
-        tools:layout="@layout/fragment_owner_otp_verification" />
+        tools:layout="@layout/fragment_owner_otp_verification" >
+        <action
+            android:id="@+id/action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment"
+            app:destination="@id/ownerOtpConfirmationFragment" />
+    </fragment>
 <fragment
         android:id="@+id/deta"
         android:name="com.example.hotelreservationsystem.Fragments.Deta"
         android:label="fragment_deta"
         tools:layout="@layout/fragment_deta" />
+    <fragment
+        android:id="@+id/ownerOtpConfirmationFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.OwnerOtpConfirmationFragment"
+        android:label="OwnerOtpConfirmationFragment"
+        tools:layout="@layout/fragment_owner_otp_confirmation">
+        <action
+            android:id="@+id/action_ownerOtpConfirmationFragment_to_ownerLoginFragment"
+            app:destination="@id/ownerLoginFragment" />
+    </fragment>
 
 </navigation>

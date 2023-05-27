@@ -5,6 +5,8 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordRequest
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordResponse
 import com.example.hotelreservationsystem.Models.OtpGenerateRequest
 import com.example.hotelreservationsystem.Models.OtpGenerateResponse
 import com.example.hotelreservationsystem.Models.OwnerOtpRequest
@@ -33,7 +35,9 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
      val otpGenerateResponseLiveData : LiveData<NetworkResult<OtpGenerateResponse>>
         get() = ownerRepository.otpGenerateResponseLiveData
     val otpVerifyResponseLiveData:LiveData<NetworkResult<OwnerOtpResponse>>
-        get()=ownerRepository.otpVerifyRersponseLiveData
+        get()=ownerRepository.otpVerifyResponseLiveData
+    val confirmOwnerPasswordLivedata : LiveData<NetworkResult<ConfirmOwnerPasswordResponse>>
+        get() = ownerRepository.confirmOwnerPasswordLiveData
     fun registerOwner(ownerRequest: OwnerRequest) {
         viewModelScope.launch {
             ownerRepository.registerOwner(ownerRequest)
@@ -62,6 +66,11 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
     fun verifOwnerOtp(otpRequest: OwnerOtpRequest){
         viewModelScope.launch {
             ownerRepository.verifyOwnerOtp(otpRequest)
+        }
+    }
+    fun createOwnerPassword(confirmOwnerPasswordRequest: ConfirmOwnerPasswordRequest){
+        viewModelScope.launch {
+            ownerRepository.createOwnerPassword(confirmOwnerPasswordRequest)
         }
     }
 

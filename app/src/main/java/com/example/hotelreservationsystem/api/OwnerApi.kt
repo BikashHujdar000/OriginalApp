@@ -1,5 +1,7 @@
 package com.example.hotelreservationsystem.api
 
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordRequest
+import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordResponse
 import com.example.hotelreservationsystem.Models.OtpGenerateRequest
 import com.example.hotelreservationsystem.Models.OtpGenerateResponse
 import com.example.hotelreservationsystem.Models.OwnerOtpRequest
@@ -32,6 +34,9 @@ interface OwnerApi {
 
     @POST("ownerauth/verifyotp1")
     suspend fun verifyOwnerOtp(@Body ownerOtpRequest: OwnerOtpRequest):Response<OwnerOtpResponse>
+
+    @POST("ownerauth/savepassword1")
+    suspend fun createOwnerPassword(@Body confirmOwnerPasswordRequest: ConfirmOwnerPasswordRequest): Response<ConfirmOwnerPasswordResponse>
 
     }
 

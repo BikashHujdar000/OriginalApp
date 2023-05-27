@@ -134,11 +134,14 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding;
                                 val response = it.data!!.message.toString()
                                 Log.d(TAG,"$response")
                                 if(response.toString() =="otp verification successtrue"){
-//                            findNavController().navigate(R.id.action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment,Bundle().apply {
-//                                putString("Email",email.toString())
-                                    findNavController().navigate(R.id.action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment)
+                                    findNavController().navigate(R.id.action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment,Bundle().apply {
+                                        putString("VEmail",email)
+                                    })
+
+
                                 }
                                 else{
+                                    Toast.makeText(requireContext(),"Invalid otp ! ",Toast.LENGTH_SHORT).show()
 
                         }
 
