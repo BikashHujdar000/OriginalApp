@@ -8,6 +8,7 @@ import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.HotelResponseListMethod
 import com.example.hotelreservationsystem.api.getallHotelsApi
 import com.example.hotelreservationsystem.utils.NetworkResult
+import com.example.hotelreservationsystem.utils.constants
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -49,15 +50,30 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
         _hotelLiveData.postValue(NetworkResult.Loading())
 
         val response = getallHotelsApi.bookRoom(userId,hotelId,roomId,bookRequest)
-        if (response.isSuccessful && response.body()!= null)
-        {
-            _statusLiveData.postValue(NetworkResult.Success(" Sucessfully Booked Hotel"))
-            _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
+
+
+//        if (response.isSuccessful && response.body()!= null)
+//        {
+//            Log.d(constants.TAG, "response aaudee xa")
+//            _statusLiveData.postValue(NetworkResult.Success(" Sucessfully Booked Hotel"))
+//            _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
+//        }
+//        else
+//        {
+//            _hotelLiveData.postValue(NetworkResult.Error("Something went wrong Sorry"))
+//        }
+        try {
+
+        if (response.isSuccessful) {
+            Log.d(constants.TAG, "response aaudee xa")
+        } else {
+            Log.d(constants.TAG, "Failed to get Response ")
         }
-        else
-        {
-            _hotelLiveData.postValue(NetworkResult.Error("Something went wrong Sorry"))
-        }
+    } catch (e: Exception) {
+        Log.d(constants.TAG, "Exception ma xiro")
+
+        Log.d(constants.TAG, e.message.toString())
+    }
 
     }
 

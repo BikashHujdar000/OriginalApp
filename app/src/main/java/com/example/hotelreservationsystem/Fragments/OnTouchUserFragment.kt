@@ -60,8 +60,11 @@ class OnTouchUserFragment : Fragment() {
 
         binding.availableRooms.setOnClickListener{
             val hotel = args.hotel
-             val action = OnTouchUserFragmentDirections.actionOnTouchUserFragmentToViewRoomFragment(hotel)
-                 findNavController().navigate(action)
+            val userId = args.userId
+            val action = OnTouchUserFragmentDirections.actionOnTouchUserFragmentToViewRoomFragment(hotel,userId)
+
+            findNavController().navigate(action)
+
         }
 
         val manualData = ArrayList<DataModel>()

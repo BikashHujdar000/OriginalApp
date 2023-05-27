@@ -13,18 +13,32 @@ import com.example.hotelreservationsystem.R
 import com.google.android.material.imageview.ShapeableImageView
 
 class AvailableRoomsAdapter(val context : Context,  val Rooms:List<Room>): RecyclerView.Adapter<AvailableRoomsAdapter.MyViewHolder>()  {
-    class MyViewHolder( itemView: View): RecyclerView.ViewHolder(itemView) {
+    lateinit var  mlistner :onItemClickListner
+    interface onItemClickListner{
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListner(listner: onItemClickListner)
+    {
+        mlistner = listner
+    }
+    class MyViewHolder( itemView: View,listner: onItemClickListner): RecyclerView.ViewHolder(itemView) {
         val room_number = itemView.findViewById<TextView>(R.id.room_view_number)
         val room_view_type = itemView.findViewById<TextView>(R.id.room_view_type)
         val room_view_price = itemView.findViewById<TextView>(R.id.room_view_price)
         val room_view_image=itemView.findViewById<ShapeableImageView>(R.id.roomViewImage)
         val status = itemView.findViewById<TextView>(R.id.status)
+        init {
+            itemView.setOnClickListener{
+                listner.onItemClick(adapterPosition)
+            }
+        }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.user_room_view_layout,parent,false)
-        return MyViewHolder(view)
+        return MyViewHolder(view,mlistner)
     }
 
     override fun getItemCount(): Int {

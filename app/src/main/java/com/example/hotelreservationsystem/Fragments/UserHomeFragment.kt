@@ -31,6 +31,7 @@ class UserHomeFragment : Fragment() {
 
     private val getAllHotelViewModel by viewModels<GetAllHotelViewModel>()
     private  var ownerResponse: HotelResponse?= null
+    var userId :String? = null
     //for the serialized data to handle in this fragment
 
     private val args by navArgs<UserHomeFragmentArgs>()
@@ -43,7 +44,7 @@ class UserHomeFragment : Fragment() {
     ): View? {
         binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
         //setting username in the profile head
-        binding.userName.text = args.user.user.username
+//        binding.userName.text = args.user.user.username
 
         //getting userId from the UserResponse
         val userId = args.user.user._id.toString()
@@ -104,9 +105,12 @@ class UserHomeFragment : Fragment() {
                             override fun onItemClick(position: Int) {
                                 val hotel = response!!.get(position)
                                 Log.d(TAG,"$hotel")
-//                                val action  = UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(hotel)
-//                                findNavController().navigate(action)
-                                findNavController().navigate(R.id.action_userHomeFragment_to_deta)
+                                val userId = args.user.user._id.toString()
+                                Log.d(TAG,"  user id kxa $userId")
+                                val action  = UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(hotel,userId)
+                                findNavController().navigate(action)
+
+
                             }
 
                         })
