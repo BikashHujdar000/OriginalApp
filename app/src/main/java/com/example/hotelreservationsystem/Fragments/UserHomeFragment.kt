@@ -47,10 +47,22 @@ class UserHomeFragment : Fragment() {
 //        binding.userName.text = args.user.user.username
 
         //getting userId from the UserResponse
-        val userId = args.user.user._id.toString()
+        userId = args.user.user._id.toString()
+
+
+        // yaha dekhi tal matra acess gar hain data
         Log.d(TAG,"user Home Fragment Thiche maile and i get user ID $userId")
 
-        getAllHotelViewModel.getAllHotel(userId)
+        getAllHotelViewModel.getAllHotel(userId!!)
+
+        binding.shapeableImageView2.setOnClickListener{
+
+          findNavController().navigate(R.id.action_userHomeFragment_to_userProfileFragment,Bundle().apply {
+              putString("userId",userId)
+          })
+
+        }
+
 
 
 
