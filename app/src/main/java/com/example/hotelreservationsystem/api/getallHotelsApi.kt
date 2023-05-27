@@ -30,7 +30,7 @@ interface getallHotelsApi {
 
 
 //https://anxious-gaiters-bee.cyclic.app/user/getallbooking/647034fa7f9bac4c2cb46119
-    @GET("user/getallbooking/{userID")
+    @GET("user/getallbooking/{userId")
     suspend fun userBookings(@Path("userId")userId:String):Response<BookingResponse>
 
 }

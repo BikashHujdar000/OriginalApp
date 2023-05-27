@@ -274,6 +274,9 @@
         <action
             android:id="@+id/action_onTouchUserFragment_to_viewRoomFragment"
             app:destination="@id/viewRoomFragment" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/viewRoomFragment"
@@ -283,10 +286,31 @@
         <argument
             android:name="hotel"
             app:argType="com.example.hotelreservationsystem.Models.Hotel" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_viewRoomFragment_to_userBookingFragment"
+            app:destination="@id/userBookingFragment" />
     </fragment>
     <fragment
         android:id="@+id/deta"
         android:name="com.example.hotelreservationsystem.Fragments.Deta"
         android:label="fragment_deta"
         tools:layout="@layout/fragment_deta" />
+    <fragment
+        android:id="@+id/userBookingFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.UserBookingFragment"
+        android:label="fragment_user_booking"
+        tools:layout="@layout/fragment_user_booking" >
+        <argument
+            android:name="RoomDataa"
+            app:argType="com.example.hotelreservationsystem.Models.Room" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_userBookingFragment_to_userHomeFragment"
+            app:destination="@id/userHomeFragment" />
+    </fragment>
 </navigation>
