@@ -10,3 +10,11 @@ data class Booking(
     val startDate: String,
     val user: User
 )
+//val __v: Int,
+//    val _id: String,
+//    val endDate: String,
+//    val hotel: HotelXX,
+//    val isActive: Boolean,
+//    val room: RoomX,
+//    val startDate: String,
+//    val user: UserXX

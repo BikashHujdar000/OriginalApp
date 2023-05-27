@@ -26,6 +26,8 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         get()= _statusLiveData
 
 
+
+
     suspend fun createHotel(ownerId:String,hotelRequest: HotelRequest)
 
     {

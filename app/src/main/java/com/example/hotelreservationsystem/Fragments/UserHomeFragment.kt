@@ -45,6 +45,7 @@ class UserHomeFragment : Fragment() {
         binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
         //setting username in the profile head
 //        binding.userName.text = args.user.user.username
+        binding.userName.text = args.user.user.username
 
         //getting userId from the UserResponse
         val userId = args.user.user._id.toString()

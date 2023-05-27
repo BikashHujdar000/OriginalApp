@@ -48,5 +48,6 @@ interface  HotelsApi {
   suspend fun updateRoom(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String,@Path("roomId")roomId: String,@Body roomRequest: RoomRequest):Response<HotelResponse>
 
 
+
 }
 
