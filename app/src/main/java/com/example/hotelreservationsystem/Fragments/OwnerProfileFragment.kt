@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.OwnerResponse
@@ -49,7 +50,7 @@ class OwnerProfileFragment : Fragment() {
 
     private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
         imageUri = it!!
-        binding.image1.setImageURI(it)
+//        binding.image1.setImageURI(it)
 
         // converting the image
         val filesDir = requireContext().filesDir
@@ -73,6 +74,8 @@ class OwnerProfileFragment : Fragment() {
                         Log.d(TAG, "Show me the image uri  of  hotel images ${it.data?.url}")
                         imagePath = it.data!!.url
                         Log.d(TAG, "k xa ta image path ma  $imagePath")
+                        this.context?.let { it1 -> Glide.with(it1).load(imageUri).into(binding.image1) }
+
                     } catch (e: Exception) {
                     }
                     Log.d(TAG, "Image path Getting Error")
@@ -136,6 +139,10 @@ class OwnerProfileFragment : Fragment() {
                     val hotelId = it.data?.hotel?._id
                     Log.d(TAG, "hotel baneko id k ho tan $hotelId")
                     Log.d(TAG, "Hotel Created Sucessfully")
+
+                    val owner = it.data?.hotel?.owner
+                    // error handling  the error
+                    Log.d(TAG,"Owner response  $owner")
                     //  /  val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
                     findNavController().popBackStack()
                 }

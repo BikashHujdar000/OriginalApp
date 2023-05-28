@@ -56,15 +56,12 @@ class OwnerHomeFragment : Fragment() {
         val imageList = ArrayList<SlideModel>() // Create image list
          // on image url later please pass the original images of hotel View
 
-
         imageList.add(SlideModel(R.drawable.tst,scaleType = ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.tst1,scaleType = ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.tst2,scaleType = ScaleTypes.FIT))
 
         binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
         binding.imageSlider.setImageList(imageList)
-
-
 
         return binding.root;
     }
@@ -76,7 +73,6 @@ class OwnerHomeFragment : Fragment() {
 
         binding.addRooms.setOnClickListener {
             if(args.ownerResponse.owner.hotel.isEmpty()) {
-
 
                 Log.d(TAG,"Please Add hotel First")
                 Toast.makeText(requireContext(), "Please Add hotel First", Toast.LENGTH_SHORT).show()
