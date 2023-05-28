@@ -45,4 +45,16 @@ class GetAllHotelViewModel @Inject constructor(  val getAllRepository: GetAllRep
             getAllRepository.userBookings(userId)
         }
     }
+    fun calledFunction ()
+    {
+        Log.d(TAG,"Sucessfully called the data")
+    }
+
+    fun cancelBooking(userId: String,hotelId: String,roomId: String,bookingId:String)
+    {
+        viewModelScope.launch {
+            getAllRepository.cancelBooking(userId,hotelId,roomId,bookingId)
+        }
+    }
+
 }

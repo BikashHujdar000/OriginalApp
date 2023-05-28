@@ -1,17 +1,26 @@
 package com.example.hotelreservationsystem.Adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelreservationsystem.Models.Booking
 import com.example.hotelreservationsystem.R
+import com.example.hotelreservationsystem.ViewModels.GetAllHotelViewModel
+import com.example.hotelreservationsystem.ViewModels.HotelViewModel
+import com.example.hotelreservationsystem.utils.constants.TAG
+import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
+class BookingsAdapter(val context:Context,val bookingData : List<Booking>,private val getAllHotelViewModel: GetAllHotelViewModel):RecyclerView.Adapter<BookingsAdapter.MyViewHolder>()
+{
 
-class BookingsAdapter(val context:Context,val bookingData : List<Booking>):RecyclerView.Adapter<BookingsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder (itemView: View):RecyclerView.ViewHolder(itemView)
     {
@@ -36,6 +45,19 @@ class BookingsAdapter(val context:Context,val bookingData : List<Booking>):Recyc
         holder.room_number.text = bookingData.get(position).room.number.toString()
         holder.checkinDate.text = bookingData.get(position).startDate.toString()
         holder.checkoutDate.text = bookingData.get(position).endDate.toString()
+        holder.cancelbooking.setOnClickListener {
+
+            val userId = bookingData.get(position).user._id
+            val hotelId  = bookingData.get(position).hotel._id
+            val roomId = bookingData.get(position).room._id
+            val roomNo = bookingData.get(position).room.number
+            val bookingId = bookingData.get(position)._id
+
+            Log.d(TAG,"okay so datas are in userId $userId \n hotelId $hotelId \n roomId $roomId \n roomNumber $roomNo \n bookingId $bookingId  ")
+
+            getAllHotelViewModel.cancelBooking(userId,hotelId,roomId,bookingId)
+
+        }
 
     }
 

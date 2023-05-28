@@ -54,13 +54,9 @@ class UserHistoryFragment : Fragment() {
 
                     //s etiing up for recycler View
 
-// val recyclerView = binding.userViewRoomsRecyclerView
-//        val availableRoomsAdapter = AvailableRoomsAdapter(requireContext(),rooms)
-//        recyclerView.adapter =availableRoomsAdapter
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
                     val Data = it.data?.booking
                     val recycler = binding.userBookRoomViewRecyclerview
-                    val bookingsAdapter = BookingsAdapter(requireContext(),Data!!)
+                    val bookingsAdapter = BookingsAdapter(requireContext(),Data!!,getAllHotelViewModel)
                     recycler.adapter = bookingsAdapter
                     recycler.layoutManager =LinearLayoutManager(requireContext())
 
