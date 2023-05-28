@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.BookingRoomAdapter
+import com.example.hotelreservationsystem.Models.BookingX
+import com.example.hotelreservationsystem.Models.RoomX
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnersBookingBinding
@@ -34,6 +37,7 @@ val hotelViewModel by viewModels<HotelViewModel> ()
         Log.d("argument aayo","$ownerId")
         hotelViewModel.showBooking(ownerId)
         Log.d("apiResponse","Ayoo")
+        val recycler = binding.booikingRecycler
 
 
         hotelViewModel.allbookingLiveData.observe(viewLifecycleOwner, Observer {
@@ -41,9 +45,21 @@ val hotelViewModel by viewModels<HotelViewModel> ()
             when(it){
 
                 is NetworkResult.Success ->{
-                    val response = it.data!!.booking
-                    Log.d("iopopo","$response")
-                  // val bookingAdapter= BookingRoomAdapter(requireContext(),roomList)
+                    val booking_length = it.data!!.booking.size
+                    val booking_id =it.data.booking
+                    var rooms = ArrayList<BookingX>()
+                    var i : Int =0
+                    for (i in 0..booking_length){
+                        val response = it.data.booking.get(0)
+                         rooms.add(response)
+
+                    }
+
+
+                    Log.d("iopopo","$rooms")
+                   val bookingAdapter= BookingRoomAdapter(requireContext(),rooms)
+                    recycler.adapter =bookingAdapter
+                    recycler.layoutManager = LinearLayoutManager(requireContext())
                 }
                 is NetworkResult.Loading ->{}
                 is NetworkResult.Error ->{}

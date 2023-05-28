@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelreservationsystem.Models.Booking
+import com.example.hotelreservationsystem.Models.BookingX
 import com.example.hotelreservationsystem.R
 
-class BookingRoomAdapter(val context: Context, val bookedRoomList:List<Booking>):
+class BookingRoomAdapter(val context: Context, val bookedRoomList:ArrayList<BookingX>):
     RecyclerView.Adapter<BookingRoomAdapter.MyViewHolder>() {
 
 
@@ -30,7 +31,13 @@ class BookingRoomAdapter(val context: Context, val bookedRoomList:List<Booking>)
     }
 
     override fun onBindViewHolder(holder: BookingRoomAdapter.MyViewHolder, position: Int) {
-        holder.user_id.text = bookedRoomList.get(position)._id
+        holder.booking_id.text = bookedRoomList[position]._id
+        holder.start_date.text=bookedRoomList[position].startDate.substringBefore("T")
+
+        holder.end_date.text=bookedRoomList[position].endDate.substringBefore("T")
+        holder.user_id.text=bookedRoomList[position].user._id
+        holder.room_no.text=bookedRoomList[position].room.number.toString()
+        holder.status.text="booked"
 //        holder.booking_id.text = bookedRoomList.get(position).
 
     }

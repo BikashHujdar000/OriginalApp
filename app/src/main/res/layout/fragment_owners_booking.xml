@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.OwnersBookingFragment">
+
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/booiking_recycler"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
+       android:layout_height="wrap_content"
        tools:layout_editor_absoluteX="0dp"
        tools:layout_editor_absoluteY="0dp"
        tools:listitem="@layout/owners_room_booking_details" />
-
 
 
 </FrameLayout>
