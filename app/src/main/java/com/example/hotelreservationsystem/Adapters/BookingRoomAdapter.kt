@@ -11,13 +11,12 @@ import com.example.hotelreservationsystem.Models.Booking
 import com.example.hotelreservationsystem.Models.BookingX
 import com.example.hotelreservationsystem.R
 
-class BookingRoomAdapter(val context: Context, val bookedRoomList:ArrayList<BookingX>):
+class BookingRoomAdapter(val context: Context, val bookedRoomList:List<BookingX>):
     RecyclerView.Adapter<BookingRoomAdapter.MyViewHolder>() {
 
 
     class MyViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){
-        val booking_id = itemView.findViewById<TextView>(R.id.booking_id)
-        val user_id  =itemView.findViewById<TextView>(R.id.user_id)
+        val username  =itemView.findViewById<TextView>(R.id.user_id)
         val room_no  =itemView.findViewById<TextView>(R.id.room_no)
         val start_date  =itemView.findViewById<TextView>(R.id.check_in_date)
         val end_date  =itemView.findViewById<TextView>(R.id.check_out_date)
@@ -31,12 +30,11 @@ class BookingRoomAdapter(val context: Context, val bookedRoomList:ArrayList<Book
     }
 
     override fun onBindViewHolder(holder: BookingRoomAdapter.MyViewHolder, position: Int) {
-        holder.booking_id.text = bookedRoomList[position]._id
-        holder.start_date.text=bookedRoomList[position].startDate.substringBefore("T")
+        holder.start_date.text=bookedRoomList.get(position).startDate.substringBefore("T")
 
-        holder.end_date.text=bookedRoomList[position].endDate.substringBefore("T")
-        holder.user_id.text=bookedRoomList[position].user._id
-        holder.room_no.text=bookedRoomList[position].room.number.toString()
+        holder.end_date.text=bookedRoomList.get(position).endDate.substringBefore("T")
+        holder.username.text=bookedRoomList.get(position).user.username
+        holder.room_no.text=bookedRoomList.get(position).room.number.toString()
         holder.status.text="booked"
 //        holder.booking_id.text = bookedRoomList.get(position).
 

@@ -45,19 +45,19 @@ val hotelViewModel by viewModels<HotelViewModel> ()
             when(it){
 
                 is NetworkResult.Success ->{
-                    val booking_length = it.data!!.booking.size
-                    val booking_id =it.data.booking
-                    var rooms = ArrayList<BookingX>()
-                    var i : Int =0
-                    for (i in 0..booking_length){
-                        val response = it.data.booking.get(0)
-                         rooms.add(response)
+                   // val booking_length = it.data!!.booking.size
+                    val booking_rooms = it.data!!.booking
+//                    var rooms = ArrayList<BookingX>()
+//                    var i : Int =0
+//                    for (i in 0..booking_length){
+//                        val response = it.data.booking.get(0)
+//                         rooms.add(response)
+//
+//                    }
 
-                    }
 
-
-                    Log.d("iopopo","$rooms")
-                   val bookingAdapter= BookingRoomAdapter(requireContext(),rooms)
+                    Log.d("iopopo","$booking_rooms")
+                   val bookingAdapter= BookingRoomAdapter(requireContext(),booking_rooms)
                     recycler.adapter =bookingAdapter
                     recycler.layoutManager = LinearLayoutManager(requireContext())
                 }
