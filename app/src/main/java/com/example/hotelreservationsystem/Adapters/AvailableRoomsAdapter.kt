@@ -28,6 +28,7 @@ class AvailableRoomsAdapter(val context : Context,  val Rooms:List<Room>): Recyc
         val room_view_price = itemView.findViewById<TextView>(R.id.room_view_price)
         val room_view_image=itemView.findViewById<ShapeableImageView>(R.id.roomViewImage)
         val status = itemView.findViewById<TextView>(R.id.status)
+        val bookNowTextView = itemView.findViewById<TextView>(R.id.book_now)
         init {
             itemView.setOnClickListener{
                 listner.onItemClick(adapterPosition)
@@ -48,9 +49,20 @@ class AvailableRoomsAdapter(val context : Context,  val Rooms:List<Room>): Recyc
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.room_number.text = Rooms.get(position).number.toString()
         holder.room_view_type.text = Rooms.get(position).type.toString()
+
+        if(Rooms.get(position).status.toString() == "true")
+        {
+            holder.status.text = "Available"
+            holder.bookNowTextView.visibility = View.VISIBLE
+        }
+        else{
+            holder.status.text  = "Booked"
+            holder.bookNowTextView.visibility = View.INVISIBLE
+        }
         holder.room_view_price.text = Rooms.get(position).price.toString()
-        holder.status.text = Rooms.get(position).status.toString()
+
         val string = Rooms.get(position).img.toString()
         Glide.with(this.context).load(string).into(holder.room_view_image)
+
         }
     }

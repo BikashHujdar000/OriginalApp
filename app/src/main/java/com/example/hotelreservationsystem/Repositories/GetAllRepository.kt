@@ -1,7 +1,5 @@
 package com.example.hotelreservationsystem.Repositories
-
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.hotelreservationsystem.Models.BookRequest
@@ -97,6 +95,21 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
 
         handleResponseofBooking(response)
     }
+
+    suspend fun  cancelBooking(userId:String,hotelId: String,roomId: String,bookingId: String)
+    {
+      val response =  getallHotelsApi.cancelBooking(userId,hotelId,roomId,bookingId)
+
+        if(response.isSuccessful && response.body()!= null)
+        {
+            handleResponseofBooking(response)
+        }
+        else
+        {
+            Log.d(TAG,"Response generation Failed")
+        }
+    }
+
 
     private fun handleResponseofBooking(response: Response<FinalBookingResponse>) {
         if (response.isSuccessful && response.body() != null) {

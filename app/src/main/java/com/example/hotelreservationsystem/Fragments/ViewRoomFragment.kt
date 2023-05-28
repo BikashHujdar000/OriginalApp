@@ -67,14 +67,24 @@ class ViewRoomFragment : Fragment() {
 availableRoomsAdapter.setOnItemClickListner(object :AvailableRoomsAdapter.onItemClickListner {
     override fun onItemClick(position: Int) {
 
+
         try {
             val RoomDetails = args.hotel.rooms.get(position)
-            val userId = args.userId
-            Log.d(TAG,"room euta in view room fragment is $RoomDetails")
-            Log.d(TAG,"user id in view room fragment is $userId")
-            Toast.makeText(requireContext(), "${RoomDetails._id}", Toast.LENGTH_SHORT).show()
-            val action = ViewRoomFragmentDirections.actionViewRoomFragmentToUserBookingFragment(RoomDetails,userId)
-            findNavController().navigate(action)
+
+            if(RoomDetails.status.toString() == "true")
+            {
+                val userId = args.userId
+                Log.d(TAG,"room euta in view room fragment is $RoomDetails")
+                Log.d(TAG,"user id in view room fragment is $userId")
+                Toast.makeText(requireContext(), "${RoomDetails._id}", Toast.LENGTH_SHORT).show()
+                val action = ViewRoomFragmentDirections.actionViewRoomFragmentToUserBookingFragment(RoomDetails,userId)
+                findNavController().navigate(action)
+            }
+            else
+            {
+                Toast.makeText(requireContext(), "Room is already Booked", Toast.LENGTH_SHORT).show()
+            }
+
         }catch (e:Exception)
         {
             Log.d(TAG,"error  on adapter click ")

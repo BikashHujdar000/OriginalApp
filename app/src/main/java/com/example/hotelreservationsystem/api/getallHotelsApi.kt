@@ -30,4 +30,13 @@ interface getallHotelsApi {
     @GET("user/getallbooking/{userId}")
     suspend fun userBookings(@Path("userId")userId:String):Response<FinalBookingResponse>
 
+
+    @POST("user/cancelbooking/{userId}/{hotelId}/{roomId}/{bookingId}")
+   suspend fun cancelBooking(@Path("userId")userId: String,
+                             @Path("hotelId")hotelId: String,
+                             @Path("roomId")roomId: String,
+                             @Path("bookingId")bookingId:String):Response<FinalBookingResponse>
+
+
+
 }
