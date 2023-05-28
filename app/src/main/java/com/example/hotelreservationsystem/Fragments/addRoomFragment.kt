@@ -40,7 +40,7 @@ class addRoomFragment : Fragment() {
     var hoteid: String? = null
 
     lateinit var imageUri: Uri
-    lateinit var imagePath: String
+     lateinit var imagePath: String
 
     private val hotelViewModel by viewModels<HotelViewModel>()
 
