@@ -1,147 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="433dp"
-        android:layout_height="214dp"
-        android:background="@drawable/edittext_background_box"
-        android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:elevation="15dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="417dp"
-            android:layout_height="195dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
-
-            android:background="@drawable/constrain_layout_box"
-            android:padding="5dp">
-
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:text="Name:"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/user_id"
+
+                android:text="Booked by :"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/user_id"
                 android:layout_width="69dp"
                 android:layout_height="22dp"
-                android:layout_marginBottom="60dp"
                 android:gravity="center"
                 android:hint="manin123er"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textView14"
-                app:layout_constraintEnd_toEndOf="@+id/textView10"
-                app:layout_constraintHorizontal_bias="0.222"
-                app:layout_constraintStart_toStartOf="@+id/textView10" />
+                app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintTop_toTopOf="@+id/textView10"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="308dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="36dp"
                 android:gravity="center"
                 android:text="RoomNo:"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/room_no"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/room_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="56dp"
                 android:gravity="center"
                 android:hint="100"
+                android:layout_marginTop="5dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textView15"
                 app:layout_constraintEnd_toEndOf="@+id/textView11"
-                app:layout_constraintHorizontal_bias="0.516"
-                app:layout_constraintStart_toStartOf="@+id/textView11" />
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="From : "
+                android:text="Check In Date : "
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/check_in_date"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <TextView
                 android:id="@+id/check_in_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
                 android:gravity="center"
                 android:hint="2076/12/12"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textView14"
-                app:layout_constraintStart_toStartOf="@+id/textView14" />
+                app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                app:layout_constraintStart_toEndOf="@+id/textView14"
+                app:layout_constraintTop_toTopOf="@+id/textView14"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView15"
-                android:layout_width="22dp"
-                android:layout_height="17dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="To: "
+                android:text="Check Out Date : "
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/check_out_date"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.903"
-                app:layout_constraintStart_toEndOf="@+id/textView14" />
+                app:layout_constraintEnd_toEndOf="@+id/textView14"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
             <TextView
                 android:id="@+id/check_out_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:hint="2076/12/13"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textView15"
-                app:layout_constraintHorizontal_bias="0.474"
-                app:layout_constraintStart_toStartOf="@+id/textView15" />
+                app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                app:layout_constraintStart_toEndOf="@+id/textView15"
+                app:layout_constraintTop_toTopOf="@+id/textView15" />
 
             <TextView
                 android:id="@+id/room_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_background_box"
-                android:backgroundTint="@color/mdtp_red_focused"
+
+                android:backgroundTint="@color/booked"
                 android:gravity="center"
-                android:hint="Booked"
+                android:text="Booked"
+                android:layout_marginBottom="10dp"
                 android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.53"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.842" />
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toEndOf="@+id/check_out_date"
+                app:layout_constraintTop_toTopOf="@+id/check_out_date"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,4 +15,5 @@
     <color name="grey">#B7BFD1</color>
     <color name = "cancel">#E60B2F</color>
     <color name="book">#1985F2</color>
+    <color name="booked">#B36E58</color>
 </resources>

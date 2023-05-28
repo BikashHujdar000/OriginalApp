@@ -18,4 +18,5 @@ data class Hotel(
     val review: @RawValue List<Any>,
     val rooms: List<Room>,
     val updatedAt: String
+
 ):Parcelable,Serializable

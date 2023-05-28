@@ -24,18 +24,21 @@ import hilt_aggregated_deps._com_example_hotelreservationsystem_ViewModels_AuthV
 @AndroidEntryPoint
 class OwnersBookingFragment : Fragment() {
     lateinit var binding : FragmentOwnersBookingBinding
-    private   val args by navArgs<OwnersBookingFragmentArgs>()
+    var ownerId :String? = null
 
 val hotelViewModel by viewModels<HotelViewModel> ()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         binding = FragmentOwnersBookingBinding.inflate(layoutInflater,container,false)
-        val ownerId = args.ownerResponse.owner._id.toString()
+
+
+        ownerId = requireArguments().getString("ownerId")
         Log.d("argument aayo","$ownerId")
-        hotelViewModel.showBooking(ownerId)
+        hotelViewModel.showBooking(ownerId!!)
         Log.d("apiResponse","Ayoo")
         val recycler = binding.booikingRecycler
 
@@ -47,15 +50,6 @@ val hotelViewModel by viewModels<HotelViewModel> ()
                 is NetworkResult.Success ->{
                    // val booking_length = it.data!!.booking.size
                     val booking_rooms = it.data!!.booking
-//                    var rooms = ArrayList<BookingX>()
-//                    var i : Int =0
-//                    for (i in 0..booking_length){
-//                        val response = it.data.booking.get(0)
-//                         rooms.add(response)
-//
-//                    }
-
-
                     Log.d("iopopo","$booking_rooms")
                    val bookingAdapter= BookingRoomAdapter(requireContext(),booking_rooms)
                     recycler.adapter =bookingAdapter
@@ -67,7 +61,6 @@ val hotelViewModel by viewModels<HotelViewModel> ()
             }
 
         })
-       // val recycler = binding.booikingRecycler
 
         return binding.root
     }

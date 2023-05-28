@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_ownerLoginFragment_to_ownerForgetPasswordFragment2"
             app:destination="@id/ownerForgetPasswordFragment" />
+        <action
+            android:id="@+id/action_ownerLoginFragment_to_createHotelFragment"
+            app:destination="@id/createHotelFragment" />
     </fragment>
     <fragment
         android:id="@+id/ownerRegistrationFragment"
@@ -328,4 +331,13 @@
         android:name="com.example.hotelreservationsystem.Fragments.UserHistoryFragment"
         android:label="fragment_user_history"
         tools:layout="@layout/fragment_user_history" />
+    <fragment
+        android:id="@+id/createHotelFragment"
+        android:name="com.example.hotelreservationsystem.Fragments.CreateHotelFragment"
+        android:label="fragment_create_hotel"
+        tools:layout="@layout/fragment_create_hotel" >
+        <action
+            android:id="@+id/action_createHotelFragment_to_ownerHomeFragment"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
 </navigation>
