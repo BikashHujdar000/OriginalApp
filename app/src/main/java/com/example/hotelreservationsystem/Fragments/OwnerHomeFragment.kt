@@ -112,13 +112,13 @@ class OwnerHomeFragment : Fragment() {
 
 
 
-        binding.hotelProfile.setOnClickListener(){
-
-                    findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply
-                    {
-                        putString("userId",ownerId)
-                    })
-                }
+//        binding.hotelProfile.setOnClickListener(){
+//
+//                    findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply
+//                    {
+//                        putString("userId",ownerId)
+//                    })
+//                }
 
 
               binding.bookings.setOnClickListener(){
