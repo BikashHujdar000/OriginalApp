@@ -1,5 +1,6 @@
 package com.example.hotelreservationsystem.api
 
+import com.example.hotelreservationsystem.Models.AllbookingsResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.RoomRequest
@@ -47,7 +48,8 @@ interface  HotelsApi {
   @PUT ("ownerroom/updateroom/{ownerId}/{hotelId}/{roomId}")
   suspend fun updateRoom(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String,@Path("roomId")roomId: String,@Body roomRequest: RoomRequest):Response<HotelResponse>
 
-
+  @GET("ownerroom/getallbooking/{ownerId}")
+  suspend fun showBookings(@Path("ownerId")ownerId: String):Response<AllbookingsResponse>
 
 }
 

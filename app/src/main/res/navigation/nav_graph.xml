@@ -226,6 +226,9 @@
         <action
             android:id="@+id/action_ownersBookingFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
+        <argument
+            android:name="ownerResponse"
+            app:argType="com.example.hotelreservationsystem.Models.OwnerResponse" />
     </fragment>
     <fragment
         android:id="@+id/updateRoomFragment"

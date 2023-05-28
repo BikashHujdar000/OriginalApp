@@ -1,11 +1,14 @@
 package com.example.hotelreservationsystem.ViewModels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hotelreservationsystem.Models.AllbookingsResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.RoomRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Repositories.HotelRepositories
+import com.example.hotelreservationsystem.utils.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,7 +24,8 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
     val hotelLiveData get() = hotelRepositories.hotelLiveData
     val statusLiveData get() = hotelRepositories.statusLiveData
 
-
+    val allbookingLiveData : LiveData<NetworkResult<AllbookingsResponse>>
+        get() = hotelRepositories.allbookingsResponse
 
     fun createHotel(ownerId: String, hotelRequest: HotelRequest) {
         viewModelScope.launch {
@@ -56,6 +60,11 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
     {
         viewModelScope.launch {
             hotelRepositories.updateRoom(ownerId,hotelId,roomId,roomRequest)
+        }
+    }
+    fun showBooking(ownerId: String){
+        viewModelScope.launch {
+            hotelRepositories.showBooking(ownerId)
         }
     }
 

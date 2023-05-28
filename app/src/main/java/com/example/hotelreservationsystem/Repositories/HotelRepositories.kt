@@ -4,6 +4,7 @@ import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.hotelreservationsystem.Models.AllbookingsResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.RoomRequest
@@ -25,7 +26,9 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     val statusLiveData :LiveData<NetworkResult<String>>
         get()= _statusLiveData
 
-
+     private val _allBookingLiveData = MutableLiveData<NetworkResult<AllbookingsResponse>>()
+    val allbookingsResponse : LiveData<NetworkResult<AllbookingsResponse>>
+        get() = _allBookingLiveData
 
 
     suspend fun createHotel(ownerId:String,hotelRequest: HotelRequest)
@@ -104,7 +107,15 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         handleresponse(response,"Hotel Updated Successfully")
         handleOriginalResponse(response)
     }
-
+      suspend fun showBooking(ownerId: String){
+          val response = hotelsApi.showBookings(ownerId)
+          if(response.isSuccessful&&response.body()!==null){
+              _allBookingLiveData.postValue(NetworkResult.Success(response.body()!!))
+          }
+          else{
+              Log.d( TAG,"there is error in getting bookings details ")
+          }
+      }
 
 
 

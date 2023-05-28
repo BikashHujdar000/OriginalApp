@@ -149,8 +149,11 @@ class OwnerHomeFragment : Fragment() {
 
 
         binding.bookings.setOnClickListener(){
-            Navigation.findNavController(it).navigate(R.id.action_ownerHomeFragment_to_ownersBookingFragment)
+            val ownerResponse = args.ownerResponse
+            val action = OwnerHomeFragmentDirections.actionOwnerHomeFragmentToOwnersBookingFragment(ownerResponse)
+            Navigation.findNavController(it).navigate(action)
         }
+
 
     }
 
