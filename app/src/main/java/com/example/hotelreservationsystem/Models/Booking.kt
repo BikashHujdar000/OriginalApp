@@ -4,17 +4,10 @@ data class Booking(
     val __v: Int,
     val _id: String,
     val endDate: String,
-    val hotel: Hotel,
+    val hotel: HotelXX,
     val isActive: Boolean,
-    val room: Room,
+    val room: RoomX,
     val startDate: String,
+
     val user: User
 )
-//val __v: Int,
-//    val _id: String,
-//    val endDate: String,
-//    val hotel: HotelXX,
-//    val isActive: Boolean,
-//    val room: RoomX,
-//    val startDate: String,
-//    val user: UserXX

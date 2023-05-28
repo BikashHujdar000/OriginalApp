@@ -1,3 +1,4 @@
+
 package com.example.hotelreservationsystem.Models
 
 data class HotelXX(
@@ -13,3 +14,5 @@ data class HotelXX(
     val rooms: List<String>,
     val updatedAt: String
 )
+
+
