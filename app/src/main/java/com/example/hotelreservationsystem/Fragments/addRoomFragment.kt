@@ -124,7 +124,11 @@ class addRoomFragment : Fragment() {
         ownerId = requireArguments().getString("ownerId").toString()
         hoteid = requireArguments().getString("hotelId").toString()
 
+
+
         Log.d(TAG,"ownerid and hotelId  $ownerId $hoteid")
+
+
 
         val itemsselecor = resources.getStringArray(R.array.selectors);
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.list_item, itemsselecor);

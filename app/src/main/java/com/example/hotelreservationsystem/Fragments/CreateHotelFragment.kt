@@ -1,5 +1,6 @@
 package com.example.hotelreservationsystem.Fragments
 
+import android.icu.number.IntegerWidth
 import android.net.Uri
 import android.nfc.Tag
 import android.os.Bundle
@@ -8,8 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -38,6 +42,9 @@ class CreateHotelFragment : Fragment() {
 
     lateinit var imageUri: Uri
     lateinit var imagePath: String
+    var typeSTR:String? = null
+    var typeINT :Int? = null
+    var finaltypeInt:Int? = null
 
     private val authViewModel by viewModels<AuthViewModel>()
     private val hotelViewModel by viewModels<HotelViewModel>()
@@ -109,11 +116,25 @@ class CreateHotelFragment : Fragment() {
         ownerId = requireArguments().getString("ownerId").toString()
         Log.d(TAG,"Owner id  is $ownerId")
 
-        binding.toptext.text = "UserName"
         binding.addImage1.setOnClickListener {
             contract.launch("image/*")
 
         }
+
+
+        val itemsselecor = resources.getStringArray(R.array.hotelType);
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.list_item, itemsselecor);
+        binding.autocomplete.setAdapter(arrayAdapter)
+
+        binding.autocomplete.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                val text = parent.getItemAtPosition(position);
+                Log.d(TAG,"okay selected Text is ${binding.autocomplete.text}")
+
+            }
+
+
+
 
 
 
@@ -123,17 +144,47 @@ class CreateHotelFragment : Fragment() {
             var addresses: String = binding.hotelLocation.text.toString()
             var description: String = binding.hotelDescription.text.toString()
             var image: String = imagePath.toString()
+            val priceInt:Int = Integer.parseInt(binding.minimumCharge.text.toString())
+            //lets seleect the int for values
+             var hotelType = binding.autocomplete.text.toString()
+            // <item>Luxury Hotel</item>
+            //        <item>Budget Hotel</item>
+            //        <item>Business Hotel</item>
+            if(hotelType == "Luxury Hotel")
+            {
+                typeSTR = "1"
+                typeINT = Integer.parseInt(typeSTR)
+            }
+            else if(hotelType == "Budget Hotel")
+            {
+                typeSTR = "2"
+                typeINT=Integer.parseInt(typeSTR)
+            }
+            else
+            {
+                typeSTR = "3"
+                typeINT=Integer.parseInt(typeSTR)
+            }
+            val finalHotelInt:Int = typeINT!!
+            Log.d(TAG," Final int is $finalHotelInt")
+            Log.d(TAG," Final int is $priceInt")
+
+
+
             try {
-                hotelViewModel.createHotel(
-                    ownerId!!, HotelRequest(name, addresses, description, image)
+                hotelViewModel.createHotel(ownerId!!,
+                    HotelRequest(addresses,description,name,image,finalHotelInt,priceInt)
                 )
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
             }
 
         }
+
         hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible = false
             when (it) {
+
                 is NetworkResult.Success -> {
                     Log.d(constants.TAG, "Hotel Created Sucessfully")
                     Log.d(TAG," hotel Response ${it.data?.hotel}")
@@ -150,10 +201,13 @@ class CreateHotelFragment : Fragment() {
                 }
 
                 is NetworkResult.Loading -> {
+                    binding.progressBar.isVisible = true
+
 
                 }
 
                 is NetworkResult.Error -> {
+
 
                 }
             }

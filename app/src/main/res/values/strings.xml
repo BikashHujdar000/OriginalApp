@@ -41,5 +41,15 @@
         <item>Single Bed</item>
         <item>Double Bed </item>
         <item>Deluxe Double</item>
+
     </string-array>
+
+    <string-array name="hotelType">
+
+        <item>Luxury Hotel</item>
+        <item>Budget Hotel</item>
+        <item>Business Hotel</item>
+
+    </string-array>
+
 </resources>
