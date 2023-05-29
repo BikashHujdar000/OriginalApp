@@ -45,7 +45,6 @@ class OwnerProfileFragment : Fragment() {
     var hotelId :String?  = null
     lateinit var imageUri: Uri
     lateinit var imagePath: String
-
     private val authViewModel by viewModels<AuthViewModel>()
     private val hotelViewModel by viewModels<HotelViewModel>()
 
@@ -76,7 +75,9 @@ class OwnerProfileFragment : Fragment() {
                         Log.d(TAG, "Show me the image uri  of  hotel images ${it.data?.url}")
                         imagePath = it.data!!.url
                         Log.d(TAG, "k xa ta image path ma  $imagePath")
+
                         this.context?.let { it1 -> Glide.with(it1).load(imageUri).into(binding.image1) }
+
                         binding.update.visibility = View.VISIBLE
 
                     } catch (e: Exception) {
