@@ -71,6 +71,8 @@ class CreateHotelFragment : Fragment() {
                         Log.d(constants.TAG, "k xa ta image path ma  $imagePath")
                         this.context?.let { it1 -> Glide.with(it1).load(imageUri).into(binding.image1) }
 
+                        binding.createHotel.visibility = View.VISIBLE
+
                     } catch (e: Exception) {
                     }
                     Log.d(constants.TAG, "Image path Getting Error")
@@ -156,7 +158,6 @@ class CreateHotelFragment : Fragment() {
                 }
             }
         })
-//        bindObservers()
 
 
 

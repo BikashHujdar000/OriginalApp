@@ -86,9 +86,9 @@ class addRoomFragment : Fragment() {
 
                        // Glide.with(this.context).load(R.drawable.test).into(holder.room_view_image)
                         this.context?.let { it1 ->
-                            Glide
-                                            .with(it1).load(imageUri).into(binding.image1)
+                            Glide.with(it1).load(imageUri).into(binding.image1)
                         }
+                        binding.createRoom.visibility =View.VISIBLE
 
 
                     }
@@ -137,6 +137,7 @@ class addRoomFragment : Fragment() {
 
         binding.addImage1.setOnClickListener {
             contract.launch("image/*")
+
         }
 
         binding.createRoom.setOnClickListener() {

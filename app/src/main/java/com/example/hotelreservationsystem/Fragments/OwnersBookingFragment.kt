@@ -51,7 +51,7 @@ val hotelViewModel by viewModels<HotelViewModel> ()
                    // val booking_length = it.data!!.booking.size
                     val booking_rooms = it.data!!.booking
                     Log.d("iopopo","$booking_rooms")
-                   val bookingAdapter= BookingRoomAdapter(requireContext(),booking_rooms)
+                   val bookingAdapter= BookingRoomAdapter(requireContext(),booking_rooms!!)
                     recycler.adapter =bookingAdapter
                     recycler.layoutManager = LinearLayoutManager(requireContext())
                 }
