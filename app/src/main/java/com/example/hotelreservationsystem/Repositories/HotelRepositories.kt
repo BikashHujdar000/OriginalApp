@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.hotelreservationsystem.Models.AllbookingsResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
+import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.Models.RoomRequest
 import com.example.hotelreservationsystem.api.HotelsApi
 import com.example.hotelreservationsystem.utils.NetworkResult
@@ -20,6 +21,14 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     private  val _hotelLiveData =MutableLiveData<NetworkResult<HotelResponse>>()
     val hotelLiveData : LiveData<NetworkResult<HotelResponse>>
             get() = _hotelLiveData
+
+
+// adding for trying to handle exception handling
+
+    private val _ownerResponseLiveData = MutableLiveData<NetworkResult<OwnerResponse>>()
+    val ownerResponseLiveData: LiveData<NetworkResult<OwnerResponse>>
+        get() = _ownerResponseLiveData
+
 
 
     private val _statusLiveData = MutableLiveData<NetworkResult<String>>()
@@ -36,6 +45,7 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     {
         _statusLiveData.postValue(NetworkResult.Loading())
         _hotelLiveData.postValue(NetworkResult.Loading())
+        _ownerResponseLiveData.postValue(NetworkResult.Loading())
 
         val response = hotelsApi.createHotel(ownerId ,hotelRequest)
         dothis(response)
@@ -46,6 +56,7 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     private fun dothis(response: Response<HotelResponse>) {
         if (response.isSuccessful && response.body() != null) {
             _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
+
         } else {
             val errotObj = JSONObject(response.errorBody()!!.charStream().readText())
             _hotelLiveData.postValue(NetworkResult.Error(errotObj.getString("error")))
@@ -53,6 +64,9 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         }
         handleresponse(response, "Hotel Created")
     }
+
+    // again added this for the handling response
+
 
     suspend fun  addRoom(ownerId: String,hotelId:String,roomRequest: RoomRequest) {
 

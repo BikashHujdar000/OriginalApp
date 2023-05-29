@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.RoomRequest
 import com.example.hotelreservationsystem.R
@@ -49,7 +50,8 @@ class addRoomFragment : Fragment() {
 
     private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
         imageUri = it!!
-        binding.image1.setImageURI(it)
+        // changed code
+      //  binding.image1.setImageURI(it)
         // converting the image
         val filesDir = requireContext().filesDir
         val file = File(filesDir, "image.png")
@@ -76,6 +78,19 @@ class addRoomFragment : Fragment() {
                     try {
                         Log.d(TAG, "Show me the image uri ${it.data?.url}")
                         imagePath = it.data!!.url
+
+
+                        //changed code
+                        // binding.image1.setImageURI(it)
+                      //  context?.let { it1 -> Glide.with(it1).load(imagePath) }
+
+                       // Glide.with(this.context).load(R.drawable.test).into(holder.room_view_image)
+                        this.context?.let { it1 ->
+                            Glide
+                                            .with(it1).load(imageUri).into(binding.image1)
+                        }
+
+
                     }
                     catch (e:Exception)
                     {
@@ -136,7 +151,8 @@ class addRoomFragment : Fragment() {
                 Log.d(TAG,"$numberInt")
                 Log.d(TAG,"$priceInt")
                 //String value= et.getText().toString();
-            //int finalValue=Integer.parseInt(value);
+                //int finalValue=Integer.parseInt(value);
+
                 Log.d(TAG,uri)
 
 

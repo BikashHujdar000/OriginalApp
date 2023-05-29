@@ -90,8 +90,8 @@ class OwnerLoginFragment : Fragment() {
             when (it) {
                 is NetworkResult.Success -> {
 
-                    val userId = it.data?.owner?._id
-                    Log.d("TAG","$userId")
+                    val ownerId = it.data?.owner?._id
+                    Log.d("TAG","$ownerId")
 
                     tokenManager.saveToken(it.data!!.access_token)
                     Log.d(TAG,it.data.access_token)
@@ -99,9 +99,31 @@ class OwnerLoginFragment : Fragment() {
                     // trying to send the data
                     val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
                     Log.d(TAG," owner ko data aauxa ta ${owner}")
+                    // handling exception now
+                    val ownerHotelCheck =owner.owner.hotel
+                    Log.d(TAG,"hotel ma vako data $ownerHotelCheck")
 
-               val action =OwnerLoginFragmentDirections.actionOwnerLoginFragmentToOwnerHomeFragment(owner)
-                 findNavController().navigate(action)
+
+                    if (ownerHotelCheck.isEmpty())
+                    {
+                       findNavController().navigate(R.id.action_ownerLoginFragment_to_createHotelFragment,Bundle().apply {
+                           putString("ownerId",ownerId)
+                       })
+                    }
+                    else
+                    {
+//                        val action =OwnerLoginFragmentDirections.actionOwnerLoginFragmentToOwnerHomeFragment(owner)
+//                        findNavController().navigate(action)
+                        val hotelId = it.data.owner.hotel.get(0).toString()
+                         val ownerName = it.data.owner.ownername
+                        findNavController().navigate(R.id.action_ownerLoginFragment_to_ownerHomeFragment,Bundle().apply {
+                            putString("ownerIdFromDirect",ownerId)
+                            putString("hotelIdFromDirect",hotelId)
+
+                        })
+                    }
+
+
 
                 }
 
