@@ -57,5 +57,8 @@ interface  HotelsApi {
   suspend fun getHotelDetails(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String):Response<HotelResponse>
 
 
+  @PUT("hotel/updatehotel/{ownerId}/{hotelId}")
+  suspend fun  updateHotel(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String,@Body hotelRequest: HotelRequest):Response<HotelResponse>
+
 }
 

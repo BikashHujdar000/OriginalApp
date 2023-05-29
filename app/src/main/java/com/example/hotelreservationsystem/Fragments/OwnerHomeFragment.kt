@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.AuthViewModel
@@ -32,6 +33,7 @@ class OwnerHomeFragment : Fragment() {
     lateinit var  binding :FragmentOwnerHomeBinding
     var hotelId:String? = null
     var ownerId :String? = null
+    var hotel :HotelResponse? = null
 
    private val authViewModel by viewModels<AuthViewModel>()
 
@@ -79,18 +81,6 @@ class OwnerHomeFragment : Fragment() {
 
 
          hotelViewModel.getHotelDetails(ownerId!!,hotelId!!)
-
-//
-//        val imageList = ArrayList<SlideModel>() // Create image list
-//        //  on image url later please pass the original images of hotel View
-//
-//        imageList.add(SlideModel("https://res.cloudinary.com/dancvkguq/image/upload/v1684940270/hotel-images/h484fh5qajhyughfgxut.jpg",scaleType = ScaleTypes.FIT))
-////        imageList.add(SlideModel(R.drawable.tst1,scaleType = ScaleTypes.FIT))
-////        imageList.add(SlideModel(R.drawable.tst2,scaleType = ScaleTypes.FIT))
-//
-//        binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
-//        binding.imageSlider.setImageList(imageList)
-
         return binding.root;
     }
 
@@ -109,12 +99,16 @@ class OwnerHomeFragment : Fragment() {
             {
                 is NetworkResult.Success->{
 
+
                     Log.d(TAG,"owner Home ma aako data k xa ${it.data?.hotel}")
+                    val hotelData = it.data!!
                     binding.hotelName.text = it.data?.hotel?.name
                     val imageAPiList :List<String> = it.data!!.hotel.photos
                     Log.d(TAG,"hotel ko images haru $imageAPiList")
 
-
+                    hotel =hotelData
+                    Log.d(TAG,"hotel response is  $hotel")
+                    // setting  for image list
                     val imageList = ArrayList<SlideModel>() // Create image list
                     //  on image url later please pass the original images of hotel View
 
@@ -164,13 +158,12 @@ class OwnerHomeFragment : Fragment() {
 
 
 
-//        binding.hotelProfile.setOnClickListener(){
-//
-//                    findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerProfileFragment,Bundle().apply
-//                    {
-//                        putString("userId",ownerId)
-//                    })
-//                }
+        binding.hotelProfile.setOnClickListener(){
+
+                   Log.d(TAG,"Hotel profile ma jada kheri ko  hotel ko data $hotel")
+                  val action = OwnerHomeFragmentDirections.actionOwnerHomeFragmentToOwnerProfileFragment(hotel!!)
+                 findNavController().navigate(action)
+                }
 
 
               binding.bookings.setOnClickListener(){

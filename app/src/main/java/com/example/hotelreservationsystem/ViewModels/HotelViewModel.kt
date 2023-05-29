@@ -77,6 +77,14 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
             hotelRepositories.getHotelDetails(ownerId,hotelId)
          }
     }
+    // updatehotel() fdunc tion called
+
+    fun updatehotel(ownerId: String,hotelId: String,hotelRequest: HotelRequest)
+    {
+        viewModelScope.launch {
+            hotelRepositories.updateHotel(ownerId,hotelId,hotelRequest)
+        }
+    }
 
 }
 

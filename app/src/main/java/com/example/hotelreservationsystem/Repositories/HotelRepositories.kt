@@ -153,6 +153,12 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         }
     }
 
+    // function to get hotel response from update hotel
+    suspend fun  updateHotel(ownerId: String,hotelId: String,hotelRequest: HotelRequest) {
+        val response = hotelsApi.updateHotel(ownerId, hotelId,hotelRequest)
+        handleOriginalResponse(response)
+    }
+
 
 
 

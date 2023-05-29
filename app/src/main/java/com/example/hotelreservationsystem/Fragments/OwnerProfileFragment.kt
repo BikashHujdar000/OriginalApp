@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
@@ -37,10 +38,11 @@ import kotlin.Exception
 @AndroidEntryPoint
 
 class OwnerProfileFragment : Fragment() {
+    private  val args by navArgs<OwnerProfileFragmentArgs>()
 
     lateinit var binding: FragmentOwnerProfileBinding
     var ownerId: String? = null
-
+    var hotelId :String?  = null
     lateinit var imageUri: Uri
     lateinit var imagePath: String
 
@@ -75,6 +77,7 @@ class OwnerProfileFragment : Fragment() {
                         imagePath = it.data!!.url
                         Log.d(TAG, "k xa ta image path ma  $imagePath")
                         this.context?.let { it1 -> Glide.with(it1).load(imageUri).into(binding.image1) }
+                        binding.update.visibility = View.VISIBLE
 
                     } catch (e: Exception) {
                     }
@@ -103,16 +106,14 @@ class OwnerProfileFragment : Fragment() {
             layoutInflater, container, false
         )
         // Inflate the layout for this fragment
-
-        //acessing the sent owner id from the data
-
-        ownerId = requireArguments().getString("userId").toString()
-
+        ownerId = args.hotel.hotel.owner._id.toString()
+        hotelId = args.hotel.hotel._id.toString()
 
         binding.addImage1.setOnClickListener {
             contract.launch("image/*")
 
         }
+
 
 
 
@@ -131,35 +132,54 @@ class OwnerProfileFragment : Fragment() {
 //            }
 //
 //        }
-//        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
-//            when (it) {
-//                is NetworkResult.Success -> {
-//
-//                    val hotelId = it.data?.hotel?._id
-//                    Log.d(TAG, "hotel baneko id k ho tan $hotelId")
-//                    Log.d(TAG, "Hotel Created Sucessfully")
-//
-//                    val owner = it.data?.hotel?.owner
-//                    // error handling  the error
-//                    Log.d(TAG,"Owner response  $owner")
-//                    //  /  val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
-//                    findNavController().popBackStack()
-//                }
-//
-//                is NetworkResult.Loading -> {
-//
-//                }
-//
-//                is NetworkResult.Error -> {
-//
-//                }
-//            }
-//        })
+
+        binding.update.setOnClickListener{
+            var name: String = binding.hotelName.text.toString()
+            var addresses: String = binding.hotelLocation.text.toString()
+            var description: String = binding.hotelDescription.text.toString()
+            var image: String = imagePath.toString()
+            try {
+                hotelViewModel.updatehotel(ownerId!!,hotelId!!,
+                    HotelRequest(addresses,description,name,image)
+                )
+            }
+            catch (e:java.lang.Exception)
+            {
+                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+     hotelViewModel.hotelLiveData.observe( viewLifecycleOwner, Observer {
+         when(it)
+         {
+             is NetworkResult.Success->{
+                 val updatedResponse = it.data
+                 Log.d(TAG," updated response aayo $updatedResponse")
+                 findNavController().popBackStack()
+             }
+              is NetworkResult.Loading->{
+
+              }
+             is NetworkResult.Error->
+             {
+
+             }
+         }
+     })
+
+
+
+
+    }
 
 }
 

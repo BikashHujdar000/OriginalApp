@@ -221,8 +221,8 @@
             android:id="@+id/action_ownerProfileFragment_to_ownerHomeFragment"
             app:destination="@id/ownerHomeFragment" />
         <argument
-            android:name="UserIdForOwnerProfile"
-            app:argType="string" />
+            android:name="hotel"
+            app:argType="com.example.hotelreservationsystem.Models.HotelResponse" />
     </fragment>
     <fragment
         android:id="@+id/ownersBookingFragment"
