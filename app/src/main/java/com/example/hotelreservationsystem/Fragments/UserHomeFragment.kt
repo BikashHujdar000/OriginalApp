@@ -5,8 +5,10 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -68,7 +70,7 @@ class UserHomeFragment : Fragment() {
 
 
 //        // handling search view
-//        binding.searchItem.setOnTouchListener(OnTouchListener { v, event ->
+//        binding.searchItem.setOnTouchListener(View.OnTouchListener { v, event ->
 //            val DRAWABLE_LEFT = 0
 //            val DRAWABLE_TOP = 1
 //            val DRAWABLE_RIGHT = 2
@@ -95,57 +97,65 @@ class UserHomeFragment : Fragment() {
 //        })
 
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        try {
-            getAllHotelViewModel._hotelLiveDataList.observe(viewLifecycleOwner, Observer {
-                when(it){
-                    is NetworkResult.Success ->{
-
-                        Log.d(TAG,"response is Sucess ")
-                        val  response = it.data?.hotel
-                        Log.d("response dekha","aayo la")
-                        val recyclerView = binding.userTestHomeRecycler
-                        val hotelAdapters = TestAdapters(requireContext(),response)
-                        recyclerView.adapter = hotelAdapters
-                        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                        Log.d("Hotel Respnose Success",response.toString())
-                        hotelAdapters.setOnItemClickListner(object : TestAdapters.onItemClickListner{
-                            override fun onItemClick(position: Int) {
-                                val hotel = response!!.get(position)
-                                Log.d(TAG,"$hotel")
-                                val userId = args.user.user._id.toString()
-                                Log.d(TAG,"  user id kxa $userId")
-                                val action  = UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(hotel,userId)
-                                findNavController().navigate(action)
-
-
-                            }
-
-                        })
-
-                    }
-                    is NetworkResult.Error ->{
-
-                    }
-                    is NetworkResult.Loading ->{
-
-                    }
-
-                    else -> {}
+                    return binding.root
                 }
-            })
-        }catch (e:Exception)
-        {
-            Log.d(TAG,"hit vayen url")
-        }
+
+                override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+                    super.onViewCreated(view, savedInstanceState)
+
+                    try {
+                        getAllHotelViewModel._hotelLiveDataList.observe(
+                            viewLifecycleOwner,
+                            Observer {
+                                when (it) {
+                                    is NetworkResult.Success -> {
+
+                                        Log.d(TAG, "response is Sucess ")
+                                        val response = it.data?.hotel
+                                        Log.d("response dekha", "aayo la")
+                                        val recyclerView = binding.userTestHomeRecycler
+                                        val hotelAdapters = TestAdapters(requireContext(), response)
+                                        recyclerView.adapter = hotelAdapters
+                                        recyclerView.layoutManager =
+                                            LinearLayoutManager(requireContext())
+                                        Log.d("Hotel Respnose Success", response.toString())
+                                        hotelAdapters.setOnItemClickListner(object :
+                                            TestAdapters.onItemClickListner {
+                                            override fun onItemClick(position: Int) {
+                                                val hotel = response!!.get(position)
+                                                Log.d(TAG, "$hotel")
+                                                val userId = args.user.user._id.toString()
+                                                Log.d(TAG, "  user id kxa $userId")
+                                                val action =
+                                                    UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(
+                                                        hotel,
+                                                        userId
+                                                    )
+                                                findNavController().navigate(action)
 
 
+                                            }
 
-    }
+                                        })
 
-}
+                                    }
+
+                                    is NetworkResult.Error -> {
+
+                                    }
+
+                                    is NetworkResult.Loading -> {
+
+                                    }
+
+                                    else -> {}
+                                }
+                            })
+                    } catch (e: Exception) {
+                        Log.d(TAG, "hit vayen url")
+                    }
+
+
+                }
+
+            }
