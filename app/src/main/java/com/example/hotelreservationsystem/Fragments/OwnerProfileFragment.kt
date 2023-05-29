@@ -138,25 +138,6 @@ class OwnerProfileFragment : Fragment() {
         }
 
 
-
-
-
-//        binding.createHotel.setOnClickListener {
-//
-//            var name: String = binding.hotelName.text.toString()
-//            var addresses: String = binding.hotelLocation.text.toString()
-//            var description: String = binding.hotelDescription.text.toString()
-//            var image: String = imagePath.toString()
-//            try {
-//                hotelViewModel.createHotel(
-//                    ownerId!!, HotelRequest(name, addresses, description, image)
-//                )
-//            } catch (e: Exception) {
-//                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
-//            }
-//
-//        }
-
         binding.updateHotel.setOnClickListener{
 
 

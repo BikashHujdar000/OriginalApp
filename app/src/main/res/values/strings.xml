@@ -36,6 +36,7 @@
     <string name="searchialog">Find now</string>
     <string name="desscription">They were extremely accommodating and allowed us to check in early at like 10am. We got to hotel super early and I didn’t wanna wait. So this was a big plus. The sevice was exceptional as well. Would definitely send a friend there.</string>
     <string name="datesample">2076/12/3</string>
+    <string name="bookedFragmetdetails">All Booked Rooms Details</string>
 
     <string-array name="selectors">
         <item>Single Bed</item>

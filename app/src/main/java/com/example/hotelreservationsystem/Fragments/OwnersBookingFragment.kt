@@ -40,18 +40,26 @@ val hotelViewModel by viewModels<HotelViewModel> ()
         Log.d("argument aayo","$ownerId")
         hotelViewModel.showBooking(ownerId!!)
         Log.d("apiResponse","Ayoo")
-        val recycler = binding.booikingRecycler
 
 
+
+
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         hotelViewModel.allbookingLiveData.observe(viewLifecycleOwner, Observer {
 
             when(it){
 
                 is NetworkResult.Success ->{
-                   // val booking_length = it.data!!.booking.size
+                    // val booking_length = it.data!!.booking.size
                     val booking_rooms = it.data!!.booking
                     Log.d("iopopo","$booking_rooms")
-                   val bookingAdapter= BookingRoomAdapter(requireContext(),booking_rooms!!)
+                    val recycler = binding.booikingRecycler
+                    val bookingAdapter= BookingRoomAdapter(requireContext(),booking_rooms!!)
                     recycler.adapter =bookingAdapter
                     recycler.layoutManager = LinearLayoutManager(requireContext())
                 }
@@ -61,10 +69,7 @@ val hotelViewModel by viewModels<HotelViewModel> ()
             }
 
         })
-
-        return binding.root
     }
-
 
 
 }
