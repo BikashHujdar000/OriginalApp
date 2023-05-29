@@ -18,11 +18,15 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.AuthViewModel
+import com.example.hotelreservationsystem.ViewModels.HotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnerHomeBinding
+import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
+import kotlin.math.log
+
 @AndroidEntryPoint
 class OwnerHomeFragment : Fragment() {
     lateinit var  binding :FragmentOwnerHomeBinding
@@ -31,7 +35,7 @@ class OwnerHomeFragment : Fragment() {
 
    private val authViewModel by viewModels<AuthViewModel>()
 
-
+   private val  hotelViewModel by viewModels<HotelViewModel> ()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,15 +74,22 @@ class OwnerHomeFragment : Fragment() {
         Log.d(TAG,"Final hotel Id  is  $FinalHotelId ")
 
 
-        val imageList = ArrayList<SlideModel>() // Create image list
-         // on image url later please pass the original images of hotel View
 
-        imageList.add(SlideModel(R.drawable.tst,scaleType = ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.tst1,scaleType = ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.tst2,scaleType = ScaleTypes.FIT))
+        //yaha ma euta api call garxu
 
-        binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
-        binding.imageSlider.setImageList(imageList)
+
+         hotelViewModel.getHotelDetails(ownerId!!,hotelId!!)
+
+//
+//        val imageList = ArrayList<SlideModel>() // Create image list
+//        //  on image url later please pass the original images of hotel View
+//
+//        imageList.add(SlideModel("https://res.cloudinary.com/dancvkguq/image/upload/v1684940270/hotel-images/h484fh5qajhyughfgxut.jpg",scaleType = ScaleTypes.FIT))
+////        imageList.add(SlideModel(R.drawable.tst1,scaleType = ScaleTypes.FIT))
+////        imageList.add(SlideModel(R.drawable.tst2,scaleType = ScaleTypes.FIT))
+//
+//        binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
+//        binding.imageSlider.setImageList(imageList)
 
         return binding.root;
     }
@@ -87,6 +98,47 @@ class OwnerHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        // pahila hami observe garxum data ani matra aru funcios haru hain
+
+        // you have to do this first
+
+        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+            when(it)
+            {
+                is NetworkResult.Success->{
+
+                    Log.d(TAG,"owner Home ma aako data k xa ${it.data?.hotel}")
+                    binding.hotelName.text = it.data?.hotel?.name
+                    val imageAPiList :List<String> = it.data!!.hotel.photos
+                    Log.d(TAG,"hotel ko images haru $imageAPiList")
+
+
+                    val imageList = ArrayList<SlideModel>() // Create image list
+                    //  on image url later please pass the original images of hotel View
+
+                    for(imageUrl in imageAPiList){
+
+                        imageList.add(SlideModel(imageUrl,ScaleTypes.FIT))
+                    }
+
+                    binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
+                    binding.imageSlider.setImageList(imageList)
+
+
+                }
+                is NetworkResult.Loading->{
+
+                }
+                is NetworkResult.Error->{
+
+                }
+            }
+        })
+
+
+
 
         binding.addRooms.setOnClickListener {
                 findNavController().navigate(

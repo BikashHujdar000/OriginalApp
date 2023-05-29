@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-
             android:fontFamily="@font/poppins_bold"
             android:text="Your Hotel Name"
             android:textSize="20dp"

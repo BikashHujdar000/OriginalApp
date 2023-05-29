@@ -7,6 +7,7 @@ import com.example.hotelreservationsystem.Models.AllbookingsResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.RoomRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
+import com.example.hotelreservationsystem.Models.HotelX
 import com.example.hotelreservationsystem.Repositories.HotelRepositories
 import com.example.hotelreservationsystem.utils.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,8 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
 
     val hotelLiveData get() = hotelRepositories.hotelLiveData
     val statusLiveData get() = hotelRepositories.statusLiveData
+
+
 
     val allbookingLiveData : LiveData<NetworkResult<AllbookingsResponse>>
         get() = hotelRepositories.allbookingsResponse
@@ -66,6 +69,13 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
         viewModelScope.launch {
             hotelRepositories.showBooking(ownerId)
         }
+    }
+    // naya chanfge
+    fun getHotelDetails(ownerId: String,hotelId: String)
+    {
+        viewModelScope.launch {
+            hotelRepositories.getHotelDetails(ownerId,hotelId)
+         }
     }
 
 }

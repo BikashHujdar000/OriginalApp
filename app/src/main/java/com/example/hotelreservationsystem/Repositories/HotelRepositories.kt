@@ -1,6 +1,5 @@
 package com.example.hotelreservationsystem.Repositories
 
-import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +13,7 @@ import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
 import org.json.JSONObject
 import retrofit2.Response
+import java.lang.Exception
 import javax.inject.Inject
 
 class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
@@ -28,6 +28,7 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     private val _ownerResponseLiveData = MutableLiveData<NetworkResult<OwnerResponse>>()
     val ownerResponseLiveData: LiveData<NetworkResult<OwnerResponse>>
         get() = _ownerResponseLiveData
+
 
 
 
@@ -130,6 +131,28 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
               Log.d( TAG,"there is error in getting bookings details ")
           }
       }
+
+    // fun to get hotels  datails
+    suspend fun getHotelDetails(ownerId: String,hotelId: String)
+    {
+        _hotelLiveData.postValue(NetworkResult.Loading())
+        Log.d(TAG,"Repository call vae sako ")
+        try {
+        val response = hotelsApi.getHotelDetails(ownerId,hotelId)
+
+        if(response.isSuccessful && response.body()!= null)
+        {
+            Log.d(TAG,"hotel Response aaudee xa ")
+            Log.d(TAG," ${response.body().toString()}")
+            _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
+
+        }
+        }catch (e:Exception)
+        {
+            Log.d(TAG,"repo ko exception ma error aaudee xa ${e.message} ")
+        }
+    }
+
 
 
 

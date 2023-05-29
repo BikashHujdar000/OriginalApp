@@ -51,5 +51,11 @@ interface  HotelsApi {
   @GET("ownerroom/getallbooking/{ownerId}")
   suspend fun showBookings(@Path("ownerId")ownerId: String):Response<AllbookingsResponse>
 
+  // fun to get hotel details using ownerid and hotelid
+//  https://anxious-gaiters-bee.cyclic.app/hotel/getsinglehotel/646e22b095405e6d962cc2cb/646e25f9b2a982f41b6e6519
+  @GET("hotel/getsinglehotel/{ownerId}/{hotelId}")
+  suspend fun getHotelDetails(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String):Response<HotelResponse>
+
+
 }
 

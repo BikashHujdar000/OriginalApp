@@ -123,8 +123,6 @@ class OwnerLoginFragment : Fragment() {
                         })
                     }
 
-
-
                 }
 
 
