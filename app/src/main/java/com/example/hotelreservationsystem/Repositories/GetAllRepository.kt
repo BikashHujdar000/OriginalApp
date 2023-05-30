@@ -99,7 +99,6 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
     suspend fun  cancelBooking(userId:String,hotelId: String,roomId: String,bookingId: String)
     {
       val response =  getallHotelsApi.cancelBooking(userId,hotelId,roomId,bookingId)
-
         if(response.isSuccessful && response.body()!= null)
         {
             handleResponseofBooking(response)

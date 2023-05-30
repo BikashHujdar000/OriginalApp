@@ -53,7 +53,6 @@ class UserHistoryFragment : Fragment() {
                     Log.d("data from user are ","$responseData")
 
                     //s etiing up for recycler View
-
                     val Data = it.data?.booking
                     val recycler = binding.userBookRoomViewRecyclerview
                     val bookingsAdapter = BookingsAdapter(requireContext(),Data!!,getAllHotelViewModel)

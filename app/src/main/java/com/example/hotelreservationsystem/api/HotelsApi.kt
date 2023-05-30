@@ -1,6 +1,7 @@
 package com.example.hotelreservationsystem.api
 
 import com.example.hotelreservationsystem.Models.AllbookingsResponse
+import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.RoomRequest
@@ -49,7 +50,7 @@ interface  HotelsApi {
   suspend fun updateRoom(@Path("ownerId")ownerId: String,@Path("hotelId")hotelId: String,@Path("roomId")roomId: String,@Body roomRequest: RoomRequest):Response<HotelResponse>
 
   @GET("ownerroom/getallbooking/{ownerId}")
-  suspend fun showBookings(@Path("ownerId")ownerId: String):Response<AllbookingsResponse>
+  suspend fun showBookings(@Path("ownerId")ownerId: String):Response<FinalBookingResponse>
 
   // fun to get hotel details using ownerid and hotelid
 //  https://anxious-gaiters-bee.cyclic.app/hotel/getsinglehotel/646e22b095405e6d962cc2cb/646e25f9b2a982f41b6e6519

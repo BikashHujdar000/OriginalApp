@@ -11,7 +11,7 @@ import com.example.hotelreservationsystem.Models.Booking
 import com.example.hotelreservationsystem.Models.BookingX
 import com.example.hotelreservationsystem.R
 
-class BookingRoomAdapter(val context: Context, val bookedRoomList:List<BookingX>):
+class BookingRoomAdapter(val context: Context, val bookedRoomList:List<Booking>):
     RecyclerView.Adapter<BookingRoomAdapter.MyViewHolder>() {
 
 

@@ -80,6 +80,10 @@ class UserProfileFragment : Fragment() {
           })
 
         }
+        binding.logOutCard.setOnClickListener{
+            findNavController().navigate(R.id.action_userProfileFragment_to_userLoginFragment)
+
+        }
 
 
 

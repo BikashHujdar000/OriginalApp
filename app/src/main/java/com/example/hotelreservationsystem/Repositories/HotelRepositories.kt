@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.hotelreservationsystem.Models.AllbookingsResponse
+import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.OwnerResponse
@@ -15,6 +16,7 @@ import org.json.JSONObject
 import retrofit2.Response
 import java.lang.Exception
 import javax.inject.Inject
+import kotlin.math.log
 
 class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
 
@@ -36,8 +38,8 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
     val statusLiveData :LiveData<NetworkResult<String>>
         get()= _statusLiveData
 
-     private val _allBookingLiveData = MutableLiveData<NetworkResult<AllbookingsResponse>>()
-    val allbookingsResponse : LiveData<NetworkResult<AllbookingsResponse>>
+     private val _allBookingLiveData = MutableLiveData<NetworkResult<FinalBookingResponse>>()
+    val allbookingsResponse : LiveData<NetworkResult<FinalBookingResponse>>
         get() = _allBookingLiveData
 
 
@@ -123,12 +125,17 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         handleOriginalResponse(response)
     }
       suspend fun showBooking(ownerId: String){
+          _allBookingLiveData.postValue(NetworkResult.Loading())
           val response = hotelsApi.showBookings(ownerId)
-          if(response.isSuccessful&&response.body()!==null){
+
+          if(response.isSuccessful){
+              Log.d(TAG,"repo  ko called data ma k xa response ${response.body().toString()}")
+
               _allBookingLiveData.postValue(NetworkResult.Success(response.body()!!))
+
           }
           else{
-              Log.d( TAG,"there is error in getting bookings details ")
+              _allBookingLiveData.postValue(NetworkResult.Error("Something Went Wrong"))
           }
       }
 

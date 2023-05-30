@@ -169,9 +169,14 @@ class OwnerHomeFragment : Fragment() {
               binding.bookings.setOnClickListener(){
 
                   findNavController().navigate(R.id.action_ownerHomeFragment_to_ownersBookingFragment,Bundle().apply {
-                      putString("ownerId", ownerId)
+                      putString("ownerId", ownerId!!)
                   })
         }
+        binding.logout.setOnClickListener{
+            findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerLoginFragment)
+        }
+
+
 
 
     }

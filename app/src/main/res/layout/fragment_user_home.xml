@@ -133,7 +133,7 @@
            android:layout_marginStart="15dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Hotels"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/profile_section"
 
@@ -153,8 +153,11 @@
                 android:id="@+id/user_test_home_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/test_layout_for_model_view">
 
             </androidx.recyclerview.widget.RecyclerView>

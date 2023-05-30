@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.BookingRoomAdapter
+import com.example.hotelreservationsystem.Adapters.BookingsAdapter
 import com.example.hotelreservationsystem.Models.BookingX
 import com.example.hotelreservationsystem.Models.RoomX
 import com.example.hotelreservationsystem.R
@@ -20,6 +21,8 @@ import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import hilt_aggregated_deps._com_example_hotelreservationsystem_ViewModels_AuthViewModel_HiltModules_KeyModule
+import java.lang.Exception
+import kotlin.math.log
 
 @AndroidEntryPoint
 class OwnersBookingFragment : Fragment() {
@@ -35,14 +38,20 @@ val hotelViewModel by viewModels<HotelViewModel> ()
         // Inflate the layout for this fragment
         binding = FragmentOwnersBookingBinding.inflate(layoutInflater,container,false)
 
-
-        ownerId = requireArguments().getString("ownerId")
+       ownerId = requireArguments().getString("ownerId")
         Log.d("argument aayo","$ownerId")
-        hotelViewModel.showBooking(ownerId!!)
-        Log.d("apiResponse","Ayoo")
+        try {
+            hotelViewModel.showBooking(ownerId!!)
+            Log.d(TAG,"Response Generated")
 
-
-
+        }catch (
+            e:Exception
+        )
+        {
+            Log.d(TAG,"eroor on calling to get function ${e.message}")
+        }
+      //  hotelViewModel.showBooking(ownerId!!)
+//        Log.d("apiResponse","Ayoo")
 
 
         return binding.root
@@ -50,18 +59,23 @@ val hotelViewModel by viewModels<HotelViewModel> ()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         hotelViewModel.allbookingLiveData.observe(viewLifecycleOwner, Observer {
 
             when(it){
 
                 is NetworkResult.Success ->{
-                    // val booking_length = it.data!!.booking.size
-                    val booking_rooms = it.data!!.booking
-                    Log.d("iopopo","$booking_rooms")
+                    Log.d("data from user are "," sucess ma xiro")
+
+                    val responseData = it.data?.booking
+                    Log.d("data from user are ","$responseData")
+                    //s etiing up for recycler View
+                    val Data = it.data?.booking
                     val recycler = binding.booikingRecycler
-                    val bookingAdapter= BookingRoomAdapter(requireContext(),booking_rooms!!)
-                    recycler.adapter =bookingAdapter
-                    recycler.layoutManager = LinearLayoutManager(requireContext())
+                    val bookingsAdapter = BookingRoomAdapter(requireContext(),Data!!)
+                    recycler.adapter = bookingsAdapter
+                    recycler.layoutManager =LinearLayoutManager(requireContext())
+
                 }
                 is NetworkResult.Loading ->{}
                 is NetworkResult.Error ->{}

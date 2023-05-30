@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hotelreservationsystem.Models.AllbookingsResponse
+import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.RoomRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
@@ -27,7 +28,7 @@ class HotelViewModel@Inject constructor (private val hotelRepositories: HotelRep
 
 
 
-    val allbookingLiveData : LiveData<NetworkResult<AllbookingsResponse>>
+    val allbookingLiveData : LiveData<NetworkResult<FinalBookingResponse>>
         get() = hotelRepositories.allbookingsResponse
 
     fun createHotel(ownerId: String, hotelRequest: HotelRequest) {
