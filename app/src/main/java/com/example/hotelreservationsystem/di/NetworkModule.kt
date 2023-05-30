@@ -65,4 +65,6 @@ class NetworkModule {
             .create(getallHotelsApi::class.java)
     }
 
+
+
 }
