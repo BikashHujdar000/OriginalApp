@@ -248,7 +248,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/theme1"
-                android:text="Update"
+                android:text="CREATE"
                 android:visibility="gone"
                  />
 

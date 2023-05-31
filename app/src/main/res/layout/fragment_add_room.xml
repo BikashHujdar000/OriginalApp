@@ -178,7 +178,7 @@
                 android:id="@+id/createRoom"
                 android:backgroundTint="@color/theme1"
                 android:layout_marginTop="20dp"
-                android:text="Create"
+                android:text="ADD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
