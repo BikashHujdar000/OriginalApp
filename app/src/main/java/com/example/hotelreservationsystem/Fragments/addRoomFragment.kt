@@ -70,44 +70,52 @@ class addRoomFragment : Fragment() {
         // getting the url of the image
 
         authViewModel.uploadImage(part)
-        authViewModel.photoResonseLiveData.observe(viewLifecycleOwner, Observer {
-            binding.progressBar.isVisible = false
-            when (it) {
-                is NetworkResult.Success -> {
 
-                    try {
-                        Log.d(TAG, "Show me the image uri ${it.data?.url}")
-                        imagePath = it.data!!.url
+        try {
+            authViewModel.photoResonseLiveData.observe(viewLifecycleOwner, Observer {
+                binding.progressBar.isVisible = false
+                when (it) {
+                    is NetworkResult.Success -> {
+
+                        try {
+                            Log.d(TAG, "Show me the image uri ${it.data?.url}")
+                            imagePath = it.data!!.url
 
 
-                        //changed code
-                        // binding.image1.setImageURI(it)
-                      //  context?.let { it1 -> Glide.with(it1).load(imagePath) }
+                            //changed code
+                            // binding.image1.setImageURI(it)
+                            //  context?.let { it1 -> Glide.with(it1).load(imagePath) }
 
-                       // Glide.with(this.context).load(R.drawable.test).into(holder.room_view_image)
-                        this.context?.let { it1 ->
-                            Glide.with(it1).load(imageUri).into(binding.image1)
+                            // Glide.with(this.context).load(R.drawable.test).into(holder.room_view_image)
+                            this.context?.let { it1 ->
+                                Glide.with(it1).load(imageUri).into(binding.image1)
+                            }
+                            binding.createRoom.visibility =View.VISIBLE
+
+
                         }
-                        binding.createRoom.visibility =View.VISIBLE
+                        catch (e:Exception)
+                        {
 
+                            Log.d(TAG,"Error time")
+                        }
 
                     }
-                    catch (e:Exception)
-                    {
-                        Log.d(TAG,"Error time")
+
+                    is NetworkResult.Error -> {
+
                     }
 
+                    is NetworkResult.Loading -> {
+                        binding.progressBar.isVisible = true
+                    }
                 }
+            })
 
-                is NetworkResult.Error -> {
-
-                }
-
-                is NetworkResult.Loading -> {
-                    binding.progressBar.isVisible = true
-                }
-            }
-        })
+        }catch (e:java.lang.Exception)
+        {
+            Toast.makeText(requireContext(), "Server Time out ", Toast.LENGTH_SHORT).show()
+        }
 
     }
 

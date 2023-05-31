@@ -75,12 +75,14 @@ class OwnerHomeFragment : Fragment() {
         Log.d(TAG,"Final OwnerId  is  $FinalOwnerId ")
         Log.d(TAG,"Final hotel Id  is  $FinalHotelId ")
 
-
-
         //yaha ma euta api call garxu
-
-
-         hotelViewModel.getHotelDetails(ownerId!!,hotelId!!)
+try {
+    hotelViewModel.getHotelDetails(ownerId!!, hotelId!!)
+}
+catch (e:Exception)
+{
+    Log.d(TAG,"error on calling the activity ${e.message}")
+}
         return binding.root;
     }
 

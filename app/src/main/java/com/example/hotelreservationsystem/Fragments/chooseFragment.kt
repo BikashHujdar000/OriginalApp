@@ -32,8 +32,6 @@ class chooseFragment : Fragment() {
     ): View? {
         binding = FragmentChooseBinding.inflate(layoutInflater, container, false)
 
-
-
 //        try {
 //
 //            if(tokenManager.getToken()!= null)
@@ -47,6 +45,7 @@ class chooseFragment : Fragment() {
 //        }
 
         return binding.root
+
 
     }
 

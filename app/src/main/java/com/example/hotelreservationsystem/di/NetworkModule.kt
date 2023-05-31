@@ -41,6 +41,7 @@ class NetworkModule {
     fun providesOwnerAPI(retrofitBuilder: Retrofit.Builder):OwnerApi{
         return  retrofitBuilder.build().create(OwnerApi::class.java)
     }
+
     @Singleton
     @Provides
     fun providesUerAPI(retrofitBuilder: Retrofit.Builder): UserApi {

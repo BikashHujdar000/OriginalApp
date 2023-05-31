@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,14 +22,23 @@ import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.TestModels.ReviewModel
+import com.example.hotelreservationsystem.ViewModels.HotelViewModel
+import com.example.hotelreservationsystem.ViewModels.okayTestViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOnTouchUserBinding
 import com.example.hotelreservationsystem.utils.constants.TAG
+import com.example.hotelreservationsystem.utils.constants.Tag2
+import dagger.hilt.android.AndroidEntryPoint
 import me.ibrahimsn.lib.SmoothBottomBar
+import java.lang.Exception
 
-
+@AndroidEntryPoint
 class OnTouchUserFragment : Fragment() {
+
+    private val hotelViewModel by viewModels<HotelViewModel>()
+    private  val okayTestViewModel by viewModels<okayTestViewModel>()
     lateinit var binding:com.example.hotelreservationsystem.databinding.FragmentOnTouchUserBinding
     private val args by navArgs<OnTouchUserFragmentArgs>()
+
 
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -38,20 +49,23 @@ class OnTouchUserFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOnTouchUserBinding.inflate(layoutInflater,container,false);
 
-
-
-
         // setting the hotel name and description with the hotel name from safe argument comming on click action
         binding.hotelName.text = args.hotel.name
         binding.hotelDescription.text = args.hotel.description
 
+        // kaam yaha baat suru hunxa hai yadi naya  base url call granu xa vaney
+
+try {
+    okayTestViewModel.getDetails()
+}catch (e:Exception)
+{
+    Log.d(Tag2,"okay what is the error on calling the view model functions ${e.message}")
+}
+
+
 
         // image for sliding view
-
-
-
         val imageList = ArrayList<SlideModel>() // Create image list for sliding purpose
-
         imageList.add(SlideModel(R.drawable.tst,scaleType = ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.tst1,scaleType = ScaleTypes.FIT))
         imageList.add(SlideModel(R.drawable.tst2,scaleType = ScaleTypes.FIT))
@@ -66,6 +80,8 @@ class OnTouchUserFragment : Fragment() {
             findNavController().navigate(action)
 
         }
+
+
 
         val manualData = ArrayList<DataModel>()
         manualData.add(DataModel("Trojan National Hotel","United",1))
@@ -103,8 +119,7 @@ class OnTouchUserFragment : Fragment() {
         reviewRecycleview.layoutManager = LinearLayoutManager(requireContext());
         return binding.root
 
-
-
     }
+
 
 }

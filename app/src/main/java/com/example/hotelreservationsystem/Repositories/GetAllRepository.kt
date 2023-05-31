@@ -14,6 +14,8 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class GetAllRepository @Inject constructor( private val getallHotelsApi: getallHotelsApi) {
+
+
 private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseListMethod>>()
     val hotelLiveDataList : LiveData<NetworkResult<HotelResponseListMethod>>
         get() = _hotelLiveDataList
@@ -99,6 +101,7 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
     suspend fun  cancelBooking(userId:String,hotelId: String,roomId: String,bookingId: String)
     {
       val response =  getallHotelsApi.cancelBooking(userId,hotelId,roomId,bookingId)
+
         if(response.isSuccessful && response.body()!= null)
         {
             handleResponseofBooking(response)

@@ -30,7 +30,6 @@ import kotlin.math.log
 @AndroidEntryPoint
 class UserHomeFragment : Fragment() {
     lateinit var binding:FragmentUserHomeBinding
-
     private val getAllHotelViewModel by viewModels<GetAllHotelViewModel>()
     private  var ownerResponse: HotelResponse?= null
     var userId :String? = null

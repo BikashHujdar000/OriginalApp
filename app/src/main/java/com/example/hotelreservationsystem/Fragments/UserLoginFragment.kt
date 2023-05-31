@@ -37,6 +37,19 @@ class UserLoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUserLoginBinding.inflate(layoutInflater, container, false);
+
+//                try {
+//
+//            if(tokenManager.getToken()!= null)
+//            {
+//                findNavController().navigate(R.id.action_userLoginFragment_to_userHomeFragment)
+//            }
+//
+//        }catch(e: Exception)
+//        {
+//            Log.d(constants.TAG,e.message.toString())
+//        }
+
         return binding.root
 
     }
