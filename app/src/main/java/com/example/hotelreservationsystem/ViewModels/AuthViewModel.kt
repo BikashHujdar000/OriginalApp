@@ -32,7 +32,9 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
     val photoResonseLiveData:LiveData<NetworkResult<PhotosResponse>>
     get()= ownerRepository.photoResponseLiveData
 
-     val otpGenerateResponseLiveData : LiveData<NetworkResult<OtpGenerateResponse>>
+
+    val hotelLiveData get()=ownerRepository.hotelLiveData
+    val otpGenerateResponseLiveData : LiveData<NetworkResult<OtpGenerateResponse>>
         get() = ownerRepository.otpGenerateResponseLiveData
     val otpVerifyResponseLiveData:LiveData<NetworkResult<OwnerOtpResponse>>
         get()=ownerRepository.otpVerifyResponseLiveData

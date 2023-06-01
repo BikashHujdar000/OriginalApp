@@ -122,7 +122,7 @@ class UserHomeFragment : Fragment() {
                                             TestAdapters.onItemClickListner {
                                             override fun onItemClick(position: Int) {
                                                 val hotel = response!!.get(position)
-                                                Log.d(TAG, "$hotel")
+                                                Log.d(TAG, " user home dekhi pathauda $hotel")
                                                 val userId = args.user.user._id.toString()
                                                 Log.d(TAG, "  user id kxa $userId")
                                                 val action =

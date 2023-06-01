@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordRequest
 import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordResponse
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.OtpGenerateRequest
 import com.example.hotelreservationsystem.Models.OtpGenerateResponse
 import com.example.hotelreservationsystem.Models.OwnerOtpRequest
@@ -16,6 +17,7 @@ import com.example.hotelreservationsystem.api.OwnerApi
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants
 import com.example.hotelreservationsystem.utils.constants.TAG
+import com.example.hotelreservationsystem.utils.constants.Tag2
 import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Response
@@ -32,6 +34,11 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
     private val _ownerResponseLiveData = MutableLiveData<NetworkResult<OwnerResponse>>()
     val ownerResponseLiveData: LiveData<NetworkResult<OwnerResponse>>
         get() = _ownerResponseLiveData
+
+
+    private  val _hotelLiveData =MutableLiveData<NetworkResult<HotelResponse>>()
+    val hotelLiveData : LiveData<NetworkResult<HotelResponse>>
+        get() = _hotelLiveData
 
     private val _otpGenerateResponseLiveData = MutableLiveData<NetworkResult<OtpGenerateResponse>>()
     val otpGenerateResponseLiveData: LiveData<NetworkResult<OtpGenerateResponse>>
@@ -140,6 +147,7 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
 
     suspend fun getRecommenderResponse(ownerId:String,hotelId:String)
     {
+        _hotelLiveData.postValue(NetworkResult.Loading())
         Log.d(constants.Tag2,"Repository ma gayo ")
         Log.d(constants.Tag2,"ownerid is commng $ownerId")
         Log.d(constants.Tag2,"hotelid is commng $hotelId")
@@ -148,9 +156,10 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
             if (response.isSuccessful) {
                 Log.d(constants.Tag2, "Response is coming")
                 val hotelResponse = response.body()
+                Log.d(Tag2,"Response aayo hain naya api baat ${hotelResponse}")
                 // Add additional logging to inspect the response
-                Log.d(constants.Tag2, "Hotel name: ${hotelResponse?.hotel?.name}")
-                Log.d(constants.Tag2, "Hotel address: ${hotelResponse?.hotel?.address}")
+                _hotelLiveData.postValue(NetworkResult.Success(hotelResponse))
+
                 // Add more logging statements to check other properties of the response
             } else {
                 Log.d(constants.Tag2, "Failed to get the response: ${response.code()}")

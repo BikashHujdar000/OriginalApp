@@ -60,6 +60,15 @@ class OnTouchUserFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOnTouchUserBinding.inflate(layoutInflater,container,false);
 
+
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
         // setting the hotel name and description with the hotel name from safe argument comming on click action
         binding.hotelName.text = args.hotel.name
         binding.hotelDescription.text = args.hotel.description
@@ -82,18 +91,18 @@ class OnTouchUserFragment : Fragment() {
         Log.d(Tag2," okay this is the respionse of single hotel from user home fragment ${args}")
 
         // okay ma yaha try gardee xu aab
-         try {
-             price = Integer.parseInt(args.hotel.cheapestPrice.toString())
-             type = Integer.parseInt(args.hotel.type.toString())
-             rating = Integer.parseInt(args.hotel.rating.toString())
-             Log.d(Tag2, "When i get the data to give the input i get these price $price type $type rating $rating")
-             okayTestViewModel.getList(RecommendationRequest(price!!,rating!!,type!!))
+        try {
+            price = Integer.parseInt(args.hotel.cheapestPrice.toString())
+            type = Integer.parseInt(args.hotel.type.toString())
+            rating = Integer.parseInt(args.hotel.rating.toString())
+            Log.d(Tag2, "When i get the data to give the input i get these price $price type $type rating $rating")
+            okayTestViewModel.getList(RecommendationRequest(price!!,rating!!,type!!))
 
 
-         }catch (e:Exception)
-         {
-             Log.d(Tag2,"Error on calling the api hit for another response ")
-         }
+        }catch (e:Exception)
+        {
+            Log.d(Tag2,"Error on calling the api hit for another response ")
+        }
         // kaam yaha baat suru hunxa hai yadi naya  base url call granu xa vaney
 
 
@@ -112,7 +121,7 @@ class OnTouchUserFragment : Fragment() {
         // setiing for review recycler view
 
 
-       val ManualReviewData = ArrayList<ReviewModel>()
+        val ManualReviewData = ArrayList<ReviewModel>()
         ManualReviewData.add(ReviewModel("BIkash Hujdar","2076/12/3",R.drawable.profiletest,"They were extremely accommodating and allowed us to check in early at like 10am. We got to hotel super early and I didn’t wanna wait. So this was a big plus. The sevice was exceptional as well. Would definitely send a friend there.",4))
         ManualReviewData.add(ReviewModel("BIkash Hujdar","2076/12/3",R.drawable.profiletest,"This is the Best Hotel in the asia",4))
         ManualReviewData.add(ReviewModel("BIkash Hujdar","2076/12/3",R.drawable.profiletest,"TThey were extremely accommodating and allowed us to check in early at like 10am. We got to hotel super early and I didn’t wanna wait. So this was a big plus. The sevice was exceptional as well. Would definitely send a friend there.",4))
@@ -120,17 +129,10 @@ class OnTouchUserFragment : Fragment() {
         ManualReviewData.add(ReviewModel("BIkash Hujdar","2076/12/3",R.drawable.profiletest,"This is the Best Hotel in the asia",4))
         ManualReviewData.add(ReviewModel("BIkash Hujdar","2076/12/3",R.drawable.profiletest,"This is the Best Hotel in the asia",4))
         ManualReviewData.add(ReviewModel("BIkash Hujdar","2076/12/3",R.drawable.profiletest,"This is the Best Hotel in the asia",4))
-         val reviewAdapter =ReviewsAdapterTest(requireContext(),ManualReviewData)
+        val reviewAdapter =ReviewsAdapterTest(requireContext(),ManualReviewData)
         val reviewRecycleview = binding.reviewRecyclerView
         reviewRecycleview.adapter = reviewAdapter
         reviewRecycleview.layoutManager = LinearLayoutManager(requireContext());
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
 
         okayTestViewModel.recoomendationLiveData.observe(viewLifecycleOwner, Observer {
             when(it)
@@ -139,8 +141,7 @@ class OnTouchUserFragment : Fragment() {
                     val ModelData = it.data?.hotels
                     // so now i am changing the array list into list
 
-                            val recommendedAdapter =
-                                ModelData?.let { it1 -> RecomenderAdapter(requireContext(), it1) }
+                            val recommendedAdapter = ModelData?.let { it1 -> RecomenderAdapter(requireContext(), it1) }
                             // if i want to set the recycler view for recommendation system
                             val recomenderrecycleView = binding.recomenderRecyclerView
                             recomenderrecycleView.adapter = recommendedAdapter
@@ -161,15 +162,31 @@ class OnTouchUserFragment : Fragment() {
                                 Log.d(Tag2,"Clicked on item of Recoomender Recycler $ownerId ")
                                 Log.d(Tag2,"Clicked on item of Recoomender Recycler $hotelId")
 
-
-
-
                                 try {
-                                 ownerViewModel.getRecommenderResponse("6476b4d29ed3399ac6594e3d","6476b84a8c919b4666f84e3f")
+                                 ownerViewModel.getRecommenderResponse(ownerId!!,hotelId!!)
+                                    ownerViewModel.hotelLiveData.observe(viewLifecycleOwner,
+                                        Observer {
+                                            when(it)
+                                            {
+                                                is NetworkResult.Success->{
+                                                    val hotel = it.data?.hotel
+
+                                                    Log.d(Tag2,"aab jun ma pathauna chahaxu response " )
+                                                    Log.d(Tag2,"$hotel")
+
+                                                    val action= OnTouchUserFragmentDirections.actionOnTouchUserFragmentSelf(hotel!!,userId!!)
+                                                    findNavController().navigate(action)
+                                                }
+                                                is NetworkResult.Loading->{}
+                                                is NetworkResult.Error->{}
+                                            }
+
+                                        })
                                 }catch (e:Exception)
                                 {
                                     Log.d(Tag2,"Okay sorry to call this api from live data ${e.message} ")
                                 }
+
 
 
                             }

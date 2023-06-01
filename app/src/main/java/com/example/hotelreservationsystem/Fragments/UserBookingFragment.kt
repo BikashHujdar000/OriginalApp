@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hotelreservationsystem.Models.BookRequest
+import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.GetAllHotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentUserBookingBinding
 import com.example.hotelreservationsystem.utils.constants
@@ -174,7 +176,13 @@ class UserBookingFragment : Fragment() {
 
                 Log.d(constants.TAG,"Datas are $userId  , $hotelId , $roomId  ,$checkinData ,$checkOutData")
                 // setting book methood
-                getAllHotelViewModel.bookRoom(userId,hotelId,roomId, BookRequest("Tue May 28 2023","Wed May 29 2023"))
+                getAllHotelViewModel.bookRoom(userId,hotelId,roomId, BookRequest(checkinData,checkOutData))
+
+
+
+
+
+
             }catch (e:java.lang.Exception)
             {
                 Log.d(constants.TAG,"Error on booking call ii guess ")
@@ -186,5 +194,6 @@ class UserBookingFragment : Fragment() {
         return binding.root
 
     }
+
 
 }
