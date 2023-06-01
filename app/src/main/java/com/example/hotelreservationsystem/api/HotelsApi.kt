@@ -1,6 +1,5 @@
 package com.example.hotelreservationsystem.api
 
-import com.example.hotelreservationsystem.Models.AllbookingsResponse
 import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse

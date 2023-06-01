@@ -94,6 +94,13 @@ class AuthViewModel @Inject constructor(private  val ownerRepository: OwnerRepos
         return  result
 
     }
+
+    fun getRecommenderResponse(ownerId:String,hotelId:String)
+    {
+        viewModelScope.launch {
+            ownerRepository.getRecommenderResponse(ownerId,hotelId)
+        }
+    }
 }
 
 

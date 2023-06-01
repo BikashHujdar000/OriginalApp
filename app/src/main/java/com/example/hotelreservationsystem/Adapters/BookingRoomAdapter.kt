@@ -1,14 +1,12 @@
 package com.example.hotelreservationsystem.Adapters
 
 import android.content.Context
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotelreservationsystem.Models.Booking
-import com.example.hotelreservationsystem.Models.BookingX
 import com.example.hotelreservationsystem.R
 
 class BookingRoomAdapter(val context: Context, val bookedRoomList:List<Booking>):

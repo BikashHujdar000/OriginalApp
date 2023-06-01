@@ -32,4 +32,5 @@ interface UserApi {
     @POST("userauth/savepassword2")
     suspend fun createOwnerPassword(@Body user: ConfirmOwnerPasswordRequest): Response<UserSavePasswordResponse>
 
+
 }

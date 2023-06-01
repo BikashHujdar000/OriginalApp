@@ -8,21 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotelreservationsystem.Adapters.BookingRoomAdapter
-import com.example.hotelreservationsystem.Adapters.BookingsAdapter
-import com.example.hotelreservationsystem.Models.BookingX
-import com.example.hotelreservationsystem.Models.RoomX
-import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOwnersBookingBinding
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
-import hilt_aggregated_deps._com_example_hotelreservationsystem_ViewModels_AuthViewModel_HiltModules_KeyModule
 import java.lang.Exception
-import kotlin.math.log
 
 @AndroidEntryPoint
 class OwnersBookingFragment : Fragment() {

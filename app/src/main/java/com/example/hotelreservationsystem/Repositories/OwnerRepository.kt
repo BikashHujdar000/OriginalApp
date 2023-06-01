@@ -14,6 +14,7 @@ import com.example.hotelreservationsystem.Models.OwnerResponse
 import com.example.hotelreservationsystem.Models.PhotosResponse
 import com.example.hotelreservationsystem.api.OwnerApi
 import com.example.hotelreservationsystem.utils.NetworkResult
+import com.example.hotelreservationsystem.utils.constants
 import com.example.hotelreservationsystem.utils.constants.TAG
 import okhttp3.MultipartBody
 import org.json.JSONObject
@@ -131,6 +132,33 @@ class OwnerRepository  @Inject constructor ( private val ownerApi:OwnerApi) {
         catch (e:Exception)
         {
             Log.d(TAG,e.toString())
+        }
+
+
+    }
+
+
+    suspend fun getRecommenderResponse(ownerId:String,hotelId:String)
+    {
+        Log.d(constants.Tag2,"Repository ma gayo ")
+        Log.d(constants.Tag2,"ownerid is commng $ownerId")
+        Log.d(constants.Tag2,"hotelid is commng $hotelId")
+        try {
+            val response = ownerApi.getHotelDetails(ownerId,hotelId)
+            if (response.isSuccessful) {
+                Log.d(constants.Tag2, "Response is coming")
+                val hotelResponse = response.body()
+                // Add additional logging to inspect the response
+                Log.d(constants.Tag2, "Hotel name: ${hotelResponse?.hotel?.name}")
+                Log.d(constants.Tag2, "Hotel address: ${hotelResponse?.hotel?.address}")
+                // Add more logging statements to check other properties of the response
+            } else {
+                Log.d(constants.Tag2, "Failed to get the response: ${response.code()}")
+            }
+        }
+        catch (e: java.lang.Exception)
+        {
+            Log.d(constants.Tag2,"Sorry Exception ${e.message}")
         }
 
 

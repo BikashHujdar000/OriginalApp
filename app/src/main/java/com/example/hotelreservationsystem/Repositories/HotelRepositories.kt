@@ -3,7 +3,6 @@ package com.example.hotelreservationsystem.Repositories
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.hotelreservationsystem.Models.AllbookingsResponse
 import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelRequest
 import com.example.hotelreservationsystem.Models.HotelResponse
@@ -16,7 +15,6 @@ import org.json.JSONObject
 import retrofit2.Response
 import java.lang.Exception
 import javax.inject.Inject
-import kotlin.math.log
 
 class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
 
@@ -146,11 +144,12 @@ class HotelRepositories @Inject constructor(private  val hotelsApi: HotelsApi) {
         Log.d(TAG,"Repository call vae sako ")
         try {
         val response = hotelsApi.getHotelDetails(ownerId,hotelId)
-
         if(response.isSuccessful && response.body()!= null)
         {
             Log.d(TAG,"hotel Response aaudee xa ")
+
             Log.d(TAG," ${response.body().toString()}")
+
             _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
 
         }

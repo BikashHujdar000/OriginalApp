@@ -6,6 +6,6 @@ object constants {
     const val SHARED_PREF_TOKEN_FILE= "SHARED_PREF_TOKEN_FILE"
     const val USER_TOKEN= "USER_TOKEN"
     const val Tag2 = "TestLog"
-    const val BASE = "https://api.publicapis.org/"
+    const val BASE = "https://linaanil.pythonanywhere.com/"
 
 }

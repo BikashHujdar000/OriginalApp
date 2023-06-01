@@ -9,8 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.Navigation
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,24 +17,36 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.hotelreservationsystem.Adapters.RecomenderAdapter
 import com.example.hotelreservationsystem.Adapters.ReviewsAdapterTest
-import com.example.hotelreservationsystem.Models.HotelResponse
+import com.example.hotelreservationsystem.Models.RecommendationRequest
 import com.example.hotelreservationsystem.R
-import com.example.hotelreservationsystem.TestModels.DataModel
 import com.example.hotelreservationsystem.TestModels.ReviewModel
+import com.example.hotelreservationsystem.ViewModels.AuthViewModel
 import com.example.hotelreservationsystem.ViewModels.HotelViewModel
 import com.example.hotelreservationsystem.ViewModels.okayTestViewModel
 import com.example.hotelreservationsystem.databinding.FragmentOnTouchUserBinding
-import com.example.hotelreservationsystem.utils.constants.TAG
+import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants.Tag2
 import dagger.hilt.android.AndroidEntryPoint
-import me.ibrahimsn.lib.SmoothBottomBar
 import java.lang.Exception
 
 @AndroidEntryPoint
 class OnTouchUserFragment : Fragment() {
 
-    private val hotelViewModel by viewModels<HotelViewModel>()
+    var userId:String? = null
+    var ownerId:String ?= null
+    var hotelId:String? = null
+     var price:Int? = null
+    var type :Int? =null
+    var rating:Int? = null
+
+    //{
+    //    "price":300,
+    //    "type":2,
+    //    "rating":4
+    //}
+
     private  val okayTestViewModel by viewModels<okayTestViewModel>()
+    private val ownerViewModel by viewModels<AuthViewModel> ()
     lateinit var binding:com.example.hotelreservationsystem.databinding.FragmentOnTouchUserBinding
     private val args by navArgs<OnTouchUserFragmentArgs>()
 
@@ -52,25 +63,40 @@ class OnTouchUserFragment : Fragment() {
         // setting the hotel name and description with the hotel name from safe argument comming on click action
         binding.hotelName.text = args.hotel.name
         binding.hotelDescription.text = args.hotel.description
+        userId= args.userId
+        ownerId = args.hotel.owner.toString()
+        hotelId= args.hotel._id
 
+        val imageAPiList :List<String> =args.hotel.photos
+        val imageList = ArrayList<SlideModel>() // Create image list
+
+        for(imageUrl in imageAPiList){
+
+            imageList.add(SlideModel(imageUrl,ScaleTypes.FIT))
+        }
+
+        binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
+        binding.imageSlider.setImageList(imageList)
+
+
+        Log.d(Tag2," okay this is the respionse of single hotel from user home fragment ${args}")
+
+        // okay ma yaha try gardee xu aab
+         try {
+             price = Integer.parseInt(args.hotel.cheapestPrice.toString())
+             type = Integer.parseInt(args.hotel.type.toString())
+             rating = Integer.parseInt(args.hotel.rating.toString())
+             Log.d(Tag2, "When i get the data to give the input i get these price $price type $type rating $rating")
+             okayTestViewModel.getList(RecommendationRequest(price!!,rating!!,type!!))
+
+
+         }catch (e:Exception)
+         {
+             Log.d(Tag2,"Error on calling the api hit for another response ")
+         }
         // kaam yaha baat suru hunxa hai yadi naya  base url call granu xa vaney
 
-try {
-    okayTestViewModel.getDetails()
-}catch (e:Exception)
-{
-    Log.d(Tag2,"okay what is the error on calling the view model functions ${e.message}")
-}
 
-
-
-        // image for sliding view
-        val imageList = ArrayList<SlideModel>() // Create image list for sliding purpose
-        imageList.add(SlideModel(R.drawable.tst,scaleType = ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.tst1,scaleType = ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.tst2,scaleType = ScaleTypes.FIT))
-        binding. imageSlider.setImageList(imageList, ScaleTypes.FIT)
-        binding.imageSlider.setImageList(imageList)
 
         binding.availableRooms.setOnClickListener{
             val hotel = args.hotel
@@ -81,25 +107,6 @@ try {
 
         }
 
-
-
-        val manualData = ArrayList<DataModel>()
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("sigma National Hotel","United",1))
-        manualData.add(DataModel("LojanNational Hotel","United",1))
-        manualData.add(DataModel("TarhanNational Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("famndfk fkanlkd Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        manualData.add(DataModel("Sirha National Hotel","United",1))
-        manualData.add(DataModel("Trojan National Hotel","United",1))
-        val recommendedAdapter = RecomenderAdapter(requireContext(),manualData)
-        // if i want to set the recycler view for recommendation system
-        val recomenderrecycleView = binding.recomenderRecyclerView
-        recomenderrecycleView.adapter = recommendedAdapter
-        recomenderrecycleView.layoutManager = LinearLayoutManager(requireContext(),
-            LinearLayoutManager.HORIZONTAL,false)
 
 
         // setiing for review recycler view
@@ -119,6 +126,65 @@ try {
         reviewRecycleview.layoutManager = LinearLayoutManager(requireContext());
         return binding.root
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        okayTestViewModel.recoomendationLiveData.observe(viewLifecycleOwner, Observer {
+            when(it)
+            {
+                is NetworkResult.Success->{
+                    val ModelData = it.data?.hotels
+                    // so now i am changing the array list into list
+
+                            val recommendedAdapter =
+                                ModelData?.let { it1 -> RecomenderAdapter(requireContext(), it1) }
+                            // if i want to set the recycler view for recommendation system
+                            val recomenderrecycleView = binding.recomenderRecyclerView
+                            recomenderrecycleView.adapter = recommendedAdapter
+                            recomenderrecycleView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+
+
+                    // setiign up for recomendation click lisstner
+
+                    if (recommendedAdapter != null) {
+                            recommendedAdapter.setOnItemClickListner(object :RecomenderAdapter.onItemClickListner{
+                            override fun onItemClick(position: Int) {
+
+                                            ownerId = it.data.hotels.get(position).owner.toString()
+                                            hotelId = it.data.hotels.get(position)._id
+
+                                Log.d(Tag2,"Clicked on item of Recoomender Recycler ")
+                                Log.d(Tag2,"Clicked on item of Recoomender Recycler $ownerId ")
+                                Log.d(Tag2,"Clicked on item of Recoomender Recycler $hotelId")
+
+
+
+
+                                try {
+                                 ownerViewModel.getRecommenderResponse("6476b4d29ed3399ac6594e3d","6476b84a8c919b4666f84e3f")
+                                }catch (e:Exception)
+                                {
+                                    Log.d(Tag2,"Okay sorry to call this api from live data ${e.message} ")
+                                }
+
+
+                            }
+
+                        })
+                    }
+                }
+                is NetworkResult.Loading->{
+
+                }
+                is NetworkResult.Error ->{
+
+                }
+            }
+        })
     }
 
 

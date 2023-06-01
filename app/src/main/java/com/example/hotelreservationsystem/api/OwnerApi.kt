@@ -2,6 +2,7 @@ package com.example.hotelreservationsystem.api
 
 import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordRequest
 import com.example.hotelreservationsystem.Models.ConfirmOwnerPasswordResponse
+import com.example.hotelreservationsystem.Models.HotelResponse
 import com.example.hotelreservationsystem.Models.OtpGenerateRequest
 import com.example.hotelreservationsystem.Models.OtpGenerateResponse
 import com.example.hotelreservationsystem.Models.OwnerOtpRequest
@@ -12,9 +13,11 @@ import com.example.hotelreservationsystem.Models.PhotosResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 
 interface OwnerApi {
@@ -28,6 +31,9 @@ interface OwnerApi {
     @POST("/ownerroom/uploadroompictocloud")
     suspend fun uplaodImage(@Part image:MultipartBody.Part):Response<PhotosResponse>
 
+
+    @GET("user/getsinglehotelnoauth/{ownerId}/{hotelId}")
+    suspend fun getHotelDetails(@Path("ownerId")ownerId: String, @Path("hotelId")hotelId: String):Response<HotelResponse>
 
     @POST("ownerauth/generateotp1")
     suspend fun getOtp(@Body otpGenerateRequest: OtpGenerateRequest):Response<OtpGenerateResponse>

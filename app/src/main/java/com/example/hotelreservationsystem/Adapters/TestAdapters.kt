@@ -10,10 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hotelreservationsystem.Models.Hotel
-import com.example.hotelreservationsystem.Models.HotelX
 import com.example.hotelreservationsystem.R
-
-import com.example.hotelreservationsystem.TestModels.DataModel
 
 class TestAdapters(val context:Context, val data: List<Hotel>?):RecyclerView.Adapter<TestAdapters.MyViewHolder>() {
 
