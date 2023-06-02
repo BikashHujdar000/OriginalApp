@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hotelreservationsystem.Models.BookRequest
 import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.ViewModels.GetAllHotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentUserBookingBinding
+import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -175,11 +177,31 @@ class UserBookingFragment : Fragment() {
                 val checkOutData = binding.checkOutDate.toString()
 
                 Log.d(constants.TAG,"Datas are $userId  , $hotelId , $roomId  ,$checkinData ,$checkOutData")
-                // setting book methood
-                getAllHotelViewModel.bookRoom(userId,hotelId,roomId, BookRequest(checkinData,checkOutData))
+                // setting book
+                try {
 
+                    getAllHotelViewModel.bookRoom(userId,hotelId,roomId, BookRequest("2023-05-24","2023-05-26"))
 
+                    getAllHotelViewModel.bookNowResponseLiveData.observe(viewLifecycleOwner,
+                        Observer {
+                            when(it)
+                            {
+                                is NetworkResult.Loading->{}
+                                is NetworkResult.Success->{
+                                    findNavController().navigate(R.id.action_userBookingFragment_to_userHomeFragment,Bundle().apply {
+                                        putString("userId",userId)
+                                    })
+                                }
+                                is NetworkResult.Error->{}
+                            }
+                        })
 
+                    Toast.makeText(requireContext(), "Booking Sucessfull View in Profile ", Toast.LENGTH_SHORT).show()
+
+                }catch (e:java.lang.Exception)
+                {
+                    Toast.makeText(requireContext(), "Booking Failed", Toast.LENGTH_SHORT).show()
+                }
 
 
 

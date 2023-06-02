@@ -111,8 +111,12 @@ class UserLoginFragment : Fragment() {
 
                     // trying to send the data
                     val user = UserResponse(it.data!!.token.toString(),it.data.user)
-                    val action = UserLoginFragmentDirections.actionUserLoginFragmentToUserHomeFragment(user)
-                    findNavController().navigate(action)
+//                    val action = UserLoginFragmentDirections.actionUserLoginFragmentToUserHomeFragment(user)
+//                    findNavController().navigate(action)
+                   findNavController().navigate(R.id.action_userLoginFragment_to_userHomeFragment,Bundle().apply {
+                       putString("userId",userId)
+                       putString("username",username)
+                   })
                 }
 
                 is NetworkResult.Error -> {

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hotelreservationsystem.Models.BookHudaKoResponse
 import com.example.hotelreservationsystem.Models.BookRequest
 import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelResponseListMethod
@@ -20,8 +21,8 @@ class GetAllHotelViewModel @Inject constructor(  val getAllRepository: GetAllRep
      val _hotelLiveDataList : LiveData<NetworkResult<HotelResponseListMethod>>
         get() = getAllRepository.hotelLiveDataList
 
-
-
+    val bookNowResponseLiveData :LiveData<NetworkResult<BookHudaKoResponse>>
+        get() =  getAllRepository.bookNowResponseLiveData
     val userBookingsLiveData :LiveData<NetworkResult<FinalBookingResponse>>
             get()= getAllRepository.userBookLiveData
 
@@ -34,7 +35,7 @@ class GetAllHotelViewModel @Inject constructor(  val getAllRepository: GetAllRep
     }
     fun bookRoom(userId: String,hotelId:String,roomId:String,bookRequest:BookRequest)
     {
-        Log.d(TAG,"view model ko function call vayo ")
+        Log.d(TAG,"view model  book wal ko function call vayo ")
         viewModelScope.launch {
             getAllRepository.bookRoom(userId,hotelId,roomId,bookRequest)
         }

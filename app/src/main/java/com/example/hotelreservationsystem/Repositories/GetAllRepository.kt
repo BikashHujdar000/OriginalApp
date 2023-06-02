@@ -2,6 +2,7 @@ package com.example.hotelreservationsystem.Repositories
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.hotelreservationsystem.Models.BookHudaKoResponse
 import com.example.hotelreservationsystem.Models.BookRequest
 import com.example.hotelreservationsystem.Models.FinalBookingResponse
 import com.example.hotelreservationsystem.Models.HotelResponse
@@ -21,6 +22,9 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
         get() = _hotelLiveDataList
 
 
+    private  val _bookNowResponseLiveData = MutableLiveData<NetworkResult<BookHudaKoResponse>>()
+    val bookNowResponseLiveData :LiveData<NetworkResult<BookHudaKoResponse>>
+        get() = _bookNowResponseLiveData
     // let me describe new
     private  val _hotelLiveData =MutableLiveData<NetworkResult<HotelResponse>>()
     val hotelLiveData : LiveData<NetworkResult<HotelResponse>>
@@ -52,35 +56,17 @@ private val _hotelLiveDataList = MutableLiveData<NetworkResult<HotelResponseList
         }
     }
     suspend fun bookRoom(userId: String,hotelId:String,roomId:String,bookRequest: BookRequest)
-    {
-       _statusLiveData.postValue(NetworkResult.Loading())
-        _hotelLiveData.postValue(NetworkResult.Loading())
+    {_bookNowResponseLiveData.postValue(NetworkResult.Loading())
 
         val response = getallHotelsApi.bookRoom(userId,hotelId,roomId,bookRequest)
 
-
-//        if (response.isSuccessful && response.body()!= null)
-//        {
-//            Log.d(constants.TAG, "response aaudee xa")
-//            _statusLiveData.postValue(NetworkResult.Success(" Sucessfully Booked Hotel"))
-//            _hotelLiveData.postValue(NetworkResult.Success(response.body()!!))
-//        }
-//        else
-//        {
-//            _hotelLiveData.postValue(NetworkResult.Error("Something went wrong Sorry"))
-//        }
-        try {
-
-        if (response.isSuccessful) {
-            Log.d(constants.TAG, "response aaudee xa")
-        } else {
-            Log.d(constants.TAG, "Failed to get Response ")
+       Log.d(TAG,"${response.body()}")
+        if (response.isSuccessful && response.body()!= null)
+        {
+            Log.d(TAG, "response aaudee xa  ${response.body()}")
+            _bookNowResponseLiveData.postValue(NetworkResult.Success(response.body()!!))
         }
-    } catch (e: Exception) {
-        Log.d(constants.TAG, "Exception ma xiro")
 
-        Log.d(constants.TAG, e.message.toString())
-    }
 
     }
 

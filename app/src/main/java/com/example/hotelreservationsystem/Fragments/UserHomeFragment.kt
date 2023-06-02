@@ -35,7 +35,7 @@ class UserHomeFragment : Fragment() {
     var userId :String? = null
     //for the serialized data to handle in this fragment
 
-    private val args by navArgs<UserHomeFragmentArgs>()
+
 
     @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.R)
@@ -46,10 +46,11 @@ class UserHomeFragment : Fragment() {
         binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
         //setting username in the profile head
 //        binding.userName.text = args.user.user.username
-        binding.userName.text = args.user.user.username
+        binding.userName.text = requireArguments().getString("username")
+
 
         //getting userId from the UserResponse
-        userId = args.user.user._id.toString()
+        userId = requireArguments().getString("userId")
 
 
         // yaha dekhi tal matra acess gar hain data
@@ -123,12 +124,12 @@ class UserHomeFragment : Fragment() {
                                             override fun onItemClick(position: Int) {
                                                 val hotel = response!!.get(position)
                                                 Log.d(TAG, " user home dekhi pathauda $hotel")
-                                                val userId = args.user.user._id.toString()
+
                                                 Log.d(TAG, "  user id kxa $userId")
                                                 val action =
                                                     UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(
                                                         hotel,
-                                                        userId
+                                                        userId!!
                                                     )
                                                 findNavController().navigate(action)
 
