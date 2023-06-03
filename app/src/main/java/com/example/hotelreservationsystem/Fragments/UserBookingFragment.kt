@@ -18,6 +18,7 @@ import com.example.hotelreservationsystem.ViewModels.GetAllHotelViewModel
 import com.example.hotelreservationsystem.databinding.FragmentUserBookingBinding
 import com.example.hotelreservationsystem.utils.NetworkResult
 import com.example.hotelreservationsystem.utils.constants
+import com.example.hotelreservationsystem.utils.constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -29,6 +30,9 @@ class UserBookingFragment : Fragment() {
     lateinit var binding: FragmentUserBookingBinding
     var calculatedAmount :Int? = null
     var roomPrice :Int? = null
+    var startDate:String ? = null
+    var endDate :String?=null
+
     private val getAllHotelViewModel by viewModels<GetAllHotelViewModel>()
 
 
@@ -66,9 +70,15 @@ class UserBookingFragment : Fragment() {
                         ((monthOfYear + 1).toString() + "/" + dayOfMonth + "/" + year)
                     val text =
                         ((dayOfWeek.toString() + monthOfYear + 1.toString() + dayOfMonth.toString() + year.toString()))
+
                     Log.d(constants.TAG, " date is $text")
 
-                    //   "startDate":"Tue May 26 2023",
+                   // "2023-05-24"
+
+
+                     startDate  = ((year).toString()+"-"+(monthOfYear+1).toString()+"-"+dayOfMonth)
+                    Log.d(TAG,"okay So Start Date is ${startDate.toString()}")
+
                 },
                 // on below line we are passing year, month
                 // and day for the selected date in our date picker.
@@ -97,6 +107,9 @@ class UserBookingFragment : Fragment() {
                 { view, year, monthOfYear, dayOfMonth ->
                     binding.checkOutDate.text =
                         ((monthOfYear + 1).toString() + "/" + dayOfMonth + "/" + year)
+
+                     endDate  = ((year).toString()+"-"+(monthOfYear+1).toString()+"-"+dayOfMonth)
+                    Log.d(TAG,"okay So End Date is ${endDate.toString()}")
 
                 },
                 // on below line we are passing year, month
@@ -176,11 +189,11 @@ class UserBookingFragment : Fragment() {
                 val checkinData = binding.checkInDate.toString()
                 val checkOutData = binding.checkOutDate.toString()
 
-                Log.d(constants.TAG,"Datas are $userId  , $hotelId , $roomId  ,$checkinData ,$checkOutData")
+
                 // setting book
                 try {
-
-                    getAllHotelViewModel.bookRoom(userId,hotelId,roomId, BookRequest("2023-05-24","2023-05-26"))
+                    Log.d(constants.TAG,"Datas are $userId  , $hotelId , $roomId  ,${startDate} ,${endDate}")
+                    getAllHotelViewModel.bookRoom(userId,hotelId,roomId,BookRequest( startDate!!,endDate!!))
 
                     getAllHotelViewModel.bookNowResponseLiveData.observe(viewLifecycleOwner,
                         Observer {
@@ -188,6 +201,7 @@ class UserBookingFragment : Fragment() {
                             {
                                 is NetworkResult.Loading->{}
                                 is NetworkResult.Success->{
+                                    Toast.makeText(requireContext(), "Booking Sucessfull View in Profile ", Toast.LENGTH_SHORT).show()
                                     findNavController().navigate(R.id.action_userBookingFragment_to_userHomeFragment,Bundle().apply {
                                         putString("userId",userId)
                                     })
@@ -196,7 +210,7 @@ class UserBookingFragment : Fragment() {
                             }
                         })
 
-                    Toast.makeText(requireContext(), "Booking Sucessfull View in Profile ", Toast.LENGTH_SHORT).show()
+
 
                 }catch (e:java.lang.Exception)
                 {
