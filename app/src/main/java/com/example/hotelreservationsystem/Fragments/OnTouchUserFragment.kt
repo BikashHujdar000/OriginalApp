@@ -60,7 +60,7 @@ class OnTouchUserFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOnTouchUserBinding.inflate(layoutInflater,container,false);
 
-
+        binding.recomenderShimmer.startShimmer()
         // something that should be done first
         // setting the hotel name and description with the hotel name from safe argument comming on click action
         binding.hotelName.text = args.hotel.name
@@ -149,6 +149,9 @@ class OnTouchUserFragment : Fragment() {
                             val recommendedAdapter = ModelData?.let { it1 -> RecomenderAdapter(requireContext(), it1) }
                             // if i want to set the recycler view for recommendation system
                             val recomenderrecycleView = binding.recomenderRecyclerView
+                            binding.recomenderShimmer.stopShimmer()
+                            binding.recomenderShimmer.visibility = View.INVISIBLE
+                            recomenderrecycleView.visibility=View.VISIBLE
                             recomenderrecycleView.adapter = recommendedAdapter
                             recomenderrecycleView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 

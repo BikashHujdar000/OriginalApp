@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,6 +30,7 @@ class RecomenderAdapter(val context:Context, val data: List<RecomnderData>): Rec
         val name = itemview.findViewById<TextView>(R.id.hotel_name_recommender)
         val location = itemview.findViewById<TextView>(R.id.hotel__recommender_loaction)
        val image = itemview.findViewById<ShapeableImageView>(R.id.hotelImage_recommeder)
+        val ratingbar  = itemview.findViewById<RatingBar>(R.id.recommender_rating_bar)
 
         init {
             itemView.setOnClickListener{
@@ -54,6 +56,10 @@ class RecomenderAdapter(val context:Context, val data: List<RecomnderData>): Rec
 
         //yaha xu ma hain
         Glide.with(this.context).load(data.get(position).photos).into((holder.image))
+        val floatRating = data.get(position).Rating
+        val rateNumber= floatRating.toFloat()
+        holder.ratingbar.rating = rateNumber
+
     }
 
 }

@@ -44,6 +44,10 @@ class UserHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUserHomeBinding.inflate(layoutInflater,container,false)
+
+        // applyying shimmer
+
+        binding.userHomeShimmer.startShimmer()
         //setting username in the profile head
 //        binding.userName.text = args.user.user.username
         binding.userName.text = requireArguments().getString("username")
@@ -115,7 +119,11 @@ class UserHomeFragment : Fragment() {
                                         Log.d("response dekha", "aayo la")
                                         val recyclerView = binding.userTestHomeRecycler
                                         val hotelAdapters = TestAdapters(requireContext(), response)
+                                        binding.userHomeShimmer.stopShimmer()
+                                        binding.userHomeShimmer.visibility = View.INVISIBLE
+                                        recyclerView.visibility=View.VISIBLE
                                         recyclerView.adapter = hotelAdapters
+
                                         recyclerView.layoutManager =
                                             LinearLayoutManager(requireContext())
                                         Log.d("Hotel Respnose Success", response.toString())
