@@ -21,55 +21,87 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:background="@drawable/tst"
+                android:backgroundTint="#50000000"
+                android:backgroundTintMode="src_over"
                 app:iss_auto_cycle="true"
                 app:iss_delay="1000"
                 app:iss_period="1000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+
             </com.denzcoskun.imageslider.ImageSlider>
-
-            <TextView
-                android:id="@+id/hotel_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Hotel Triavia Limited"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/image_slider"
-                app:layout_constraintTop_toBottomOf="@+id/image_slider" />
-
-
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="About"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/hotel_name"
-                app:layout_constraintHorizontal_bias="0.028"
-                app:layout_constraintStart_toStartOf="@+id/hotel_name"
-                app:layout_constraintTop_toBottomOf="@+id/hotel_name" />
-
-            <TextView
-                android:id="@+id/hotel_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-              android:layout_marginStart="20dp"
-                android:text="Built upon a rich tradition of Nepali hospitality and incorporating some of the country’s most exquisite architectural traditions, The Dwarika’s Hotel in Kathmandu is an authentic experience of Nepal’s ancient cultural heritage.Originally established as a heritage restoration project, The Dwarika's hotel has become known as Nepal's premier property, and a model for heritage preservation in Nepal and beyond."
-                app:layout_constraintEnd_toEndOf="@+id/textView27"
-                app:layout_constraintStart_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/hotelName"
+                android:layout_width='wrap_content'
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Your Hotel name  Okay "
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hotel_addressOnTouch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/baseline_location_on_24"
+                android:drawablePadding="2dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Paris France"
+                android:textSize="15sp" />
+
+            <RatingBar
+                android:id="@+id/ratingbarOnTouch"
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:numStars="5"
+                android:progressBackgroundTint="@color/rating"
+                android:progressTint="@color/rating"
+                android:rating="5" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/abouttxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="About"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/hotel_name"
+            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintStart_toStartOf="@+id/hotel_name"
+            tools:layout_editor_absoluteY="293dp" />
+
+        <TextView
+            android:id="@+id/hotel_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Built upon a rich tradition of Nepali hospitality and incorporating some of the country’s most exquisite architectural traditions, The Dwarika’s Hotel in Kathmandu is an authentic experience of Nepal’s ancient cultural heritage.Originally established as a heritage restoration project, The Dwarika's hotel has become known as Nepal's premier property, and a model for heritage preservation in Nepal and beyond."
+            app:layout_constraintEnd_toEndOf="@+id/textView27"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -77,10 +109,10 @@
 
             <Button
                 android:id="@+id/available_rooms"
-              android:backgroundTint="@color/book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:backgroundTint="@color/book"
                 android:text="AvailableRooms"
                 android:textColor="@color/white_back"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,16 +125,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
             <TextView
                 android:id="@+id/recommended_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Recommended"
-                android:layout_margin="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,15 +158,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/reviews_constraints"
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
             android:layout_height="400dp"
+            android:layout_margin="10dp"
             android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/reviewText"
-                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Reviews"
                 android:textSize="20sp"
@@ -147,9 +179,9 @@
                 android:id="@+id/review_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
                 android:layout_marginBottom="20dp"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@id/reviews_constraints"
                 app:layout_constraintEnd_toEndOf="@id/reviews_constraints"
                 app:layout_constraintStart_toStartOf="@id/reviews_constraints"

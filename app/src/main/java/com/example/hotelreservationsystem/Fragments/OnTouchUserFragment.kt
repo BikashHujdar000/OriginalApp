@@ -61,21 +61,16 @@ class OnTouchUserFragment : Fragment() {
         binding = FragmentOnTouchUserBinding.inflate(layoutInflater,container,false);
 
 
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
+        // something that should be done first
         // setting the hotel name and description with the hotel name from safe argument comming on click action
         binding.hotelName.text = args.hotel.name
         binding.hotelDescription.text = args.hotel.description
         userId= args.userId
         ownerId = args.hotel.owner.toString()
         hotelId= args.hotel._id
-
+        val floatRate = args.hotel.rating.toFloat()
+        binding.ratingbarOnTouch.rating = floatRate
+        binding.hotelAddressOnTouch.text = args.hotel.address
         val imageAPiList :List<String> =args.hotel.photos
         val imageList = ArrayList<SlideModel>() // Create image list
 
@@ -104,6 +99,16 @@ class OnTouchUserFragment : Fragment() {
             Log.d(Tag2,"Error on calling the api hit for another response ")
         }
         // kaam yaha baat suru hunxa hai yadi naya  base url call granu xa vaney
+
+
+
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
 
 
 

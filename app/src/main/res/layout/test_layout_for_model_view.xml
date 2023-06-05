@@ -10,6 +10,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:id="@+id/cardviewTest"
         app:cardCornerRadius="10dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_constrainView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -27,40 +29,92 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.016"
+                android:scaleType="centerCrop"
+                android:src="@drawable/testingroom"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.42"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-                android:src="@drawable/testingroom"
-                android:scaleType="centerCrop"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
             <TextView
                 android:id="@+id/hotel_sample_name"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
                 android:text="President Hotel"
-                android:textSize="15sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/room_image"
                 app:layout_constraintStart_toEndOf="@+id/room_image"
-                app:layout_constraintTop_toTopOf="@+id/room_image"
-                app:layout_constraintVertical_bias="0.057" />
+                app:layout_constraintTop_toTopOf="@+id/room_image" />
+
+            <LinearLayout
+                android:id="@+id/linearCheaprice"
+                android:layout_width="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/hotel_sample_country_name"
+                app:layout_constraintTop_toBottomOf="@+id/hotel_sample_country_name">
+
+                <TextView
+                    android:id="@+id/cheapestPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="300"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  / night"
+                    />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/hotel_sample_country_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/baseline_location_on_24"
+                android:drawablePadding="2dp"
+                android:textSize="12sp"
+                android:gravity="center"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Paris France"
                 app:layout_constraintEnd_toEndOf="@+id/hotel_sample_name"
-                app:layout_constraintHorizontal_bias="0.381"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/hotel_sample_name"
                 app:layout_constraintTop_toBottomOf="@+id/hotel_sample_name" />
+
+            <RatingBar
+                android:layout_marginTop="10dp"
+                android:id="@+id/ratingBar"
+                android:rating="4"
+                android:progressTint="@color/rating"
+                android:progressBackgroundTint="@color/rating"
+                android:numStars="5"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/linearCheaprice"
+                app:layout_constraintStart_toStartOf="@id/linearCheaprice"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="View Details"
+                android:textColor="@color/book"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

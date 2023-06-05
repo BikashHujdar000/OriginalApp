@@ -20,4 +20,5 @@
     <color name="book">#1985F2</color>
     <color name="availableRoom">#57C966</color>
     <color name="booked">#B36E58</color>
+    <color name="rating">#F7C002</color>
 </resources>

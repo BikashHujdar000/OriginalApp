@@ -2,10 +2,10 @@ package com.example.hotelreservationsystem.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -31,6 +31,8 @@ class TestAdapters(val context:Context, val data: List<Hotel>?):RecyclerView.Ada
         val name = itemview.findViewById<TextView>(R.id.hotel_sample_name)
         val location = itemview.findViewById<TextView>(R.id.hotel_sample_country_name)
         val image = itemview.findViewById<ImageView>(R.id.room_image)
+        val rating = itemview.findViewById<RatingBar>(R.id.ratingBar)
+        val cheapPrice = itemview.findViewById<TextView>(R.id.cheapestPrice)
 
         init {
             itemview.setOnClickListener {
@@ -65,6 +67,10 @@ class TestAdapters(val context:Context, val data: List<Hotel>?):RecyclerView.Ada
             Glide.with(this.context)
                 .load(data!!.get(position).photos[0]).into(holder.image)
         }
+        holder.cheapPrice.text = data.get(position).cheapestPrice.toString()
+        var ratingNum = data.get(position).rating.toString()
+        val f1 = ratingNum.toFloat()
+        holder.rating.rating= f1
 
 
     }
