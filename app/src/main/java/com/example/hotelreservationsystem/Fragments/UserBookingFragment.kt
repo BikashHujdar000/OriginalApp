@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -197,9 +198,14 @@ class UserBookingFragment : Fragment() {
 
                     getAllHotelViewModel.bookNowResponseLiveData.observe(viewLifecycleOwner,
                         Observer {
+
+                            binding.progressBar.isVisible = true
+
                             when(it)
                             {
-                                is NetworkResult.Loading->{}
+                                is NetworkResult.Loading->{
+                                 binding.progressBar.isVisible = true
+                                }
                                 is NetworkResult.Success->{
                                     Toast.makeText(requireContext(), "Booking Sucessfull View in Profile ", Toast.LENGTH_SHORT).show()
                                     findNavController().navigate(R.id.action_userBookingFragment_to_userHomeFragment,Bundle().apply {

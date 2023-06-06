@@ -30,62 +30,54 @@ import kotlin.math.log
 
 @AndroidEntryPoint
 class OwnerHomeFragment : Fragment() {
-    lateinit var  binding :FragmentOwnerHomeBinding
-    var hotelId:String? = null
-    var ownerId :String? = null
-    var hotel :HotelResponse? = null
+    lateinit var binding: FragmentOwnerHomeBinding
+    var hotelId: String? = null
+    var ownerId: String? = null
+    var hotel: HotelResponse? = null
 
-   private val authViewModel by viewModels<AuthViewModel>()
+    private val authViewModel by viewModels<AuthViewModel>()
 
-   private val  hotelViewModel by viewModels<HotelViewModel> ()
+    private val hotelViewModel by viewModels<HotelViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentOwnerHomeBinding.inflate(layoutInflater,container,false);
+        binding = FragmentOwnerHomeBinding.inflate(layoutInflater, container, false);
         // setting ups Image Slider
 
         val arguments = arguments
-            val hotelIdFromDirectLogin = arguments!!.getString("hotelIdFromDirect")
-            val ownerIdFromDirectLogin = arguments.getString("ownerIdFromDirect")
+        val hotelIdFromDirectLogin = arguments!!.getString("hotelIdFromDirect")
+        val ownerIdFromDirectLogin = arguments.getString("ownerIdFromDirect")
 
 
-            val hotelIdFromCreateHotel = arguments.getString("hotelIdFromCreateFragment")
-            val ownerIdFromCreateFragment = arguments.getString("ownerIdFromCreateFragment")
+        val hotelIdFromCreateHotel = arguments.getString("hotelIdFromCreateFragment")
+        val ownerIdFromCreateFragment = arguments.getString("ownerIdFromCreateFragment")
 
 
-         if(hotelIdFromDirectLogin != null && ownerIdFromDirectLogin != null)
-         {
-             ownerId = ownerIdFromDirectLogin
-             hotelId = hotelIdFromDirectLogin
+        if (hotelIdFromDirectLogin != null && ownerIdFromDirectLogin != null) {
+            ownerId = ownerIdFromDirectLogin
+            hotelId = hotelIdFromDirectLogin
 
-         }
-        else if(hotelIdFromCreateHotel != null && ownerIdFromCreateFragment != null)
-         {
-             hotelId = hotelIdFromCreateHotel
-             ownerId = ownerIdFromCreateFragment
-         }
-        else
-         {
-             Log.d(TAG,"Something Went wrong on getting ids ")
-         }
+        } else if (hotelIdFromCreateHotel != null && ownerIdFromCreateFragment != null) {
+            hotelId = hotelIdFromCreateHotel
+            ownerId = ownerIdFromCreateFragment
+        } else {
+            Log.d(TAG, "Something Went wrong on getting ids ")
+        }
 
         val FinalOwnerId = ownerId
         val FinalHotelId = hotelId
-        Log.d(TAG,"Final OwnerId  is  $FinalOwnerId ")
-        Log.d(TAG,"Final hotel Id  is  $FinalHotelId ")
+        Log.d(TAG, "Final OwnerId  is  $FinalOwnerId ")
+        Log.d(TAG, "Final hotel Id  is  $FinalHotelId ")
 
         //yaha ma euta api call garxu
-try {
-    hotelViewModel.getHotelDetails(ownerId!!, hotelId!!)
-}
-catch (e:Exception)
-{
-    Log.d(TAG,"error on calling the activity ${e.message}")
-}
+        try {
+            hotelViewModel.getHotelDetails(ownerId!!, hotelId!!)
+        } catch (e: Exception) {
+            Log.d(TAG, "error on calling the activity ${e.message}")
+        }
         return binding.root;
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -97,37 +89,38 @@ catch (e:Exception)
         // you have to do this first
 
         hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
-            when(it)
-            {
-                is NetworkResult.Success->{
+            when (it) {
+                is NetworkResult.Success -> {
 
 
-                    Log.d(TAG,"owner Home ma aako data k xa ${it.data?.hotel}")
+                    Log.d(TAG, "owner Home ma aako data k xa ${it.data?.hotel}")
                     val hotelData = it.data!!
                     binding.hotelName.text = it.data?.hotel?.name
-                    val imageAPiList :List<String> = it.data!!.hotel.photos
-                    Log.d(TAG,"hotel ko images haru $imageAPiList")
+                    val imageAPiList: List<String> = it.data!!.hotel.photos
+                    Log.d(TAG, "hotel ko images haru $imageAPiList")
 
-                    hotel =hotelData
-                    Log.d(TAG,"hotel response is  $hotel")
+                    hotel = hotelData
+                    Log.d(TAG, "hotel response is  $hotel")
                     // setting  for image list
                     val imageList = ArrayList<SlideModel>() // Create image list
                     //  on image url later please pass the original images of hotel View
 
-                    for(imageUrl in imageAPiList){
+                    for (imageUrl in imageAPiList) {
 
-                        imageList.add(SlideModel(imageUrl,ScaleTypes.FIT))
+                        imageList.add(SlideModel(imageUrl, ScaleTypes.FIT))
                     }
 
-                    binding. imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
+                    binding.imageSlider.setImageList(imageList, ScaleTypes.FIT) // for all images
                     binding.imageSlider.setImageList(imageList)
 
 
                 }
-                is NetworkResult.Loading->{
+
+                is NetworkResult.Loading -> {
 
                 }
-                is NetworkResult.Error->{
+
+                is NetworkResult.Error -> {
 
                 }
             }
@@ -137,52 +130,55 @@ catch (e:Exception)
 
 
         binding.addRooms.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_ownerHomeFragment_to_addRoomFragment,
-                    Bundle().apply {
-                        putString("ownerId", ownerId)
-                        putString("hotelId", hotelId) })
+            findNavController().navigate(
+                R.id.action_ownerHomeFragment_to_addRoomFragment,
+                Bundle().apply {
+                    putString("ownerId", ownerId)
+                    putString("hotelId", hotelId)
+                })
         }
 
 
 
 
 
-        binding.roomsList.setOnClickListener{
+        binding.roomsList.setOnClickListener {
             findNavController().navigate(
                 R.id.action_ownerHomeFragment_to_ownerRoomsFragment,
                 Bundle().apply {
                     putString("ownerId", ownerId)
-                    putString("hotelId", hotelId)})
+                    putString("hotelId", hotelId)
+                })
 
         }
 
 
 
 
-        binding.hotelProfile.setOnClickListener(){
+        binding.hotelProfile.setOnClickListener() {
 
-                   Log.d(TAG,"Hotel profile ma jada kheri ko  hotel ko data $hotel")
-                  val action = OwnerHomeFragmentDirections.actionOwnerHomeFragmentToOwnerProfileFragment(hotel!!)
-                 findNavController().navigate(action)
-                }
-
-
-              binding.bookings.setOnClickListener(){
-
-                  findNavController().navigate(R.id.action_ownerHomeFragment_to_ownersBookingFragment,Bundle().apply {
-                      putString("ownerId", ownerId!!)
-                  })
+            Log.d(TAG, "Hotel profile ma jada kheri ko  hotel ko data $hotel")
+            val action =
+                OwnerHomeFragmentDirections.actionOwnerHomeFragmentToOwnerProfileFragment(hotel!!)
+            findNavController().navigate(action)
         }
-        binding.logout.setOnClickListener{
+
+
+        binding.bookings.setOnClickListener() {
+
+            findNavController().navigate(
+                R.id.action_ownerHomeFragment_to_ownersBookingFragment,
+                Bundle().apply {
+                    putString("ownerId", ownerId!!)
+                })
+        }
+        binding.logout.setOnClickListener {
             findNavController().navigate(R.id.action_ownerHomeFragment_to_ownerLoginFragment)
         }
 
 
-
-
     }
 
 
-    }
+}
 

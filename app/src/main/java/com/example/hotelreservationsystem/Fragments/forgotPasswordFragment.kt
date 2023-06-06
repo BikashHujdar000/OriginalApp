@@ -32,7 +32,7 @@ class forgotPasswordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentForgotPasswordBinding.inflate(layoutInflater,container,false);
+        binding = FragmentForgotPasswordBinding.inflate(layoutInflater, container, false);
         binding.sendOtp.setOnClickListener {
 
             val email = binding.emailAddress.text.toString();
@@ -46,15 +46,16 @@ class forgotPasswordFragment : Fragment() {
 
 
                             is NetworkResult.Success -> {
-                                try{
+                                try {
                                     val otp = it.data!!.otp
-                                    Log.d("response","$otp")
-                                    findNavController().navigate(R.id.action_forgotPasswordFragment_to_otpVerificationFragment,Bundle().apply {
-                                        putString("email",email.toString())
-                                    })
-                                }
-                                catch(E:Exception){
-                                    Log.d(constants.TAG,E.toString())
+                                    Log.d("response", "$otp")
+                                    findNavController().navigate(
+                                        R.id.action_forgotPasswordFragment_to_otpVerificationFragment,
+                                        Bundle().apply {
+                                            putString("email", email.toString())
+                                        })
+                                } catch (E: Exception) {
+                                    Log.d(constants.TAG, E.toString())
                                 }
                             }
 
@@ -63,19 +64,17 @@ class forgotPasswordFragment : Fragment() {
                             else -> {
                             }
                         }
+                    } catch (e: Exception) {
+                        Log.d(constants.TAG, "out of try block in userforget password fragment")
                     }
-                    catch (e:Exception){
-                        Log.d(constants.TAG,"out of try block in userforget password fragment")
-                    }
-
 
 
                 })
 
             }
 //                //empty
-            else{
-                Toast.makeText(requireContext(),"enter valid mail", Toast.LENGTH_SHORT).show()
+            else {
+                Toast.makeText(requireContext(), "enter valid mail", Toast.LENGTH_SHORT).show()
             }
             //validity of the email is performed;
 
@@ -83,7 +82,8 @@ class forgotPasswordFragment : Fragment() {
         }
 
         binding.backToLogin.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_forgotPasswordFragment_to_userLoginFragment);
+            Navigation.findNavController(it)
+                .navigate(R.id.action_forgotPasswordFragment_to_userLoginFragment);
         }
 
         return binding.root;

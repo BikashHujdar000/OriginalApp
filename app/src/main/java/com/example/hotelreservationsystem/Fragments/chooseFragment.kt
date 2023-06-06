@@ -21,11 +21,11 @@ import javax.inject.Inject
 class chooseFragment : Fragment() {
 
     @Inject
-    lateinit var  tokenManager: TokenManager
+    lateinit var tokenManager: TokenManager
     lateinit var binding: FragmentChooseBinding
     lateinit var user: TextView;
-    lateinit var owner:TextView;
-    lateinit var navigation : Navigation;
+    lateinit var owner: TextView;
+    lateinit var navigation: Navigation;
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,10 +52,12 @@ class chooseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.user.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_chooseFragment_to_userLoginFragment);
+            Navigation.findNavController(it)
+                .navigate(R.id.action_chooseFragment_to_userLoginFragment);
         }
         binding.hotelOwner.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_chooseFragment_to_ownerLoginFragment);
+            Navigation.findNavController(it)
+                .navigate(R.id.action_chooseFragment_to_ownerLoginFragment);
         }
     }
 

@@ -26,18 +26,18 @@ import java.lang.Exception
 
 @AndroidEntryPoint
 class OwnerOtpVerificationFragment : Fragment() {
-lateinit var binding :FragmentOwnerOtpVerificationBinding
+    lateinit var binding: FragmentOwnerOtpVerificationBinding
 
-   private val authViewModel by viewModels<AuthViewModel>()
-    lateinit var email : String
+    private val authViewModel by viewModels<AuthViewModel>()
+    lateinit var email: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         email = requireArguments().getString("email").toString()
-        Log.d("Email",email)
-        binding = FragmentOwnerOtpVerificationBinding.inflate(layoutInflater,container,false);
+        Log.d("Email", email)
+        binding = FragmentOwnerOtpVerificationBinding.inflate(layoutInflater, container, false);
 
         setOtp();
         binding.continueBtn.setOnClickListener {
@@ -46,16 +46,17 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding
         }
         return binding.root;
     }
-     private fun setOtp(){
-        binding.otp1.addTextChangedListener(object:TextWatcher{
+
+    private fun setOtp() {
+        binding.otp1.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(!s.toString().trim().isEmpty()){
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp2.requestFocus();
-                    }
+                }
 
             }
 
@@ -64,13 +65,13 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding
             }
 
         })
-        binding.otp2.addTextChangedListener(object:TextWatcher{
+        binding.otp2.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(!s.toString().trim().isEmpty()){
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp3.requestFocus();
                 }
             }
@@ -88,8 +89,7 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.toString().trim().isEmpty())
-                {
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp4.requestFocus()
                 }
             }
@@ -102,8 +102,7 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.toString().trim().isEmpty())
-                {
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp5.requestFocus()
                 }
             }
@@ -116,32 +115,35 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.toString().trim().isEmpty())
-                {
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp6.requestFocus()
                 }
             }
         })
     }
-     private fun verifyOtp(){
-                 val otpValue:String = binding.otp1.text.toString()+binding.otp2.text.toString()+binding.otp3.text.toString()+
-                binding.otp4.text.toString()+binding.otp5.text.toString()+binding.otp6.text.toString()
-                 authViewModel.verifOwnerOtp(OwnerOtpRequest(otpValue))
-                try{
-                     authViewModel.otpVerifyResponseLiveData.observe(viewLifecycleOwner, Observer {
-                        when(it){
-                            is NetworkResult.Success ->{
-                                val response = it.data!!.message.toString()
-                                Log.d(TAG,"$response")
-                                if(response.toString() =="otp verification successtrue"){
-                                    findNavController().navigate(R.id.action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment,Bundle().apply {
-                                        putString("VEmail",email)
-                                    })
+
+    private fun verifyOtp() {
+        val otpValue: String =
+            binding.otp1.text.toString() + binding.otp2.text.toString() + binding.otp3.text.toString() +
+                    binding.otp4.text.toString() + binding.otp5.text.toString() + binding.otp6.text.toString()
+        authViewModel.verifOwnerOtp(OwnerOtpRequest(otpValue))
+        try {
+            authViewModel.otpVerifyResponseLiveData.observe(viewLifecycleOwner, Observer {
+                when (it) {
+                    is NetworkResult.Success -> {
+                        val response = it.data!!.message.toString()
+                        Log.d(TAG, "$response")
+                        if (response.toString() == "otp verification successtrue") {
+                            findNavController().navigate(
+                                R.id.action_ownerOtpVerificationFragment_to_ownerOtpConfirmationFragment,
+                                Bundle().apply {
+                                    putString("VEmail", email)
+                                })
 
 
-                                }
-                                else{
-                                    Toast.makeText(requireContext(),"Invalid otp ! ",Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Invalid otp ! ", Toast.LENGTH_SHORT)
+                                .show()
 
                         }
 
@@ -152,11 +154,8 @@ lateinit var binding :FragmentOwnerOtpVerificationBinding
             })
 
 
-
-
-        }
-        catch(e:Exception){
-            Log.d(TAG,"response error")
+        } catch (e: Exception) {
+            Log.d(TAG, "response error")
         }
 
 

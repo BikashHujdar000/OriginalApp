@@ -40,18 +40,18 @@ import kotlin.Exception
 @AndroidEntryPoint
 
 class OwnerProfileFragment : Fragment() {
-    private  val args by navArgs<OwnerProfileFragmentArgs>()
+    private val args by navArgs<OwnerProfileFragmentArgs>()
 
     lateinit var binding: FragmentOwnerProfileBinding
     var ownerId: String? = null
-    var hotelId :String?  = null
+    var hotelId: String? = null
     lateinit var imageUri: Uri
     lateinit var imagePath: String
 
 
-    var typeSTR:String? = null
-    var typeINT :Int? = null
-    var finaltypeInt:Int? = null
+    var typeSTR: String? = null
+    var typeINT: Int? = null
+    var finaltypeInt: Int? = null
 
 
     private val authViewModel by viewModels<AuthViewModel>()
@@ -85,7 +85,9 @@ class OwnerProfileFragment : Fragment() {
                         imagePath = it.data!!.url
                         Log.d(TAG, "k xa ta image path ma  $imagePath")
 
-                        this.context?.let { it1 -> Glide.with(it1).load(imageUri).into(binding.image1) }
+                        this.context?.let { it1 ->
+                            Glide.with(it1).load(imageUri).into(binding.image1)
+                        }
 
                         binding.updateHotel.visibility = View.VISIBLE
 
@@ -127,7 +129,7 @@ class OwnerProfileFragment : Fragment() {
         binding.autocomplete.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 val text = parent.getItemAtPosition(position);
-                Log.d(TAG,"okay selected Text is ${binding.autocomplete.text}")
+                Log.d(TAG, "okay selected Text is ${binding.autocomplete.text}")
 
             }
 
@@ -138,45 +140,39 @@ class OwnerProfileFragment : Fragment() {
         }
 
 
-        binding.updateHotel.setOnClickListener{
-
+        binding.updateHotel.setOnClickListener {
 
 
             var name: String = binding.hotelName.text.toString()
             var addresses: String = binding.hotelLocation.text.toString()
             var description: String = binding.hotelDescription.text.toString()
             var image: String = imagePath.toString()
-            val priceInt:Int = Integer.parseInt(binding.minimumCharge.text.toString())
+            val priceInt: Int = Integer.parseInt(binding.minimumCharge.text.toString())
             //lets seleect the int for values
             var hotelType = binding.autocomplete.text.toString()
             // <item>Luxury Hotel</item>
             //        <item>Budget Hotel</item>
             //        <item>Business Hotel</item>
-            if(hotelType == "Luxury Hotel")
-            {
+            if (hotelType == "Luxury Hotel") {
                 typeSTR = "1"
                 typeINT = Integer.parseInt(typeSTR)
-            }
-            else if(hotelType == "Budget Hotel")
-            {
+            } else if (hotelType == "Budget Hotel") {
                 typeSTR = "2"
-                typeINT=Integer.parseInt(typeSTR)
-            }
-            else
-            {
+                typeINT = Integer.parseInt(typeSTR)
+            } else {
                 typeSTR = "3"
-                typeINT=Integer.parseInt(typeSTR)
+                typeINT = Integer.parseInt(typeSTR)
             }
-            val finalHotelInt:Int = typeINT!!
-            Log.d(TAG," Final int is $finalHotelInt")
-            Log.d(TAG," Final int is $priceInt")
+            val finalHotelInt: Int = typeINT!!
+            Log.d(TAG, " Final int is $finalHotelInt")
+            Log.d(TAG, " Final int is $priceInt")
 
             try {
-                hotelViewModel.updatehotel(ownerId!!,hotelId!!,
-                    HotelRequest(addresses,description,name,image,finalHotelInt,priceInt))
-            }
-            catch (e:java.lang.Exception)
-            {
+                hotelViewModel.updatehotel(
+                    ownerId!!, hotelId!!,
+                    HotelRequest(addresses, description, name, image, finalHotelInt, priceInt)
+                )
+            } catch (e: java.lang.Exception) {
                 Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
@@ -190,25 +186,23 @@ class OwnerProfileFragment : Fragment() {
 
 
 
-     hotelViewModel.hotelLiveData.observe( viewLifecycleOwner, Observer {
-         when(it)
-         {
-             is NetworkResult.Success->{
-                 val updatedResponse = it.data
-                 Log.d(TAG," updated response aayo $updatedResponse")
-                 findNavController().popBackStack()
-             }
-              is NetworkResult.Loading->{
+        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is NetworkResult.Success -> {
+                    val updatedResponse = it.data
+                    Log.d(TAG, " updated response aayo $updatedResponse")
+                    findNavController().popBackStack()
+                }
 
-              }
-             is NetworkResult.Error->
-             {
+                is NetworkResult.Loading -> {
 
-             }
-         }
-     })
+                }
 
+                is NetworkResult.Error -> {
 
+                }
+            }
+        })
 
 
     }

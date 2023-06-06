@@ -16,13 +16,13 @@ import java.util.Date
 
 
 class DetailedRoomFragment : Fragment() {
-    lateinit var binding:FragmentDetailedRoomBinding
+    lateinit var binding: FragmentDetailedRoomBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailedRoomBinding.inflate(layoutInflater,container,false)
+        binding = FragmentDetailedRoomBinding.inflate(layoutInflater, container, false)
 
         binding.pick1.setOnClickListener {
             val c = Calendar.getInstance()
@@ -38,7 +38,8 @@ class DetailedRoomFragment : Fragment() {
                 // on below line we are passing context.
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
-                    binding.checkInDate.text =((monthOfYear + 1).toString() + "/" + dayOfMonth + "/" + year)
+                    binding.checkInDate.text =
+                        ((monthOfYear + 1).toString() + "/" + dayOfMonth + "/" + year)
                 },
                 // on below line we are passing year, month
                 // and day for the selected date in our date picker.
@@ -63,7 +64,8 @@ class DetailedRoomFragment : Fragment() {
                 // on below line we are passing context.
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
-                    binding.checkOutDate.text = ((monthOfYear + 1).toString() + "/" + dayOfMonth + "/" + year)
+                    binding.checkOutDate.text =
+                        ((monthOfYear + 1).toString() + "/" + dayOfMonth + "/" + year)
                 },
                 // on below line we are passing year, month
                 // and day for the selected date in our date picker.
@@ -73,7 +75,7 @@ class DetailedRoomFragment : Fragment() {
             )
             datePickerDialog.show()
         }
-        binding.confirm.setOnClickListener{
+        binding.confirm.setOnClickListener {
 
             try {
 
@@ -97,24 +99,23 @@ class DetailedRoomFragment : Fragment() {
                 // Converting the above integer to string
                 val mDayDifference = mDifferenceDates.toString()
 
-                Toast.makeText(requireContext(), "date Difference $mDayDifference", Toast.LENGTH_SHORT).show()
-                binding.daysInterval.text= mDayDifference
-            }
-            catch (e:Exception)
-            {
+                Toast.makeText(
+                    requireContext(),
+                    "date Difference $mDayDifference",
+                    Toast.LENGTH_SHORT
+                ).show()
+                binding.daysInterval.text = mDayDifference
+            } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Data failed", Toast.LENGTH_SHORT).show()
 
             }
-            if (binding.payCard.visibility==View.GONE)
-            {
+            if (binding.payCard.visibility == View.GONE) {
 
-                binding.payCard.visibility=View.VISIBLE
+                binding.payCard.visibility = View.VISIBLE
 
-            }
-            else
-            {
+            } else {
 
-                binding.payCard.visibility=View.GONE
+                binding.payCard.visibility = View.GONE
 
             }
 

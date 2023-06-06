@@ -19,31 +19,30 @@ import java.lang.Exception
 
 @AndroidEntryPoint
 class OwnersBookingFragment : Fragment() {
-    lateinit var binding : FragmentOwnersBookingBinding
-    var ownerId :String? = null
+    lateinit var binding: FragmentOwnersBookingBinding
+    var ownerId: String? = null
 
-val hotelViewModel by viewModels<HotelViewModel> ()
+    val hotelViewModel by viewModels<HotelViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout for this fragment
-        binding = FragmentOwnersBookingBinding.inflate(layoutInflater,container,false)
+        binding = FragmentOwnersBookingBinding.inflate(layoutInflater, container, false)
 
-       ownerId = requireArguments().getString("ownerId")
-        Log.d("argument aayo","$ownerId")
+        ownerId = requireArguments().getString("ownerId")
+        Log.d("argument aayo", "$ownerId")
         try {
             hotelViewModel.showBooking(ownerId!!)
-            Log.d(TAG,"Response Generated")
+            Log.d(TAG, "Response Generated")
 
-        }catch (
-            e:Exception
-        )
-        {
-            Log.d(TAG,"eroor on calling to get function ${e.message}")
+        } catch (
+            e: Exception
+        ) {
+            Log.d(TAG, "eroor on calling to get function ${e.message}")
         }
-      //  hotelViewModel.showBooking(ownerId!!)
+        //  hotelViewModel.showBooking(ownerId!!)
 //        Log.d("apiResponse","Ayoo")
 
 
@@ -55,23 +54,24 @@ val hotelViewModel by viewModels<HotelViewModel> ()
 
         hotelViewModel.allbookingLiveData.observe(viewLifecycleOwner, Observer {
 
-            when(it){
+            when (it) {
 
-                is NetworkResult.Success ->{
-                    Log.d("data from user are "," sucess ma xiro")
+                is NetworkResult.Success -> {
+                    Log.d("data from user are ", " sucess ma xiro")
 
                     val responseData = it.data?.booking
-                    Log.d("data from user are ","$responseData")
+                    Log.d("data from user are ", "$responseData")
                     //s etiing up for recycler View
                     val Data = it.data?.booking
                     val recycler = binding.booikingRecycler
-                    val bookingsAdapter = BookingRoomAdapter(requireContext(),Data!!)
+                    val bookingsAdapter = BookingRoomAdapter(requireContext(), Data!!)
                     recycler.adapter = bookingsAdapter
-                    recycler.layoutManager =LinearLayoutManager(requireContext())
+                    recycler.layoutManager = LinearLayoutManager(requireContext())
 
                 }
-                is NetworkResult.Loading ->{}
-                is NetworkResult.Error ->{}
+
+                is NetworkResult.Loading -> {}
+                is NetworkResult.Error -> {}
                 else -> {}
             }
 

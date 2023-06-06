@@ -23,13 +23,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class OwnerRegistrationFragment : Fragment() {
     lateinit var binding: FragmentOwnerRegistrationBinding
-    private val authViewModel by viewModels<AuthViewModel> ()
+    private val authViewModel by viewModels<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentOwnerRegistrationBinding.inflate(layoutInflater,container,false);
+        binding = FragmentOwnerRegistrationBinding.inflate(layoutInflater, container, false);
         return binding.root
     }
 
@@ -38,26 +38,28 @@ class OwnerRegistrationFragment : Fragment() {
 
 
         binding.signIn.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_ownerRegistrationFragment_to_ownerLoginFragment)
         }
 
         binding.signUpButton.setOnClickListener {
 
             if (binding.checkBox.isChecked) {
 
-            // calling the function validate owner input
-            val validationResult = validateOwnerInput()
+                // calling the function validate owner input
+                val validationResult = validateOwnerInput()
 
-            if(validationResult.first)
-            {
-               authViewModel.registerOwner(getOwnerInput())
-            }
-            else
-            {
-                Toast.makeText(requireContext(), "${validationResult.second}", Toast.LENGTH_SHORT).show()
-            }
+                if (validationResult.first) {
+                    authViewModel.registerOwner(getOwnerInput())
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "${validationResult.second}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
-         }
+            }
         }
         bindObserver()
 
@@ -87,18 +89,24 @@ class OwnerRegistrationFragment : Fragment() {
             }
         })
     }
-    private  fun validateOwnerInput(): Pair<Boolean, String> {
+
+    private fun validateOwnerInput(): Pair<Boolean, String> {
         // Navigate to the owner home fragment with the data.
         val ownerRequest = getOwnerInput()
-        return authViewModel.validateCredential(ownerRequest.ownername,ownerRequest.email,ownerRequest.password,false)
+        return authViewModel.validateCredential(
+            ownerRequest.ownername,
+            ownerRequest.email,
+            ownerRequest.password,
+            false
+        )
 
     }
-    private fun  getOwnerInput ():OwnerRequest
-    {
+
+    private fun getOwnerInput(): OwnerRequest {
         var ownerName = binding.editName.text.toString();
         var ownerEmail = binding.ownerEmail.text.toString();
         var ownerPassword = binding.ownerPassword.text.toString();
-        return OwnerRequest(ownerEmail,ownerName,ownerPassword)
+        return OwnerRequest(ownerEmail, ownerName, ownerPassword)
     }
 
 

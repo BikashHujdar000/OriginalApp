@@ -26,13 +26,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class UserRegisterFragment : Fragment() {
     lateinit var binding: FragmentUserRegisterBinding;
-    private val userAuthViewModel by viewModels<UserAuthViewModel> ()
+    private val userAuthViewModel by viewModels<UserAuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentUserRegisterBinding.inflate(layoutInflater,container,false);
+        binding = FragmentUserRegisterBinding.inflate(layoutInflater, container, false);
         return binding.root
     }
 
@@ -41,7 +41,8 @@ class UserRegisterFragment : Fragment() {
 
 
         binding.signIn.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_userRegisterFragment_to_userLoginFragment)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_userRegisterFragment_to_userLoginFragment)
         }
 
         binding.signUpButton.setOnClickListener {
@@ -51,13 +52,14 @@ class UserRegisterFragment : Fragment() {
                 // calling the function validate user input
                 val validationResult = validateUserInput()
 
-                if(validationResult.first)
-                {
+                if (validationResult.first) {
                     userAuthViewModel.registerUser(getUserInput())
-                }
-                else
-                {
-                    Toast.makeText(requireContext(), "${validationResult.second}", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "${validationResult.second}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             }
@@ -90,18 +92,24 @@ class UserRegisterFragment : Fragment() {
             }
         })
     }
-    private  fun validateUserInput(): Pair<Boolean, String> {
+
+    private fun validateUserInput(): Pair<Boolean, String> {
         // Navigate to the owner home fragment with the data.
         val userRequest = getUserInput()
-        return userAuthViewModel.validateCredential(userRequest.username,userRequest.email,userRequest.password,false)
+        return userAuthViewModel.validateCredential(
+            userRequest.username,
+            userRequest.email,
+            userRequest.password,
+            false
+        )
 
     }
-    private fun  getUserInput (): UserRequest
-    {
+
+    private fun getUserInput(): UserRequest {
         var userName = binding.editName.text.toString();
         var userEmail = binding.userEmail.text.toString();
         var userPassword = binding.userPassword.text.toString();
-        return UserRequest(userEmail,userPassword,userName)
+        return UserRequest(userEmail, userPassword, userName)
     }
 
 

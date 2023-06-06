@@ -24,7 +24,7 @@ import java.lang.Exception
 @AndroidEntryPoint
 class OtpConfirmationFragment : Fragment() {
 
-    lateinit var binding : FragmentOtpConfirmationBinding;
+    lateinit var binding: FragmentOtpConfirmationBinding;
 
     private val authViewModel by viewModels<UserAuthViewModel>()
 
@@ -33,20 +33,19 @@ class OtpConfirmationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentOtpConfirmationBinding.inflate(layoutInflater,container,false);
+        binding = FragmentOtpConfirmationBinding.inflate(layoutInflater, container, false);
         val email = requireArguments().getString("VEmail").toString()
-        Log.d("123",email)
+        Log.d("123", email)
         binding.update.setOnClickListener {
-            val psd= binding.createPassword.text.toString()
+            val psd = binding.createPassword.text.toString()
             val cPsd = binding.confirmPassword.text.toString()
-            Log.d("password","$psd,$cPsd,$email" )
+            Log.d("password", "$psd,$cPsd,$email")
 
 //        val confirmOwnerPasswordRequest = ConfirmOwnerPasswordRequest( confirmPassword,email, password)
-            try{
-                authViewModel.createOwnerPassword(ConfirmOwnerPasswordRequest(cPsd,email,psd))
-            }
-            catch (e:Exception){
-                Log.d("error",e.toString())
+            try {
+                authViewModel.createOwnerPassword(ConfirmOwnerPasswordRequest(cPsd, email, psd))
+            } catch (e: Exception) {
+                Log.d("error", e.toString())
             }
 
 
@@ -57,13 +56,13 @@ class OtpConfirmationFragment : Fragment() {
 
                         val response = it.data?.message
                         Log.d("rettt", "$response")
-                        if(response =="password changed successfully") {
+                        if (response == "password changed successfully") {
 
 
                             findNavController().navigate(R.id.action_otpConfirmationFragment_to_userLoginFragment)
-                        }
-                        else{
-                            Toast.makeText(requireContext(),"not changed",Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "not changed", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
 
@@ -75,8 +74,6 @@ class OtpConfirmationFragment : Fragment() {
                 }
             })
         }
-
-
 
 
         // updating password  is in this field

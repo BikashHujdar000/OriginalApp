@@ -36,15 +36,15 @@ import java.io.FileOutputStream
 
 @AndroidEntryPoint
 class CreateHotelFragment : Fragment() {
-    lateinit var binding :FragmentCreateHotelBinding
+    lateinit var binding: FragmentCreateHotelBinding
 
     var ownerId: String? = null
 
     lateinit var imageUri: Uri
     lateinit var imagePath: String
-    var typeSTR:String? = null
-    var typeINT :Int? = null
-    var finaltypeInt:Int? = null
+    var typeSTR: String? = null
+    var typeINT: Int? = null
+    var finaltypeInt: Int? = null
 
     private val authViewModel by viewModels<AuthViewModel>()
     private val hotelViewModel by viewModels<HotelViewModel>()
@@ -73,10 +73,15 @@ class CreateHotelFragment : Fragment() {
             when (it) {
                 is NetworkResult.Success -> {
                     try {
-                        Log.d(constants.TAG, "Show me the image uri  of  hotel images ${it.data?.url}")
+                        Log.d(
+                            constants.TAG,
+                            "Show me the image uri  of  hotel images ${it.data?.url}"
+                        )
                         imagePath = it.data!!.url
                         Log.d(constants.TAG, "k xa ta image path ma  $imagePath")
-                        this.context?.let { it1 -> Glide.with(it1).load(imageUri).into(binding.image1) }
+                        this.context?.let { it1 ->
+                            Glide.with(it1).load(imageUri).into(binding.image1)
+                        }
 
                         binding.createHotel.visibility = View.VISIBLE
 
@@ -104,17 +109,17 @@ class CreateHotelFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCreateHotelBinding.inflate(layoutInflater,container,false)
+        binding = FragmentCreateHotelBinding.inflate(layoutInflater, container, false)
 
 
         // kaam yaha baat
-         // hotel id pathaunu paro bass hain ta kin vaney owner id pahiley dekhin kee xa ma sanga
+        // hotel id pathaunu paro bass hain ta kin vaney owner id pahiley dekhin kee xa ma sanga
 
 
         //acessing the sent owner id from the data
 
         ownerId = requireArguments().getString("ownerId").toString()
-        Log.d(TAG,"Owner id  is $ownerId")
+        Log.d(TAG, "Owner id  is $ownerId")
 
         binding.addImage1.setOnClickListener {
             contract.launch("image/*")
@@ -129,7 +134,7 @@ class CreateHotelFragment : Fragment() {
         binding.autocomplete.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 val text = parent.getItemAtPosition(position);
-                Log.d(TAG,"okay selected Text is ${binding.autocomplete.text}")
+                Log.d(TAG, "okay selected Text is ${binding.autocomplete.text}")
 
             }
 
@@ -144,36 +149,32 @@ class CreateHotelFragment : Fragment() {
             var addresses: String = binding.hotelLocation.text.toString()
             var description: String = binding.hotelDescription.text.toString()
             var image: String = imagePath.toString()
-            val priceInt:Int = Integer.parseInt(binding.minimumCharge.text.toString())
+            val priceInt: Int = Integer.parseInt(binding.minimumCharge.text.toString())
             //lets seleect the int for values
-             var hotelType = binding.autocomplete.text.toString()
+            var hotelType = binding.autocomplete.text.toString()
             // <item>Luxury Hotel</item>
             //        <item>Budget Hotel</item>
             //        <item>Business Hotel</item>
-            if(hotelType == "Luxury Hotel")
-            {
+            if (hotelType == "Luxury Hotel") {
                 typeSTR = "1"
                 typeINT = Integer.parseInt(typeSTR)
-            }
-            else if(hotelType == "Budget Hotel")
-            {
+            } else if (hotelType == "Budget Hotel") {
                 typeSTR = "2"
-                typeINT=Integer.parseInt(typeSTR)
-            }
-            else
-            {
+                typeINT = Integer.parseInt(typeSTR)
+            } else {
                 typeSTR = "3"
-                typeINT=Integer.parseInt(typeSTR)
+                typeINT = Integer.parseInt(typeSTR)
             }
-            val finalHotelInt:Int = typeINT!!
-            Log.d(TAG," Final int is $finalHotelInt")
-            Log.d(TAG," Final int is $priceInt")
+            val finalHotelInt: Int = typeINT!!
+            Log.d(TAG, " Final int is $finalHotelInt")
+            Log.d(TAG, " Final int is $priceInt")
 
 
 
             try {
-                hotelViewModel.createHotel(ownerId!!,
-                    HotelRequest(addresses,description,name,image,finalHotelInt,priceInt)
+                hotelViewModel.createHotel(
+                    ownerId!!,
+                    HotelRequest(addresses, description, name, image, finalHotelInt, priceInt)
                 )
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
@@ -187,16 +188,18 @@ class CreateHotelFragment : Fragment() {
 
                 is NetworkResult.Success -> {
                     Log.d(constants.TAG, "Hotel Created Sucessfully")
-                    Log.d(TAG," hotel Response ${it.data?.hotel}")
+                    Log.d(TAG, " hotel Response ${it.data?.hotel}")
                     val hotelIdFromCreate = it.data?.hotel?._id
                     val ownerIdFromCreate = it.data?.hotel?.owner?._id
-                    Log.d(TAG,"create home fragment ko id $hotelIdFromCreate")
+                    Log.d(TAG, "create home fragment ko id $hotelIdFromCreate")
 
                     //  /  val owner = OwnerResponse(it.data!!.access_token.toString(),it.data.owner)
-                      findNavController().navigate(R.id.action_createHotelFragment_to_ownerHomeFragment,Bundle().apply {
-                          putString("hotelIdFromCreateFragment",hotelIdFromCreate)
-                          putString("ownerIdFromCreateFragment",ownerIdFromCreate)
-                      })
+                    findNavController().navigate(
+                        R.id.action_createHotelFragment_to_ownerHomeFragment,
+                        Bundle().apply {
+                            putString("hotelIdFromCreateFragment", hotelIdFromCreate)
+                            putString("ownerIdFromCreateFragment", ownerIdFromCreate)
+                        })
 
                 }
 
@@ -217,7 +220,6 @@ class CreateHotelFragment : Fragment() {
 
         return binding.root
     }
-
 
 
 }

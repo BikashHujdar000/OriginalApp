@@ -12,7 +12,13 @@ import com.bumptech.glide.Glide
 import com.example.hotelreservationsystem.Models.Hotel
 import com.example.hotelreservationsystem.R
 
-class TestAdapters(val context:Context, val data: List<Hotel>?):RecyclerView.Adapter<TestAdapters.MyViewHolder>() {
+class TestAdapters(val context:Context, var data: List<Hotel>?):RecyclerView.Adapter<TestAdapters.MyViewHolder>() {
+
+    fun searchList(newFilterdList: ArrayList<Hotel>) {
+         data=newFilterdList
+        notifyDataSetChanged()
+
+    }
 
 
     lateinit var mlistner: onItemClickListner
@@ -67,8 +73,8 @@ class TestAdapters(val context:Context, val data: List<Hotel>?):RecyclerView.Ada
             Glide.with(this.context)
                 .load(data!!.get(position).photos[0]).into(holder.image)
         }
-        holder.cheapPrice.text = data.get(position).cheapestPrice.toString()
-        var ratingNum = data.get(position).rating.toString()
+        holder.cheapPrice.text = data!!.get(position).cheapestPrice.toString()
+        var ratingNum = data!!.get(position).rating.toString()
         val f1 = ratingNum.toFloat()
         holder.rating.rating= f1
 

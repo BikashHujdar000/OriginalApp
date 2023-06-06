@@ -1,4 +1,5 @@
 package com.example.hotelreservationsystem.Fragments
+
 import android.icu.number.IntegerWidth
 import android.net.Uri
 import android.os.Bundle
@@ -35,13 +36,13 @@ import kotlin.math.log
 
 @AndroidEntryPoint
 class addRoomFragment : Fragment() {
-    lateinit var binding:FragmentAddRoomBinding
+    lateinit var binding: FragmentAddRoomBinding
 
     var ownerId: String? = null
     var hoteid: String? = null
 
     lateinit var imageUri: Uri
-     lateinit var imagePath: String
+    lateinit var imagePath: String
 
     private val hotelViewModel by viewModels<HotelViewModel>()
 
@@ -51,7 +52,7 @@ class addRoomFragment : Fragment() {
     private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
         imageUri = it!!
         // changed code
-      //  binding.image1.setImageURI(it)
+        //  binding.image1.setImageURI(it)
         // converting the image
         val filesDir = requireContext().filesDir
         val file = File(filesDir, "image.png")
@@ -90,14 +91,12 @@ class addRoomFragment : Fragment() {
                             this.context?.let { it1 ->
                                 Glide.with(it1).load(imageUri).into(binding.image1)
                             }
-                            binding.createRoom.visibility =View.VISIBLE
+                            binding.createRoom.visibility = View.VISIBLE
 
 
-                        }
-                        catch (e:Exception)
-                        {
+                        } catch (e: Exception) {
 
-                            Log.d(TAG,"Error time")
+                            Log.d(TAG, "Error time")
                         }
 
                     }
@@ -112,8 +111,7 @@ class addRoomFragment : Fragment() {
                 }
             })
 
-        }catch (e:java.lang.Exception)
-        {
+        } catch (e: java.lang.Exception) {
             Toast.makeText(requireContext(), "Server Time out ", Toast.LENGTH_SHORT).show()
         }
 
@@ -134,8 +132,7 @@ class addRoomFragment : Fragment() {
 
 
 
-        Log.d(TAG,"ownerid and hotelId  $ownerId $hoteid")
-
+        Log.d(TAG, "ownerid and hotelId  $ownerId $hoteid")
 
 
         val itemsselecor = resources.getStringArray(R.array.selectors);
@@ -154,49 +151,49 @@ class addRoomFragment : Fragment() {
 
         binding.createRoom.setOnClickListener() {
 
-                var number = binding.roomNumber.text.toString()
-                var roomType = binding.autocomplete.text.toString()
-                var price = binding.roomRent.text.toString()
-                var uri = imagePath.toString()
+            var number = binding.roomNumber.text.toString()
+            var roomType = binding.autocomplete.text.toString()
+            var price = binding.roomRent.text.toString()
+            var uri = imagePath.toString()
             // i have to take the int value
-                val numberInt = Integer.parseInt(number)
-                val priceInt = Integer.parseInt(price)
-                Log.d(TAG,"$numberInt")
-                Log.d(TAG,"$priceInt")
-                //String value= et.getText().toString();
-                //int finalValue=Integer.parseInt(value);
+            val numberInt = Integer.parseInt(number)
+            val priceInt = Integer.parseInt(price)
+            Log.d(TAG, "$numberInt")
+            Log.d(TAG, "$priceInt")
+            //String value= et.getText().toString();
+            //int finalValue=Integer.parseInt(value);
 
-                Log.d(TAG,uri)
-
-
-
-
-                      hotelViewModel.addRoom(ownerId!!, hoteid!!, RoomRequest(numberInt, priceInt, roomType, uri))
+            Log.d(TAG, uri)
 
 
 
 
+            hotelViewModel.addRoom(
+                ownerId!!,
+                hoteid!!,
+                RoomRequest(numberInt, priceInt, roomType, uri)
+            )
 
 
         }
-       hotelViewModel.hotelLiveData.observe( viewLifecycleOwner, Observer {
-           when(it)
-           {
-               is NetworkResult.Success->{
-                   val hotelIdIn = it.data?.hotel?._id
-                   Log.d(TAG,"room id id $hotelIdIn")
-                   val hotelData = HotelResponse(it.data?.hotel!!)
-                   Log.d(TAG,hotelData.toString())
+        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is NetworkResult.Success -> {
+                    val hotelIdIn = it.data?.hotel?._id
+                    Log.d(TAG, "room id id $hotelIdIn")
+                    val hotelData = HotelResponse(it.data?.hotel!!)
+                    Log.d(TAG, hotelData.toString())
 //                   val action =addRoomFragmentDirections.actionAddRoomFragmentToOwnerRoomsFragment(hotelData)
 //                   findNavController().navigate(action)
-                   findNavController().popBackStack()
-               }
-               is NetworkResult.Error->{}
-               is NetworkResult.Loading ->{
+                    findNavController().popBackStack()
+                }
 
-               }
-           }
-       })
+                is NetworkResult.Error -> {}
+                is NetworkResult.Loading -> {
+
+                }
+            }
+        })
 
         // Inflate the layout for this fragment
         return binding.root

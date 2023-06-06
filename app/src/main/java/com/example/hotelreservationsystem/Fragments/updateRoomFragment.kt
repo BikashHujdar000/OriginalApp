@@ -39,14 +39,14 @@ import kotlin.math.log
 @AndroidEntryPoint
 class updateRoomFragment : Fragment() {
 
-    lateinit var  binding: FragmentUpdateRoomBinding
-    private val  hotelViewModel by viewModels<HotelViewModel>()
+    lateinit var binding: FragmentUpdateRoomBinding
+    private val hotelViewModel by viewModels<HotelViewModel>()
 
     var ownerId: String? = null
     var hotelid: String? = null
-    var roomId:String?= null
+    var roomId: String? = null
 
-// private val args by navArgs<OwnerHomeFragmentArgs>()
+    // private val args by navArgs<OwnerHomeFragmentArgs>()
     private val args by navArgs<updateRoomFragmentArgs>()
     lateinit var imageUri: Uri
     lateinit var imagePath: String
@@ -82,10 +82,8 @@ class updateRoomFragment : Fragment() {
                     try {
                         Log.d(TAG, "Show me the image uri ${it.data?.url}")
                         imagePath = it.data!!.url
-                    }
-                    catch (e:Exception)
-                    {
-                        Log.d(TAG,"Error time")
+                    } catch (e: Exception) {
+                        Log.d(TAG, "Error time")
                     }
 
                 }
@@ -102,60 +100,63 @@ class updateRoomFragment : Fragment() {
     }
 
 
-
-
     // okay function end
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding  = FragmentUpdateRoomBinding.inflate(layoutInflater,container,false)
+        binding = FragmentUpdateRoomBinding.inflate(layoutInflater, container, false)
 
 
         // Work  upder this fragment
 
 
-         ownerId = args.roomDetails.owner
-          hotelid = args.roomDetails.hotel
-          roomId = args.roomDetails._id
+        ownerId = args.roomDetails.owner
+        hotelid = args.roomDetails.hotel
+        roomId = args.roomDetails._id
 
 
 
-    Log.d(TAG, "okay  lets rechake the id  owner  $ownerId hotelId $hotelid  room id $roomId  ")
-
+        Log.d(TAG, "okay  lets rechake the id  owner  $ownerId hotelId $hotelid  room id $roomId  ")
 
 
         // callling function to delete the room
-         binding.deleteInsideRoomcard.setOnClickListener{
-             hotelViewModel.deleteRoom(ownerId!!,hotelid!!,roomId!!)
+        binding.deleteInsideRoomcard.setOnClickListener {
+            hotelViewModel.deleteRoom(ownerId!!, hotelid!!, roomId!!)
             hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
-                when(it)
-                {
-                    is NetworkResult.Success->
-                    {
+                when (it) {
+                    is NetworkResult.Success -> {
                         try {
-                            Toast.makeText(requireContext(), "Room Deleated SucessFully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Room Deleated SucessFully",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             findNavController().popBackStack()
-                        }
-                        catch (
-                            e:Exception
-                        )
-                        {
-                            Toast.makeText(requireContext(), "Sorry Can Not perform ", Toast.LENGTH_SHORT).show()
+                        } catch (
+                            e: Exception
+                        ) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Sorry Can Not perform ",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
 
                     }
-                     is NetworkResult.Error->{
 
-                     }
-                    is NetworkResult.Loading->{
+                    is NetworkResult.Error -> {
+
+                    }
+
+                    is NetworkResult.Loading -> {
 
                     }
                 }
             })
-         }
+        }
 
 
         val itemsselecor = resources.getStringArray(R.array.selectors);
@@ -187,39 +188,46 @@ class updateRoomFragment : Fragment() {
             val numberInt = Integer.parseInt(number)
             val priceInt = Integer.parseInt(price)
             // checking for the error
-            Log.d(TAG,"$numberInt")
-            Log.d(TAG,"$priceInt")
+            Log.d(TAG, "$numberInt")
+            Log.d(TAG, "$priceInt")
 
             //String value= et.getText().toString();
             //int finalValue=Integer.parseInt(value);
 
-            Log.d(TAG,uri)
+            Log.d(TAG, uri)
 
-            Log.d(TAG,"OKAY DATA ARE  $numberInt $roomType $price $uri ")
+            Log.d(TAG, "OKAY DATA ARE  $numberInt $roomType $price $uri ")
 
             try {
-                hotelViewModel.updateRoom(ownerId!!,hotelid!!,roomId!!,RoomRequest(numberInt,priceInt,roomType,uri))
-            }
-            catch (e:Exception)
-            {
-                Log.d(TAG,"error on calling the api response na aako bela ")
+                hotelViewModel.updateRoom(
+                    ownerId!!,
+                    hotelid!!,
+                    roomId!!,
+                    RoomRequest(numberInt, priceInt, roomType, uri)
+                )
+            } catch (e: Exception) {
+                Log.d(TAG, "error on calling the api response na aako bela ")
             }
 
 
         }
 
         hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
-            when(it)
-            {
-                is NetworkResult.Success->
-                {
-                    Toast.makeText(requireContext(), "Hotel Updated Successfully", Toast.LENGTH_SHORT).show()
+            when (it) {
+                is NetworkResult.Success -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Hotel Updated Successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     findNavController().popBackStack()
                 }
-                is NetworkResult.Loading->{
+
+                is NetworkResult.Loading -> {
 
                 }
-                is NetworkResult.Error->{
+
+                is NetworkResult.Error -> {
 
                 }
             }
@@ -227,10 +235,6 @@ class updateRoomFragment : Fragment() {
 
 
         //update room Finsihed
-
-
-
-
 
 
         return binding.root

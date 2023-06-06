@@ -20,9 +20,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class UserHistoryFragment : Fragment() {
 
-    lateinit var  binding :FragmentUserHistoryBinding
-    var userId:String? = null
-    private  val getAllHotelViewModel by viewModels<GetAllHotelViewModel> ()
+    lateinit var binding: FragmentUserHistoryBinding
+    var userId: String? = null
+    private val getAllHotelViewModel by viewModels<GetAllHotelViewModel>()
 
 
     override fun onCreateView(
@@ -30,11 +30,12 @@ class UserHistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentUserHistoryBinding.inflate(layoutInflater,container,false)
+        binding = FragmentUserHistoryBinding.inflate(layoutInflater, container, false)
 
+        binding.historyShimmer.startShimmer()
         userId = requireArguments().getString("userId")
 
-        Log.d(TAG,"history fragment ma aauxa user id $userId")
+        Log.d(TAG, "history fragment ma aauxa user id $userId")
 
         getAllHotelViewModel.userBookingd(userId!!)
 
@@ -45,26 +46,32 @@ class UserHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getAllHotelViewModel.userBookingsLiveData.observe(viewLifecycleOwner, Observer {
-            when(it)
-            {
-                is NetworkResult.Success->{
+            when (it) {
+                is NetworkResult.Success -> {
 
                     val responseData = it.data?.booking
-                    Log.d("data from user are ","$responseData")
+                    Log.d("data from user are ", "$responseData")
 
                     //s etiing up for recycler View
                     val Data = it.data?.booking
                     val recycler = binding.userBookRoomViewRecyclerview
-                    val bookingsAdapter = BookingsAdapter(requireContext(),Data!!,getAllHotelViewModel)
+
+                    val bookingsAdapter =
+                        BookingsAdapter(requireContext(), Data!!, getAllHotelViewModel)
+
+                    binding.historyShimmer.startShimmer()
+                    binding.historyShimmer.visibility = View.INVISIBLE
+                    recycler.visibility = View.VISIBLE
                     recycler.adapter = bookingsAdapter
-                    recycler.layoutManager =LinearLayoutManager(requireContext())
+                    recycler.layoutManager = LinearLayoutManager(requireContext())
 
                 }
-                is NetworkResult.Loading->{
+
+                is NetworkResult.Loading -> {
 
                 }
-                is NetworkResult.Error->
-                {
+
+                is NetworkResult.Error -> {
 
                 }
             }

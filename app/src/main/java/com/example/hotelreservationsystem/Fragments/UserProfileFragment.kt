@@ -1,4 +1,5 @@
 package com.example.hotelreservationsystem.Fragments
+
 import android.os.Build
 import android.os.Bundle
 import android.transition.AutoTransition
@@ -21,12 +22,13 @@ import me.ibrahimsn.lib.SmoothBottomBar
 
 @AndroidEntryPoint
 class UserProfileFragment : Fragment() {
-    lateinit var binding  : FragmentUserProfileBinding
+    lateinit var binding: FragmentUserProfileBinding
 
     lateinit var profileExpandable: ConstraintLayout
-    var userId:String?= null
+    var userId: String? = null
 
     private val getAllHotelViewModel by viewModels<GetAllHotelViewModel>()
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +38,7 @@ class UserProfileFragment : Fragment() {
         binding = FragmentUserProfileBinding.inflate(layoutInflater, container, false)
         // setting the dropdown function
         userId = requireArguments().getString("userId")
-        Log.d(TAG,"user  id in userProfile  is $userId")
+        Log.d(TAG, "user  id in userProfile  is $userId")
 
         profileExpandable = binding.expandableView
         binding.profileDropdown.setOnClickListener {
@@ -73,14 +75,16 @@ class UserProfileFragment : Fragment() {
             }
         }
 
-        binding.history.setOnClickListener{
+        binding.history.setOnClickListener {
 
-          findNavController().navigate(R.id.action_userProfileFragment_to_userHistoryFragment,Bundle().apply {
-              putString("userId",userId)
-          })
+            findNavController().navigate(
+                R.id.action_userProfileFragment_to_userHistoryFragment,
+                Bundle().apply {
+                    putString("userId", userId)
+                })
 
         }
-        binding.logOutCard.setOnClickListener{
+        binding.logOutCard.setOnClickListener {
             findNavController().navigate(R.id.action_userProfileFragment_to_userLoginFragment)
 
         }

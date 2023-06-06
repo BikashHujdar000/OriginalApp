@@ -30,6 +30,8 @@ class RoomsAdapter(val context:Context ,val RoomData :List<Room>):RecyclerView.A
         val room_view_type = itemView.findViewById<TextView>(R.id.room_view_type)
         val room_view_price = itemView.findViewById<TextView>(R.id.room_view_price)
         val room_view_image=itemView.findViewById<ShapeableImageView>(R.id.roomViewImage)
+        val room_status = itemView.findViewById<TextView>(R.id.statusofroom)
+
         init {
            itemView.setOnClickListener{
                listner.onItemClick(adapterPosition)
@@ -63,6 +65,14 @@ class RoomsAdapter(val context:Context ,val RoomData :List<Room>):RecyclerView.A
          else
          {
              Glide.with(this.context).load(RoomData.get(position).img).into(holder.room_view_image)
+         }
+         if(RoomData.get(position).status.toString()=="true")
+         {
+             holder.room_status.text = "Available"
+         }
+         else
+         {
+           holder.room_status.text = "Booked"
          }
      }
  }

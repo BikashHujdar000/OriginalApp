@@ -19,15 +19,15 @@ import com.example.hotelreservationsystem.utils.constants.TAG
 import java.lang.Exception
 
 class ViewRoomFragment : Fragment() {
-    lateinit var binding : FragmentViewRoomBinding
- private  val args by navArgs<ViewRoomFragmentArgs>()
+    lateinit var binding: FragmentViewRoomBinding
+    private val args by navArgs<ViewRoomFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentViewRoomBinding.inflate(layoutInflater,container, false)
+        binding = FragmentViewRoomBinding.inflate(layoutInflater, container, false)
 
         return binding.root
 
@@ -35,18 +35,17 @@ class ViewRoomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val rooms= args.hotel.rooms
+        val rooms = args.hotel.rooms
         val userId = args.userId
 
-        Log.d(TAG," Room datas are $rooms")
+        Log.d(TAG, " Room datas are $rooms")
         // Inflate the layout for this fragment
         //reclerView item setting section
 
 
-
         val recyclerView = binding.userViewRoomsRecyclerView
-        val availableRoomsAdapter = AvailableRoomsAdapter(requireContext(),rooms)
-        recyclerView.adapter =availableRoomsAdapter
+        val availableRoomsAdapter = AvailableRoomsAdapter(requireContext(), rooms)
+        recyclerView.adapter = availableRoomsAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         //availableRoomsAdapter.setOnItemClickListner(
@@ -73,30 +72,36 @@ class ViewRoomFragment : Fragment() {
         //            }
         //        )
 
-        availableRoomsAdapter.setOnItemClickListner(object :AvailableRoomsAdapter.onItemClickListner {
+        availableRoomsAdapter.setOnItemClickListner(object :
+            AvailableRoomsAdapter.onItemClickListner {
             override fun onItemClick(position: Int) {
 
 
                 try {
                     val RoomDetails = args.hotel.rooms.get(position)
 
-                    if(RoomDetails.status.toString() == "true")
-                    {
+                    if (RoomDetails.status.toString() == "true") {
                         val userId = args.userId
-                        Log.d(TAG,"room euta in view room fragment is $RoomDetails")
-                        Log.d(TAG,"user id in view room fragment is $userId")
-                        Toast.makeText(requireContext(), "${RoomDetails._id}", Toast.LENGTH_SHORT).show()
-                        val action = ViewRoomFragmentDirections.actionViewRoomFragmentToUserBookingFragment(RoomDetails,userId)
+                        Log.d(TAG, "room euta in view room fragment is $RoomDetails")
+                        Log.d(TAG, "user id in view room fragment is $userId")
+                        Toast.makeText(requireContext(), "${RoomDetails._id}", Toast.LENGTH_SHORT)
+                            .show()
+                        val action =
+                            ViewRoomFragmentDirections.actionViewRoomFragmentToUserBookingFragment(
+                                RoomDetails,
+                                userId
+                            )
                         findNavController().navigate(action)
-                    }
-                    else
-                    {
-                        Toast.makeText(requireContext(), "Room is already Booked", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Room is already Booked",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
-                }catch (e:Exception)
-                {
-                    Log.d(TAG,"error  on adapter click ")
+                } catch (e: Exception) {
+                    Log.d(TAG, "error  on adapter click ")
                 }
 
             }

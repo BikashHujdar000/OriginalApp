@@ -72,9 +72,7 @@
                 android:id="@+id/room_view_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/edittext_background_box"
-                android:backgroundTint="@color/teal_700"
+                android:layout_marginTop="20dp"
                 android:hint="type"
                 android:padding="5dp"
                 android:text=" DoubleDeluxe"
@@ -92,7 +90,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/room_view_type"
                 app:layout_constraintStart_toEndOf="@+id/room_view_type"
                 app:layout_constraintTop_toTopOf="@+id/room_view_type"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintVertical_bias="0.777">
 
             </ImageView>
 
@@ -106,10 +104,19 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
+            <TextView
+                android:id="@+id/statusofroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/edittext_background_box"
 
-
-
-
+                android:fontFamily="@font/poppins_regular"
+                android:padding="5dp"
+                android:text="Available"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/room_view_price" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

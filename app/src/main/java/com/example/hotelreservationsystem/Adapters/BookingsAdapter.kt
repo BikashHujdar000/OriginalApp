@@ -43,8 +43,8 @@ class BookingsAdapter(val context:Context,val bookingData : List<Booking>,privat
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
        holder.hotel_name.text = bookingData.get(position).hotel.name.toString()
         holder.room_number.text = bookingData.get(position).room.number.toString()
-        holder.checkinDate.text = bookingData.get(position).startDate.toString()
-        holder.checkoutDate.text = bookingData.get(position).endDate.toString()
+        holder.checkinDate.text = bookingData.get(position).startDate.toString().substringBefore("T")
+        holder.checkoutDate.text = bookingData.get(position).endDate.toString().substringBefore("T")
         holder.cancelbooking.setOnClickListener {
 
             val userId = bookingData.get(position).user._id

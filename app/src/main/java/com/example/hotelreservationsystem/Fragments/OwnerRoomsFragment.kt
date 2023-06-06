@@ -27,7 +27,6 @@ class OwnerRoomsFragment : Fragment() {
     var hoteid: String? = null
 
 
-
 //    private  val args by navArgs<OwnerRoomsFragmentArgs>()
 
 
@@ -50,55 +49,56 @@ class OwnerRoomsFragment : Fragment() {
         //  646e22b095405e6d962cc2cb  and 646e25f9b2a982f41b6e6519
 
         hotelViewModel.getAllRooms(ownerId!!, hoteid!!)
-            hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
-                when (it) {
-                    is NetworkResult.Loading -> {
+        hotelViewModel.hotelLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is NetworkResult.Loading -> {
 
-                    }
-
-                    is NetworkResult.Success -> {
-
-
-                        Log.d(TAG, "  data is generated")
-                        val roomData: List<Room> = it.data?.hotel!!.rooms
-
-                        Log.d(TAG, " Room Lisy ois $roomData")
-                        try {
-                            val recyclerView = binding.roomViewRecyclerView
-                            val roomAdapter = RoomsAdapter(requireContext(),it.data.hotel.rooms)
-                            recyclerView.adapter = roomAdapter
-                            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                            roomAdapter.notifyDataSetChanged()
-                            // handling on item touch
-                            roomAdapter.setOnItemClickListner(
-                                object :RoomsAdapter.onItemClickListner
-                                {
-                                    override fun onItemClick(position: Int) {
-                                        val roomDetails = it.data.hotel.rooms.get(position)
-                                        Log.d(TAG," room id is $roomDetails")
-                                        val action = OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment(roomDetails)
-                                        findNavController().navigate(action)
-                                    }
-
-                                }
-                            )
-
-
-                        }
-                        catch (e: Exception) {
-                            Log.d(TAG, " eroor on adapting recyclerview  ${e.message}")
-                        }
-
-
-                    }
-
-                    is NetworkResult.Error -> {
-
-                    }
-
-
-                    else -> {}
                 }
+
+                is NetworkResult.Success -> {
+
+
+                    Log.d(TAG, "  data is generated")
+                    val roomData: List<Room> = it.data?.hotel!!.rooms
+
+                    Log.d(TAG, " Room Lisy ois $roomData")
+                    try {
+                        val recyclerView = binding.roomViewRecyclerView
+                        val roomAdapter = RoomsAdapter(requireContext(), it.data.hotel.rooms)
+                        recyclerView.adapter = roomAdapter
+                        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                        roomAdapter.notifyDataSetChanged()
+                        // handling on item touch
+                        roomAdapter.setOnItemClickListner(
+                            object : RoomsAdapter.onItemClickListner {
+                                override fun onItemClick(position: Int) {
+                                    val roomDetails = it.data.hotel.rooms.get(position)
+                                    Log.d(TAG, " room id is $roomDetails")
+                                    val action =
+                                        OwnerRoomsFragmentDirections.actionOwnerRoomsFragmentToUpdateRoomFragment(
+                                            roomDetails
+                                        )
+                                    findNavController().navigate(action)
+                                }
+
+                            }
+                        )
+
+
+                    } catch (e: Exception) {
+                        Log.d(TAG, " eroor on adapting recyclerview  ${e.message}")
+                    }
+
+
+                }
+
+                is NetworkResult.Error -> {
+
+                }
+
+
+                else -> {}
+            }
         })
 
 

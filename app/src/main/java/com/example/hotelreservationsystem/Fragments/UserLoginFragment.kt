@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserLoginFragment : Fragment() {
-    lateinit var binding : FragmentUserLoginBinding
+    lateinit var binding: FragmentUserLoginBinding
     private val userAuthViewModel by viewModels<UserAuthViewModel>()
 
     @Inject
@@ -53,6 +53,7 @@ class UserLoginFragment : Fragment() {
         return binding.root
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -81,7 +82,8 @@ class UserLoginFragment : Fragment() {
 
         // setting for sign up now
         binding.signUpNow.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_userLoginFragment_to_userRegisterFragment)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_userLoginFragment_to_userRegisterFragment)
         }
 
     }
@@ -98,25 +100,27 @@ class UserLoginFragment : Fragment() {
                 is NetworkResult.Success -> {
                     //
                     val userId = it.data?.user?._id
-                    Log.d(TAG,userId.toString())
+                    Log.d(TAG, userId.toString())
 
                     // passing username to the userHomeFragment
                     val username = it.data?.user?.username
-                    Log.d("TAG","$userId")
+                    Log.d("TAG", "$userId")
 
 
                     tokenManager.saveToken(it.data!!.token)
-                    Log.d(constants.TAG,it.data.token)
+                    Log.d(constants.TAG, it.data.token)
 
 
                     // trying to send the data
-                    val user = UserResponse(it.data!!.token.toString(),it.data.user)
+                    val user = UserResponse(it.data!!.token.toString(), it.data.user)
 //                    val action = UserLoginFragmentDirections.actionUserLoginFragmentToUserHomeFragment(user)
 //                    findNavController().navigate(action)
-                   findNavController().navigate(R.id.action_userLoginFragment_to_userHomeFragment,Bundle().apply {
-                       putString("userId",userId)
-                       putString("username",username)
-                   })
+                    findNavController().navigate(
+                        R.id.action_userLoginFragment_to_userHomeFragment,
+                        Bundle().apply {
+                            putString("userId", userId)
+                            putString("username", username)
+                        })
                 }
 
                 is NetworkResult.Error -> {
@@ -136,13 +140,18 @@ class UserLoginFragment : Fragment() {
     private fun validateUserInput(): Pair<Boolean, String> {
         val userInput = getUserInput()
 
-        return  userAuthViewModel.validateCredential(userInput.username,userInput.email,userInput.password,true)
+        return userAuthViewModel.validateCredential(
+            userInput.username,
+            userInput.email,
+            userInput.password,
+            true
+        )
     }
 
     private fun getUserInput(): UserRequest {
         var userEmailAddress = binding.userEmail.text.toString()
         var userPassword = binding.userPassword.text.toString()
-        return UserRequest(userEmailAddress, userPassword,"", )
+        return UserRequest(userEmailAddress, userPassword, "")
     }
 
 

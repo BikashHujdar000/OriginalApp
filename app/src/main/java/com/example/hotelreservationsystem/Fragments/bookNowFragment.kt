@@ -11,20 +11,18 @@ import com.example.hotelreservationsystem.R
 import com.example.hotelreservationsystem.databinding.FragmentBookNowBinding
 
 class bookNowFragment : Fragment() {
-    lateinit var  binding:FragmentBookNowBinding
+    lateinit var binding: FragmentBookNowBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBookNowBinding.inflate(layoutInflater,container,false)
+        binding = FragmentBookNowBinding.inflate(layoutInflater, container, false)
         // Inflate the layout for this fragment
-
 
 
         return binding.root
     }
-
 
 
 }

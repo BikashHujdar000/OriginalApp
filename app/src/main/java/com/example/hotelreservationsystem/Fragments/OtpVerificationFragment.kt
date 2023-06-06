@@ -27,17 +27,17 @@ import java.lang.Exception
 
 @AndroidEntryPoint
 class OtpVerificationFragment : Fragment() {
-    lateinit var binding : FragmentOtpVerificationBinding
+    lateinit var binding: FragmentOtpVerificationBinding
     private val authViewModel by viewModels<UserAuthViewModel>()
-    lateinit var email : String
+    lateinit var email: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentOtpVerificationBinding.inflate(layoutInflater,container,false);
+        binding = FragmentOtpVerificationBinding.inflate(layoutInflater, container, false);
         email = requireArguments().getString("email").toString()
-        Log.d("Email",email)
+        Log.d("Email", email)
 
         setOtp()
         binding.continueBtn.setOnClickListener {
@@ -46,14 +46,15 @@ class OtpVerificationFragment : Fragment() {
         }
         return binding.root;
     }
-    private fun setOtp(){
-        binding.otp1.addTextChangedListener(object: TextWatcher {
+
+    private fun setOtp() {
+        binding.otp1.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(!s.toString().trim().isEmpty()){
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp2.requestFocus();
                 }
 
@@ -64,13 +65,13 @@ class OtpVerificationFragment : Fragment() {
             }
 
         })
-        binding.otp2.addTextChangedListener(object: TextWatcher {
+        binding.otp2.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(!s.toString().trim().isEmpty()){
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp3.requestFocus();
                 }
             }
@@ -88,8 +89,7 @@ class OtpVerificationFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.toString().trim().isEmpty())
-                {
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp4.requestFocus()
                 }
             }
@@ -102,8 +102,7 @@ class OtpVerificationFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.toString().trim().isEmpty())
-                {
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp5.requestFocus()
                 }
             }
@@ -116,32 +115,35 @@ class OtpVerificationFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.toString().trim().isEmpty())
-                {
+                if (!s.toString().trim().isEmpty()) {
                     binding.otp6.requestFocus()
                 }
             }
         })
     }
-    private fun verifyOtp(){
-        val otpValue:String = binding.otp1.text.toString()+binding.otp2.text.toString()+binding.otp3.text.toString()+
-                binding.otp4.text.toString()+binding.otp5.text.toString()+binding.otp6.text.toString()
+
+    private fun verifyOtp() {
+        val otpValue: String =
+            binding.otp1.text.toString() + binding.otp2.text.toString() + binding.otp3.text.toString() +
+                    binding.otp4.text.toString() + binding.otp5.text.toString() + binding.otp6.text.toString()
         authViewModel.verifOwnerOtp(UserOtpGenerateResponse(otpValue))
-        try{
+        try {
             authViewModel.otpVerifyResponseLiveData.observe(viewLifecycleOwner, Observer {
-                when(it){
-                    is NetworkResult.Success ->{
+                when (it) {
+                    is NetworkResult.Success -> {
                         val response = it.data!!.message.toString()
-                        Log.d(constants.TAG,"$response")
-                        if(response.toString() =="otp verification successtrue"){
-                            findNavController().navigate(R.id.action_otpVerificationFragment_to_otpConfirmationFragment,Bundle().apply {
-                                putString("VEmail",email)
-                            })
+                        Log.d(constants.TAG, "$response")
+                        if (response.toString() == "otp verification successtrue") {
+                            findNavController().navigate(
+                                R.id.action_otpVerificationFragment_to_otpConfirmationFragment,
+                                Bundle().apply {
+                                    putString("VEmail", email)
+                                })
 
 
-                        }
-                        else{
-                            Toast.makeText(requireContext(),"Invalid otp ! ", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Invalid otp ! ", Toast.LENGTH_SHORT)
+                                .show()
 
                         }
 
@@ -152,11 +154,8 @@ class OtpVerificationFragment : Fragment() {
             })
 
 
-
-
-        }
-        catch(e: Exception){
-            Log.d(constants.TAG,"response error")
+        } catch (e: Exception) {
+            Log.d(constants.TAG, "response error")
         }
 
 

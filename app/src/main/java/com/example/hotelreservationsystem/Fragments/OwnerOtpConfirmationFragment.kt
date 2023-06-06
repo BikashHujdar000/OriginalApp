@@ -30,7 +30,7 @@ class OwnerOtpConfirmationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOwnerOtpConfirmationBinding.inflate(layoutInflater, container, false);
         val email = requireArguments().getString("VEmail").toString()
-        Log.d("123",email)
+        Log.d("123", email)
 //        val psd= binding.createPassword.text.toString()
 //        val cPsd = binding.confirmPassword.text.toString()
 //
@@ -39,12 +39,12 @@ class OwnerOtpConfirmationFragment : Fragment() {
 //        Log.d("password","$psd,$cPsd,$email")
 
         binding.update.setOnClickListener {
-            val psd= binding.createPassword.text.toString()
+            val psd = binding.createPassword.text.toString()
             val cPsd = binding.confirmPassword.text.toString()
-            Log.d("password","$psd,$cPsd,$email" )
+            Log.d("password", "$psd,$cPsd,$email")
 
 //        val confirmOwnerPasswordRequest = ConfirmOwnerPasswordRequest( confirmPassword,email, password)
-        authViewModel.createOwnerPassword(ConfirmOwnerPasswordRequest(cPsd,email,psd))
+            authViewModel.createOwnerPassword(ConfirmOwnerPasswordRequest(cPsd, email, psd))
 
 
 
@@ -54,13 +54,13 @@ class OwnerOtpConfirmationFragment : Fragment() {
 
                         val response = it.data?.message
                         Log.d("rettt", "$response")
-                        if(response =="password changed successfully") {
+                        if (response == "password changed successfully") {
 
 
-                          findNavController().navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerLoginFragment)
-                        }
-                        else{
-                            Toast.makeText(requireContext(),"not changed",Toast.LENGTH_SHORT).show()
+                            findNavController().navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerLoginFragment)
+                        } else {
+                            Toast.makeText(requireContext(), "not changed", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
 
@@ -74,9 +74,7 @@ class OwnerOtpConfirmationFragment : Fragment() {
         }
 
 
-
-
-            // updating password  is in this field
+        // updating password  is in this field
 //            Navigation.findNavController(it)
 //                .navigate(R.id.action_ownerOtpConfirmationFragment_to_ownerLoginFragment);
 
