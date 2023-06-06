@@ -6,16 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.bookNowFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="10sp"
             android:fontFamily="@font/poppins_bold"
             android:text="Available Rooms"
             android:textStyle="bold"
@@ -25,11 +29,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rooms_list"
             android:layout_width="match_parent"
-            tools:listitem="@layout/test_layout_room_list"
             android:layout_height="0dp"
             android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+            app:layout_constraintTop_toBottomOf="@+id/textView23"
+            tools:listitem="@layout/test_layout_room_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

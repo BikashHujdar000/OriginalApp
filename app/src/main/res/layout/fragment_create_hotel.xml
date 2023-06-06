@@ -9,7 +9,7 @@
     tools:context=".Fragments.CreateHotelFragment">
 
     <LinearLayout
-        android:layout_margin="20dp"
+        android:layout_margin="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

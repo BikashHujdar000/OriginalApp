@@ -38,13 +38,12 @@
             <TextView
                 android:id="@+id/hotel_sample_name"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="4dp"
                 android:text="President Hotel"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/room_image"
                 app:layout_constraintTop_toTopOf="@+id/room_image" />
@@ -52,7 +51,6 @@
             <LinearLayout
                 android:id="@+id/linearCheaprice"
                 android:layout_width="wrap_content"
-
                 android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -84,7 +82,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/baseline_location_on_24"
                 android:drawablePadding="2dp"
-                android:textSize="12sp"
                 android:gravity="center"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Paris France"
@@ -100,6 +97,7 @@
                 android:progressTint="@color/rating"
                 android:progressBackgroundTint="@color/rating"
                 android:numStars="5"
+                android:stepSize="@integer/material_motion_duration_long_1"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,12 +107,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="View Details"
                 android:textColor="@color/book"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                app:layout_constraintTop_toBottomOf="@+id/linearCheaprice" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

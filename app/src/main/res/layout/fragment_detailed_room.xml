@@ -1,66 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.DetailedRoomFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/firstConstrian"
-            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:layout_marginBottom="10dp">
 
 
-        <TextView
-            android:id="@+id/ceckinText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:text="CheckIn :"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/ceckinText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="CheckIn :"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/check_in_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:background="@drawable/edittext_background_box"
-            android:padding="10dp"
-            android:text="m/d/y"
-            app:layout_constraintBottom_toBottomOf="@+id/ceckinText"
-            app:layout_constraintStart_toEndOf="@+id/ceckinText"
-            app:layout_constraintTop_toTopOf="@+id/ceckinText" />
+            <TextView
+                android:id="@+id/check_in_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/edittext_background_box"
+                android:padding="10dp"
+                android:text="m/d/y"
+                app:layout_constraintBottom_toBottomOf="@+id/ceckinText"
+                app:layout_constraintStart_toEndOf="@+id/ceckinText"
+                app:layout_constraintTop_toTopOf="@+id/ceckinText" />
 
-        <TextView
-            android:id="@+id/pick_1"
-            android:padding="10dp"
-            android:background="@drawable/home_search_background"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="pick"
-            app:layout_constraintBottom_toBottomOf="@+id/check_in_date"
-            app:layout_constraintStart_toEndOf="@+id/check_in_date"
-            app:layout_constraintTop_toTopOf="@+id/check_in_date" />
+            <TextView
+                android:id="@+id/pick_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/home_search_background"
+                android:padding="10dp"
+                android:text="pick"
+                app:layout_constraintBottom_toBottomOf="@+id/check_in_date"
+                app:layout_constraintStart_toEndOf="@+id/check_in_date"
+                app:layout_constraintTop_toTopOf="@+id/check_in_date" />
 
-        <TextView
-            android:id="@+id/checkoutText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
-            android:text="CheckOut:"
-            app:layout_constraintEnd_toEndOf="@+id/ceckinText"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/ceckinText"
-            app:layout_constraintTop_toBottomOf="@+id/ceckinText" />
+            <TextView
+                android:id="@+id/checkoutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="84dp"
+                android:text="CheckOut:"
+                app:layout_constraintEnd_toEndOf="@+id/ceckinText"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/ceckinText"
+                app:layout_constraintTop_toBottomOf="@+id/ceckinText" />
 
             <TextView
                 android:id="@+id/check_out_date"
@@ -75,16 +80,16 @@
                 app:layout_constraintStart_toEndOf="@+id/checkoutText"
                 app:layout_constraintTop_toTopOf="@+id/checkoutText" />
 
-        <TextView
-            android:id="@+id/pick_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/home_search_background"
-            android:text="pick"
-            app:layout_constraintBottom_toBottomOf="@+id/check_out_date"
-            app:layout_constraintStart_toEndOf="@+id/check_out_date"
-            app:layout_constraintTop_toTopOf="@+id/check_out_date" />
+            <TextView
+                android:id="@+id/pick_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/home_search_background"
+                android:text="pick"
+                app:layout_constraintBottom_toBottomOf="@+id/check_out_date"
+                app:layout_constraintStart_toEndOf="@+id/check_out_date"
+                app:layout_constraintTop_toTopOf="@+id/check_out_date" />
 
             <Button
                 android:id="@+id/confirm"
@@ -99,11 +104,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/pay_card"
-            android:elevation="215dp"
-            android:layout_margin="20dp"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:elevation="215dp"
+            android:visibility="gone">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -173,12 +178,6 @@
         </androidx.cardview.widget.CardView>
 
 
-
-
-
-
-
-
     </LinearLayout>
 
 
@@ -186,4 +185,4 @@
 
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

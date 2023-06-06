@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="5dp"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.UserBookingFragment">
@@ -12,29 +11,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
-            android:elevation="20dp">
+            android:layout_margin="10dp"
+            android:elevation="20dp"
+            app:cardCornerRadius="15dp">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/firstConstrian"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
 
                 <TextView
-                    android:fontFamily="@font/poppins_regular"
                     android:id="@+id/ceckinText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Check In Date"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +45,7 @@
                     android:id="@+id/linearLayout2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                  android:layout_margin="5dp"
+                    android:layout_margin="5dp"
                     android:background="@drawable/edittext_background_box"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="@+id/ceckinText"
@@ -64,8 +66,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+
                         android:fontFamily="@font/poppins_regular"
-                        android:layout_marginStart="20dp"
                         android:hint="0000-00-00"
                         android:padding="10dp" />
 
@@ -73,11 +75,11 @@
 
 
                 <TextView
-                    android:fontFamily="@font/poppins_regular"
                     android:id="@+id/checkoutText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Check Out Date"
                     app:layout_constraintBottom_toBottomOf="@+id/ceckinText"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout2"
@@ -88,10 +90,9 @@
                     android:id="@+id/linearLayout3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   android:layout_margin="5dp"
+                    android:layout_margin="5dp"
                     android:background="@drawable/edittext_background_box"
                     android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/checkoutText"
                     app:layout_constraintTop_toBottomOf="@+id/checkoutText">
 
@@ -109,7 +110,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
+
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/poppins_regular"
                         android:hint="0000-00-00"
@@ -134,116 +135,113 @@
         </androidx.cardview.widget.CardView>
 
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="10dp"
-           >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-           <androidx.cardview.widget.CardView
-               android:id="@+id/pay_card"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="10dp"
-               android:elevation="215dp"
-               android:visibility="gone"
-               app:cardCornerRadius="15dp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent">
-
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:layout_width="match_parent"
-                   android:layout_margin="15dp"
-                   android:layout_height="match_parent">
-
-                   <TextView
-                       android:id="@+id/days"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_margin="20dp"
-                       android:fontFamily="@font/poppins_regular"
-                       android:text="Total Days ="
-                       android:textStyle="bold"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent" />
-
-                   <TextView
-                       android:id="@+id/days_interval"
-                       android:layout_width="30dp"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/poppins_regular"
-                       android:gravity="center"
-                       android:text="x"
-                       android:textStyle="bold"
-                       app:layout_constraintBottom_toBottomOf="@+id/days"
-                       app:layout_constraintStart_toEndOf="@+id/days"
-                       app:layout_constraintTop_toTopOf="@+id/days" />
-
-                   <TextView
-                       android:id="@+id/amount"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_margin="20dp"
-
-                       android:layout_marginTop="16dp"
-                       android:fontFamily="@font/poppins_regular"
-                       android:text="Amount="
-                       android:textStyle="bold"
-                       app:layout_constraintEnd_toEndOf="@+id/days"
-                       app:layout_constraintStart_toStartOf="@+id/days"
-                       app:layout_constraintTop_toBottomOf="@+id/days" />
-
-                   <TextView
-                       android:id="@+id/payable_amount"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="2000"
-                       android:fontFamily="@font/poppins_regular"
-                       app:layout_constraintBottom_toBottomOf="@+id/amount"
-                       app:layout_constraintStart_toEndOf="@+id/amount"
-                       app:layout_constraintTop_toTopOf="@+id/amount"
-                       app:layout_constraintVertical_bias="0.0" />
-
-                   <Button
-                       android:id="@+id/book"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_margin="10dp"
-                       android:layout_marginTop="8dp"
-                       android:layout_marginEnd="16dp"
-                       android:backgroundTint="@color/book"
-                       android:text="Book"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintTop_toBottomOf="@+id/amount" />
-
-                   <com.github.ybq.android.spinkit.SpinKitView
-                       android:id="@+id/progress_bar"
-                       style="@style/SpinKitView.ThreeBounce"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:layout_marginEnd="32dp"
-                       android:indeterminate="true"
-                       android:visibility="gone"
-                       app:SpinKit_Color="@color/black"
-                       app:layout_constraintBottom_toBottomOf="@+id/book"
-                       app:layout_constraintEnd_toStartOf="@+id/book"
-                       app:layout_constraintTop_toTopOf="@+id/book"
-                       tools:ignore="RedundantNamespace" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pay_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="15dp"
+                android:visibility="gone"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-               </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp">
 
-           </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Total Days ="
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/days_interval"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:text="x"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/days"
+                        app:layout_constraintStart_toEndOf="@+id/days"
+                        app:layout_constraintTop_toTopOf="@+id/days" />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Amount="
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/days"
+                        app:layout_constraintStart_toStartOf="@+id/days"
+                        app:layout_constraintTop_toBottomOf="@+id/days" />
+
+                    <TextView
+                        android:id="@+id/payable_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="2000"
+                        app:layout_constraintBottom_toBottomOf="@+id/amount"
+                        app:layout_constraintStart_toEndOf="@+id/amount"
+                        app:layout_constraintTop_toTopOf="@+id/amount"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <Button
+                        android:id="@+id/book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/book"
+                        android:text="Book"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+                    <com.github.ybq.android.spinkit.SpinKitView
+                        android:id="@+id/progress_bar"
+                        style="@style/SpinKitView.ThreeBounce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="32dp"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        app:SpinKit_Color="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/book"
+                        app:layout_constraintEnd_toStartOf="@+id/book"
+                        app:layout_constraintTop_toTopOf="@+id/book"
+                        tools:ignore="RedundantNamespace" />
 
 
-       </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>

@@ -106,7 +106,7 @@
                 android:layout_height="?android:attr/actionBarSize"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/bottom_background"
-                android:backgroundTint="@color/theme1"
+                android:backgroundTint="@color/book"
                 android:elevation="10dp"
                 android:fontFamily="@font/poppins_bold"
                 android:gravity="center"
