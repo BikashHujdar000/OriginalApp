@@ -7,7 +7,7 @@
 
     <string name="register"> Register Now</string>
     <string name="login">Lets Login</string>
-    <string name="login_down">Start availing the best route for you </string>
+    <string name="login_down">Start availing the best hotel for you </string>
     <string name="register_down">Sign up now and discover the best hotel near you.</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
@@ -20,7 +20,6 @@
     <string name="agreement">By creating an account you agree to our Terms and Condition "</string>
     <string name="signUp">SIGN UP</string>
     <string name="signIn">SIGN IN</string>
-    <string name="busownerTExt">Start sharing your bus information for Travellers</string>
     <string name="login_with">Or login with</string>
     <string name="create_accont">Create account ?</string>
     <string name="home">Home</string>

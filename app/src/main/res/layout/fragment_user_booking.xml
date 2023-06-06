@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_margin="5dp"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.UserBookingFragment">
@@ -20,7 +22,7 @@
             android:elevation="20dp">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/firstConstrian"
-                android:layout_margin="20dp"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
@@ -41,7 +43,7 @@
                     android:id="@+id/linearLayout2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                  android:layout_margin="5dp"
                     android:background="@drawable/edittext_background_box"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="@+id/ceckinText"
@@ -86,9 +88,10 @@
                     android:id="@+id/linearLayout3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                   android:layout_margin="5dp"
                     android:background="@drawable/edittext_background_box"
                     android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/checkoutText"
                     app:layout_constraintTop_toBottomOf="@+id/checkoutText">
 
@@ -103,11 +106,12 @@
 
                     <TextView
                         android:id="@+id/check_out_date"
-                        android:fontFamily="@font/poppins_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/poppins_regular"
                         android:hint="0000-00-00"
                         android:padding="10dp" />
 
@@ -244,4 +248,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -79,7 +79,7 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/bottom_background"
-                android:backgroundTint="@color/theme1"
+                android:backgroundTint="@color/book"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
                 android:text=" Hotel Owner"
