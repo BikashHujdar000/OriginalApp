@@ -145,9 +145,8 @@ class UserHomeFragment : Fragment() {
                             hotelAdapters.setOnItemClickListner(object :
                                 TestAdapters.onItemClickListner {
                                 override fun onItemClick(position: Int) {
-                                    val hotel = response!!.get(position)
+                                    val hotel = hotelAdapters.data!!.get(position)
                                     Log.d(TAG, " user home dekhi pathauda $hotel")
-
                                     Log.d(TAG, "  user id kxa $userId")
                                     val action =
                                         UserHomeFragmentDirections.actionUserHomeFragmentToOnTouchUserFragment(
